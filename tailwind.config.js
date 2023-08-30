@@ -10,7 +10,12 @@ module.exports = {
   },
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors:{
+        btn:"#00B4FF",
+        chart:"#E6F6FD"
+      }
+    },
   },
   variants: {
     extend: {},

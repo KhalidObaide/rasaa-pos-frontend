@@ -2,25 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Routes, Route, Link } from "react-router-dom";
 import { getJWT } from "./shared";
-
-function Home() {
-    const jwt = getJWT();
-    return (
-        <div className="bg-red-200 mt-[100px]">
-            <h1>This the POS MODULE</h1>
-            <h1>Home</h1>
-            <p>JWT: {jwt}</p>
-        </div>
-    );
-}
-
-function Page1() {
-  return <h1>Page1</h1>;
-}
-
-function Page2() {
-  return <h1>Page2</h1>;
-}
+import { Home } from "./pages/Home";
+import Page1 from "./pages/Page1";
+import Page2 from "./pages/Page2";
+import ItemFactor from "./components/ItemFactorBuy/ItemFactor";
 
 function passRoutesToBase() {
     const routes = [
@@ -39,6 +24,7 @@ function App() {
             <Route path="" element={<Home />} />
             <Route path="page1" element={<Page1 />} />
             <Route path="page2" element={<Page2 />} />
+            <Route path="itemFactor" element={<ItemFactor />} />
         </Routes>
       </div>
     );
