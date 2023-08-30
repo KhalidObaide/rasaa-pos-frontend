@@ -4,11 +4,13 @@ import HeaderFac from "./HeaderItemFactor/HeaderFac";
 import Text from "../Text";
 import Remove from "./RemoveAll/Remove";
 import BodyItem from "./BodyItemFactor/BodyItem";
+import FooterItem from "./FooterItemFac/FooterItem";
 const ItemFactor = () => {
   const [data, setData] = useState(Text);
   const [edit, setEdit] = useState(true);
   const [open, setOpen] = useState(false);
   const [arr, setArr] = useState(Text);
+  console.log(arr)
   const [apiData, setApiData] = useState();
   return (
     <>
@@ -18,12 +20,14 @@ const ItemFactor = () => {
           arr={arr}
           setArr={setArr}
           edit={edit}
-          setOpne={setOpen}
+          setOpen={setOpen}
           apiData={apiData}
           setEdit={setEdit}
+          setData={setData}
         />
-        <BodyItem />
-        <Remove open={open} setOpen={setOpen} />
+        <BodyItem arr={arr} setArr={setArr} edit={edit} />
+        <FooterItem />
+        <Remove open={open} setOpen={setOpen}  />
       </div>
     </>
   );

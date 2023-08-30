@@ -13,7 +13,8 @@ module.exports = {
     extend: {
       colors:{
         btn:"#00B4FF",
-        chart:"#E6F6FD"
+        chart:"#E6F6FD",
+        error:"#EB5252"
       }
     },
   },

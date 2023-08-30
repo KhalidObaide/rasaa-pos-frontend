@@ -1,7 +1,7 @@
 import React from "react";
 import { style } from "../../../assets/style/styles";
 import { Link } from "react-router-dom";
-
+import { CiWarning } from "react-icons/ci";
 const Remove = ({setOpen , open}:any) => {
   const renoveF = () => {
     //   localStorage.clear("items");
@@ -22,7 +22,7 @@ const Remove = ({setOpen , open}:any) => {
           <div
             className={`bg-error text-center rounded-t-xl ${style.row} items-center justify-center py-6 w-full`}
           >
-            !
+            < CiWarning className="text-[80px] text-white" />
           </div>
           <div
             className={`${style.col} items-center justify-center gap-y-5 p-5`}
