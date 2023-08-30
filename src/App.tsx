@@ -6,7 +6,7 @@ import { getJWT } from "./shared";
 function Home() {
     const jwt = getJWT();
     return (
-        <div>
+        <div className="bg-red-200 mt-[100px]">
             <h1>This the POS MODULE</h1>
             <h1>Home</h1>
             <p>JWT: {jwt}</p>
