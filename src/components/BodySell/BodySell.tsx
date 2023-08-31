@@ -84,7 +84,7 @@ const BodySell = ({pageNext ,setPageNext}:any) => {
                 );
               })}
         </div>
-      </div>s
+      </div>
     </>
   )
 }

@@ -6,6 +6,7 @@ import { Home } from "./pages/Home";
 import Page1 from "./pages/Page1";
 import Page2 from "./pages/Page2";
 import ItemFactor from "./components/ItemFactorBuy/ItemFactor";
+import ItemFactorSell from "./components/ItemFactorSell/ItemFactorSell";
 
 function passRoutesToBase() {
     const routes = [
@@ -25,6 +26,7 @@ function App() {
             <Route path="page1" element={<Page1 />} />
             <Route path="page2" element={<Page2 />} />
             <Route path="itemFactor" element={<ItemFactor />} />
+            <Route path="itemFactor/sell" element={<ItemFactorSell />} />
         </Routes>
       </div>
     );
