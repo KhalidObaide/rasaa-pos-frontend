@@ -10,8 +10,8 @@ import ItemFactor from "./components/ItemFactorBuy/ItemFactor";
 function passRoutesToBase() {
     const routes = [
         {title: "Home", route: ""},
-        {title: "Page1", route: "page1"},
-        {title: "Page2", route: "page2"}
+        {title: "فروش", route: "Buy"},
+        {title: "خرید", route: "Sell"}
     ];
     localStorage.setItem("headers.pos", JSON.stringify(routes));
 }

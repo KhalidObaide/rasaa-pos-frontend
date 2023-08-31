@@ -10,7 +10,6 @@ const ItemFactor = () => {
   const [edit, setEdit] = useState(true);
   const [open, setOpen] = useState(false);
   const [arr, setArr] = useState(Text);
-  console.log(arr)
   const [apiData, setApiData] = useState();
   return (
     <>

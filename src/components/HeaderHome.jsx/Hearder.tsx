@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { style } from "../../assets/style/styles";
 import { CiSearch } from "react-icons/ci";
-
+import Date from "../Date/Date";
 // import {  Print , Cross , Remove , Edit , Check } from "../../assets/img";
 
 const Hearder = () => {
@@ -12,16 +12,16 @@ const Hearder = () => {
           <h1 className={`border-r-2 border-black pr-2 font-bold text-lg`}>
             خرید
           </h1>
-          <input type="date" />
+          <Date />
         </div>
         <div className={`${style.row} items-center gap-x-5`}>
           <div
-            className={`${style.row} bg-white items-center justify-between px-5 w-80 py-2 font-medium rounded-md drop-shadow-xl`}
+            className={`${style.row} bg-white items-center justify-between px-5 w-[360px] py-2 font-medium rounded-md drop-shadow-xl`}
           >
             <input
               type="text"
               placeholder="جستجو..."
-              className={`outline-none px-5  py-[12px]`}
+              className={`outline-none px-5   py-[12px]`}
             />
             <button>
               <CiSearch className={`text-3xl`} />
