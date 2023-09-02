@@ -26,7 +26,7 @@ function App() {
             <Route path="page1" element={<Page1 />} />
             <Route path="page2" element={<Page2 />} />
             <Route path="itemFactor" element={<ItemFactor />} />
-            <Route path="itemFactor/sell" element={<ItemFactorSell />} />
+            <Route path="/itemFactor/sell" element={<ItemFactorSell />} />
         </Routes>
       </div>
     );

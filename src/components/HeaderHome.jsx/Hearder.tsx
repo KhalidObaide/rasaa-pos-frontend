@@ -8,7 +8,7 @@ const Hearder = () => {
   return (
     <>
       <div className={`${style.row} items-center justify-between w-full`}>
-        <div className={`${style.row} items-center gap-x-5`}>
+        <div className={`${style.row} items-center gap-x-8`}>
           <h1 className={`border-r-2 border-black pr-2 font-bold text-lg`}>
             خرید
           </h1>
@@ -16,19 +16,19 @@ const Hearder = () => {
         </div>
         <div className={`${style.row} items-center gap-x-5`}>
           <div
-            className={`${style.row} bg-white items-center justify-between px-5 w-[360px] py-2 font-medium rounded-md drop-shadow-xl`}
+            className={`${style.row} bg-white items-center justify-between px-4 w-[360px] py-1 font-medium rounded-md drop-shadow-xl`}
           >
             <input
               type="text"
               placeholder="جستجو..."
-              className={`outline-none px-5   py-[12px]`}
+              className={`outline-none px-5 py-2`}
             />
             <button>
               <CiSearch className={`text-3xl`} />
             </button>
           </div>
           <button
-            className={`text-white  font-medium bg-btn py-4 px-5 rounded-md`}
+            className={`text-white  font-medium bg-btn py-3 px-4 rounded-md`}
           >
             ثبت فاکتور فروش
           </button>

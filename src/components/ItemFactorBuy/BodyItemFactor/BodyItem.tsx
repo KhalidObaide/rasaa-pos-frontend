@@ -2,6 +2,34 @@ import React, { useState } from "react";
 import { style } from "../../../assets/style/styles";
 import { CiCircleRemove } from "react-icons/ci";
 const BodyItem = ({ arr, setArr, edit }: any) => {
+  const [itemsPerPage, setItemsPerPage] = useState(12);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [Employees, setEmployeeOvertime] = useState([]);
+  const [overTime, setOvertime] = useState([]);
+
+  let totalPages = Math.ceil(Employees.length / itemsPerPage);
+  let startIndex = (currentPage - 1) * itemsPerPage;
+  let endIndex = startIndex + itemsPerPage;
+  let currentItems = Employees.slice(startIndex, endIndex);
+  let overTimecurrentItems = overTime.slice(startIndex, endIndex);
+  let nums = [...Array(totalPages + 1).keys()].slice(1);
+
+  const pageNumbers = [];
+  if (totalPages <= 3) {
+    for (let i = 1; i <= totalPages; i++) {
+      pageNumbers.push(i);
+    }
+  } else {
+    if (currentPage === 1) {
+      pageNumbers.push(1, 2, 3);
+    } else if (currentPage === totalPages) {
+      pageNumbers.push(totalPages - 2, totalPages - 1, totalPages);
+    } else {
+      pageNumbers.push(currentPage - 1, currentPage, currentPage + 1);
+    }
+  }
+
+  //------------------------------------------------------
   const handleRemove = (itemId: any) => {
     const updatedItems = arr.filter((item: { id: any }) => item.id !== itemId);
     setArr(updatedItems);
@@ -42,15 +70,15 @@ const BodyItem = ({ arr, setArr, edit }: any) => {
               edit == true ? "hidden" : "flex"
             }`}
           ></div>
-          <div className={`${style.chartHeader} w-[8%] rounded-md`}>NO</div>
-          <div className={`${style.chartHeader} w-[40%] rounded-md`}>
+          <div className={`${style.chartHeader} w-[8%] rounded-md font-bold`}>NO</div>
+          <div className={`${style.chartHeader} w-[40%] rounded-md font-bold`}>
             نام جنس
           </div>
-          <div className={`${style.chartHeader} w-[40%] rounded-md`}>تعداد</div>
-          <div className={`${style.chartHeader} w-[40%] rounded-md`}>
+          <div className={`${style.chartHeader} w-[40%] rounded-md font-bold`}>تعداد</div>
+          <div className={`${style.chartHeader} w-[40%] rounded-md font-bold`}>
             قیمت فی
           </div>
-          <div className={`${style.chartHeader} w-[40%] rounded-md`}>مجموع</div>
+          <div className={`${style.chartHeader} w-[40%] rounded-md font-bold`}>مجموع</div>
         </div>
         {arr.map(
           (
@@ -60,7 +88,7 @@ const BodyItem = ({ arr, setArr, edit }: any) => {
               FNumber: string | number | readonly string[] | undefined;
               howMany: string | number | readonly string[] | undefined;
             },
-            index
+            index:any
           ) => {
             return (
               <div
@@ -127,8 +155,10 @@ const BodyItem = ({ arr, setArr, edit }: any) => {
           }
         )}
         <div className={`w-full ${style.row} items-end justify-end mt-2`}>
-          <div className={`text-btn text-xl`}>مجموع کل:</div>
-          <div className={`mr-2 text-xl`}><span className={`text-btn`}>25,000</span> افغانی</div>
+          <div className={`text-xl`}>مجموع کل:</div>
+          <div className={`mr-2 text-xl`}>
+            <span className={`text-btn`}>25,000</span> افغانی
+          </div>
         </div>
       </div>
     </>

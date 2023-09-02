@@ -1,5 +1,6 @@
 import React from "react";
 import { style } from "../../../assets/style/styles";
+import { Link } from "react-router-dom";
 import {
   BiEdit,
   BiPrinter,
@@ -9,7 +10,7 @@ import {
   BiChevronLeft
 } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
-
+import { useParams } from 'react-router-dom';
 const HeaderFactorItemSell = ({
   setOpen,
   setData,
@@ -18,6 +19,7 @@ const HeaderFactorItemSell = ({
   setArr,
   data,
   edit,
+  id,
 }: any) => {
   const removingAll = () => {
     setOpen(true);
@@ -37,12 +39,13 @@ const HeaderFactorItemSell = ({
   const handlePrint = () => {
     window.print();
   };
+
   return (
     <>
       <div className={`${style.row} items-ceter`}>
         <div className={`${style.row} justify-between items-center w-full`}>
           <div className={`${style.row} items-center `}>
-            <h1 className={`border-r-2 border-black pr-2 `}>نمایش فاکتور</h1>
+            <h1 className={`border-r-2 border-black pr-2 font-bold `}>نمایش فاکتور</h1>
           </div>
           <div
             className={`${style.row} items-center gap-x-2 ${
@@ -87,10 +90,10 @@ const HeaderFactorItemSell = ({
             </button>
           </div>
         </div>
-        <button className={`bg-[#F5F5F5] mr-4 py-3 px-3 text-[#999999] ${style.row} items-center rounded-md`}>
+        <Link to="/page2" className={`bg-[#F5F5F5] mr-4 py-3 px-3 ${ edit == false ? "hidden" : "flex"} text-[#999999] ${style.row} items-center rounded-md`}>
         بازگشت
         <BiChevronLeft className="text-xl" />
-        </button>
+        </Link>
       </div>
     </>
   );

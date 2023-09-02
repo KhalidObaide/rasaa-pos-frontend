@@ -1,7 +1,17 @@
 import React from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { style } from "../../assets/style/styles";
-const FooterBuy = ({ pageNext ,setPageNext}:any) => {
+const FooterBuy = ({
+  pageNext,
+  setPageNext,
+  totalPost,
+  setCurrentPage,
+  postsPerPage,
+}: any) => {
+  let pages = [];
+  for (let i = 1; i <= Math.ceil(totalPost / postsPerPage); i++) {
+    pages.push(i);
+  }
   const nextPage1 = () => {
     setPageNext(false);
   };
@@ -10,7 +20,7 @@ const FooterBuy = ({ pageNext ,setPageNext}:any) => {
   };
   return (
     <>
-      <div className={`${style.row} items-center mt-5 justify-center w-full`}>
+      {/* <div className={`${style.row} items-center mt-5 justify-center w-full`}>
         <div className={`${style.row} items-center gap-x-2`}>
           <button
             className={`w-12 h-10 flex items-center justify-center border rounded text-gray-500 hover:text-blue-500"`}
@@ -46,6 +56,19 @@ const FooterBuy = ({ pageNext ,setPageNext}:any) => {
             <BsChevronLeft className={`text-xl`} />
           </button>
         </div>
+      </div> */}
+      <div className={`${style.row} items-center justify-center w-full gap-x-3 mt-3`}>
+        {pages.map((page, index) => {
+          return (
+            <button
+              key={index}
+              onClick={() => setCurrentPage(page)}
+              className={`py-2 border border-gray-200 rounded-md  px-4`}
+            >
+              {page}
+            </button>
+          );
+        })}
       </div>
     </>
   );

@@ -21,7 +21,7 @@ export const BodyBuy = ({ pageNext , data }: any) => {
         <div className={`${style.col} items-center p-0 w-full`}>
           {data == null
             ? ""
-            : data.map((item, index) => {
+            : data.map((item:any, index:any) => {
                 return (
                   <Link
                     to="/itemFactor"

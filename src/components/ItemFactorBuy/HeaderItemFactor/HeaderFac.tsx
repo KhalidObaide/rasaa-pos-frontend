@@ -43,7 +43,7 @@ const HeaderFac = ({
         <div className={`${style.row}`}>
           <div className={`${style.row} justify-between items-center w-full`}>
             <div className={`${style.row} items-center `}>
-              <h1 className={`border-r-2 border-black pr-2 `}>نمایش فاکتور</h1>
+              <h1 className={`border-r-2 border-black pr-2 font-bold`}>نمایش فاکتور</h1>
             </div>
             <div
               className={`${style.row} items-center gap-x-2 ${

@@ -1,14 +1,11 @@
-import React from 'react'
-import { useState } from 'react'
-import { Link } from 'react-router-dom';
-import Text from '../Text';
-import { style } from '../../assets/style/styles';
-const BodySell = ({pageNext ,setPageNext}:any) => {
-  const [arr , setArr] = useState(Text)
-
+import React, { useState } from "react";
+import { style } from "../../assets/style/styles";
+import Text from "../Text";
+import { Link } from "react-router-dom";
+export const  BodySell = ({ pageNext, data }: any) => {
   return (
     <>
-    <div
+      <div
         className={`${style.col} items-start mt-5 w-full ${
           pageNext == true ? "hidden" : "flex"
         }`}
@@ -22,12 +19,13 @@ const BodySell = ({pageNext ,setPageNext}:any) => {
           <div className={`${style.chartHeader} w-1/5`}>مجموع کل</div>
         </div>
         <div className={`${style.col} items-center p-0 w-full`}>
-          {arr == null
+          {data == null
             ? ""
-            : arr.map((item, index) => {
+            : data.map((item: any, index: any) => {
+                const deCode = JSON.parse(item.invoice_items);
                 return (
                   <Link
-                    to="/itemFactor/sell"
+                    to={`/itemFactor/sell?id=${item.id}`}
                     className={`${style.row} items-center p-0 w-full`}
                   >
                     <div className={`${style.row} items-center p-0 w-full`}>
@@ -43,41 +41,43 @@ const BodySell = ({pageNext ,setPageNext}:any) => {
                         key={index}
                         className={`${style.chart} ${
                           index % 2 ? "bg-gray-100" : "bg-white"
-                        }   w-1/5`}
+                        }   w-1/5 h-[48px] `}
                       >
-                        {item.fName}
+                        {item.contact}
                       </div>
                       <div
                         key={index}
                         className={`${style.chart} ${
                           index % 2 ? "bg-gray-100" : "bg-white"
-                        }  w-1/5`}
+                        }  w-1/5 h-[48px]`}
                       >
-                        {item.howMany}
+                        {item.invoice_num}
                       </div>
                       <div
                         key={index}
                         className={`${style.chart} ${
                           index % 2 ? "bg-gray-100" : "bg-white"
-                        }   w-1/5`}
+                        }   w-1/5 h-[48px] `}
                       >
-                        {item.data}
+                        {item.date}
                       </div>
                       <div
                         key={index}
                         className={`${style.chart} ${
                           index % 2 ? "bg-gray-100" : "bg-white"
-                        }   w-1/5`}
+                        }   w-1/5 h-[48px]`}
                       >
-                        {item.howMany}
+                        {deCode.map((item: any, index: any) => {
+                          return item.amount;
+                        })}
                       </div>
                       <div
                         key={index}
                         className={`${style.chart} ${
                           index % 2 ? "bg-gray-100" : "bg-white"
-                        }  w-1/5`}
+                        }  w-1/5 h-[48px] `}
                       >
-                        {item.FNumber * item.howMany}
+                        {item.total_amount}
                       </div>
                     </div>
                   </Link>
@@ -86,7 +86,5 @@ const BodySell = ({pageNext ,setPageNext}:any) => {
         </div>
       </div>
     </>
-  )
-}
-
-export default BodySell
+  );
+};
