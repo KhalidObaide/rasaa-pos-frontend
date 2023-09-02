@@ -30,7 +30,7 @@ const Hearder = () => {
           <button
             className={`text-white  font-medium bg-btn py-3 px-4 rounded-md`}
           >
-            ثبت فاکتور فروش
+            ثبت فاکتور خرید
           </button>
         </div>
       </div>

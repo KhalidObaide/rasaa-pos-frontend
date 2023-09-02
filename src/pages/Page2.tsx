@@ -6,11 +6,10 @@ import { BodySell } from "../components/BodySell/BodySell";
 import { useState } from "react";
 import FooterSell from "../components/FooterSell/FooterSell";
 import axios from "axios";
+import { getJWT } from "../shared";
 const Page2 = () => {
   const [pageNext, setPageNext] = useState(false);
   const [data, setData] = useState([]);
-  const jwt =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5MzY0MjQ5MiwianRpIjoiMmVlODQwZmUtODkzZS00MjE3LWJjMmMtZmJkOWJlODc4MTE4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5MzY0MjQ5MiwiZXhwIjoxNjkzNzI4ODkyfQ.qUaijHHA2eTSTXl4-i9U9JjO9tVdUQWJxgLJAOTjYFU";
 
   useEffect(() => {
     async function fetchData() {
@@ -19,7 +18,7 @@ const Page2 = () => {
           `https://lajward-mis.dev:8005/invoices`,
           {
             headers: {
-              Authorization: `Bearer ${jwt}`,
+              Authorization: `Bearer ${getJWT}`,
             },
           }
         );
