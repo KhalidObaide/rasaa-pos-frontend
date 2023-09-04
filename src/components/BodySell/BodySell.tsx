@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { style } from "../../assets/style/styles";
-import Text from "../Text";
 import { Link } from "react-router-dom";
 export const  BodySell = ({ pageNext, data }: any) => {
   return (

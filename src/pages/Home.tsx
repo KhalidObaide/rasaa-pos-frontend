@@ -11,7 +11,7 @@ import { getJWT } from "../shared";
 export const Home = () => {
   const [pageNext, setPageNext] = useState(false);
   const [data, setData] = useState([]);
-
+  const jwt = getJWT()
 
   useEffect(() => {
     async function fetchData() {
@@ -20,7 +20,7 @@ export const Home = () => {
           `https://lajward-mis.dev:8005/invoices`,
           {
             headers: {
-              Authorization: `Bearer ${getJWT}`,
+              Authorization: `Bearer ${jwt}`,
             },
           }
         );

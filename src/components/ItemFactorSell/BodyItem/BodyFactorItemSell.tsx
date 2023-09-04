@@ -3,13 +3,12 @@ import { style } from "../../../assets/style/styles";
 import { CiCircleRemove } from "react-icons/ci";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-
+import { getJWT } from "../../../shared";
 const BodyFactorItemSell = ({ edit, id }: any) => {
   const [data, setData] = useState([]);
   const [arr, setArr] = useState(data);
 
-  const jwt =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5MzY0MjQ5MiwianRpIjoiMmVlODQwZmUtODkzZS00MjE3LWJjMmMtZmJkOWJlODc4MTE4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5MzY0MjQ5MiwiZXhwIjoxNjkzNzI4ODkyfQ.qUaijHHA2eTSTXl4-i9U9JjO9tVdUQWJxgLJAOTjYFU";
+  const jwt = getJWT()
 
   useEffect(() => {
     async function fetchData() {
