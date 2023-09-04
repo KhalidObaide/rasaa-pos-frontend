@@ -13,8 +13,8 @@ import BuyFactor from "./Component/buyFactor/BuyFactor";
 function passRoutesToBase() {
     const routes = [
         {title: "صفحه اصلی", route: ""},
-        {title: "فروش", route: "ُSell"},
-        {title: "خرید", route: "Buy"},
+        {title: "فروش", route: "Buy"},
+        {title: "خرید", route: "Sell"},
         {title:"itemFactor" , route:"ItemFactor"},
         {title:"ItemFactorSell" , route:"/itemFactor/sell"},
     ];
@@ -31,12 +31,12 @@ function App() {
       <div>
         <Routes>
             <Route path="" element={<Home />} />
-            <Route path="Buy" element={<Page1 />} />
-            <Route path="Sell" element={<Page2 />} />
+            <Route path="Sell" element={<Page1 />} />
+            <Route path="Buy" element={<Page2 />} />
             <Route path="itemFactor" element={<ItemFactor />} />
             <Route path="/itemFactor/sell" element={<ItemFactorSell />} />
             <Route path="/ha" element={<ItemChanges/> } />
-            <Route path="/BuyFactor" element={<BuyFactor/>} />
+            <Route path="Buy/BuyFactor" element={<BuyFactor/>} />
             <Route path="/hamed" element={<Page2 />} />
         </Routes>
       </div>

@@ -10,6 +10,7 @@ const BodyFactorItemSell = ({ edit, id }: any) => {
 
   const jwt = getJWT()
 
+
   useEffect(() => {
     async function fetchData() {
       try {

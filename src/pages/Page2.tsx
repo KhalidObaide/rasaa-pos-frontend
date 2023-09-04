@@ -10,7 +10,7 @@ import { getJWT } from "../shared";
 const Page2 = () => {
   const [pageNext, setPageNext] = useState(false);
   const [data, setData] = useState([]);
-
+  const jwt = getJWT()
   useEffect(() => {
     async function fetchData() {
       try {
@@ -18,7 +18,7 @@ const Page2 = () => {
           `https://lajward-mis.dev:8005/invoices`,
           {
             headers: {
-              Authorization: `Bearer ${getJWT}`,
+              Authorization: `Bearer ${jwt}`,
             },
           }
         );

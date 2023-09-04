@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { style } from "../../assets/style/styles";
 import { CiSearch } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
 const HeaderSell = () => {
 
@@ -27,11 +28,11 @@ const HeaderSell = () => {
                 <CiSearch className={`text-3xl`} />
               </button>
             </div>
-            <button
+            <Link to="BuyFactor"
               className={`text-white  font-medium bg-btn py-3 px-4 rounded-md`}
             >
               ثبت فاکتور فروش
-            </button>
+            </Link>
           </div>
         </div>
       </div>
