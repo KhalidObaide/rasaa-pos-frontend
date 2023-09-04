@@ -1,3 +1,4 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   mode: 'jit',
   purge: {
@@ -15,7 +16,12 @@ module.exports = {
         btn:"#00B4FF",
         chart:"#E6F6FD",
         error:"#EB5252"
-      }
+      },
+      fontSize: {
+        "btnS": "20px",
+        "sm" : '3px',
+        "sizeBig" : "668px"
+      },
     },
   },
   variants: {

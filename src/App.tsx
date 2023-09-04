@@ -7,6 +7,8 @@ import Page1 from "./pages/Page1";
 import Page2 from "./pages/Page2";
 import ItemFactor from "./components/ItemFactorBuy/ItemFactor";
 import ItemFactorSell from "./components/ItemFactorSell/ItemFactorSell";
+import ItemChanges from "./Component/Utilites/Changes";
+import BuyFactor from "./Component/buyFactor/BuyFactor";
 
 function passRoutesToBase() {
     const routes = [
@@ -20,6 +22,10 @@ function passRoutesToBase() {
 }
 
 function App() {
+
+  
+
+
     passRoutesToBase();
     return (
       <div>
@@ -29,6 +35,9 @@ function App() {
             <Route path="Sell" element={<Page2 />} />
             <Route path="itemFactor" element={<ItemFactor />} />
             <Route path="/itemFactor/sell" element={<ItemFactorSell />} />
+            <Route path="/ha" element={<ItemChanges/> } />
+            <Route path="/BuyFactor" element={<BuyFactor/>} />
+            <Route path="/hamed" element={<Page2 />} />
         </Routes>
       </div>
     );
