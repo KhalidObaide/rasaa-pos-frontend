@@ -28,7 +28,7 @@ const HeaderSell = () => {
                 <CiSearch className={`text-3xl`} />
               </button>
             </div>
-            <Link to="BuyFactor"
+            <Link to="mainSell"
               className={`text-white  font-medium bg-btn py-3 px-4 rounded-md`}
             >
               ثبت فاکتور فروش

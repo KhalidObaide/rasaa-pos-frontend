@@ -10,6 +10,8 @@ import ItemFactorSell from "./components/ItemFactorSell/ItemFactorSell";
 import ItemChanges from "./Component/Utilites/Changes";
 import BuyFactor from "./Component/buyFactor/BuyFactor";
 import Types from "./Component/Utilites/Types";
+import MainSell from './Component/Sell/MainSell'
+// import Bio from "./Component/SellPage/Sell"
 
 function passRoutesToBase() {
     const routes = [
@@ -36,7 +38,8 @@ function App() {
             <Route path="/ha" element={<ItemChanges/> } />
             <Route path="Buy/BuyFactor" element={<BuyFactor/>} />
             <Route path="/hamed" element={<Page2 />} />
-            <Route path="/utilities"element={<Types/>} />
+            <Route path="/utilities"element={<Types/>} />        
+            <Route path="/sell/mainSell" element={<MainSell/>}/>
         </Routes>
       </div>
     );
