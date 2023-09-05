@@ -44,7 +44,7 @@ const Types = ()=>{
         alert('no')
       }
     } catch (error) {
-      console.error('Error itmes:', error)
+      console.error("Error itmes:", error);
     }
 }
 getData()
@@ -102,3 +102,9 @@ getData()
 }
 export default Types
 
+  // if (reReand) {
+  //   getData();
+  // } else {
+  //   console.log("ops");
+  // }
+  

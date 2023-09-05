@@ -1,18 +1,13 @@
-import React, { Component, useEffect, useState } from 'react'
-import {AiFillEdit,AiFillDelete,} from 'react-icons/ai'
-import {TbLoader} from 'react-icons/tb'
-import {BsCheck,} from 'react-icons/bs'
-import {IoIosClose} from 'react-icons/io'
-import {BiEdit} from 'react-icons/bi'
-import {AiOutlineDelete} from 'react-icons/ai'
-import axios from 'axios'
-import dataBase from '../../data/data'
-const ItemChanges = ({
-    // showEdit,
-    setShowEdit,
-    clickedItem,
-    setReReand
-}:any)=>{
+import React, { Component, useEffect, useState } from "react";
+import { AiFillEdit, AiFillDelete } from "react-icons/ai";
+import { TbH1, TbLoader } from "react-icons/tb";
+import { BsCheck } from "react-icons/bs";
+import { IoIosClose } from "react-icons/io";
+import { BiEdit } from "react-icons/bi";
+import { AiOutlineDelete } from "react-icons/ai";
+import axios from "axios";
+
+const ItemChanges = ({ setShowEdit, clickedItem, setReReand}:any)=>{
     
     const [key,setKey] = useState('')
     const [title,setTitle] = useState('')
@@ -39,13 +34,10 @@ const ItemChanges = ({
               console.error('Error itmes:', error)
             }
         }
-        getData()
-        setReReand(false)
-        setShowEdit(false)
-    }
-
-
-    return(
+      } 
+      
+      
+      return(
         <div className=' w-full h-full absolute top-0 left-0 z-index-10  bg-shadow'>
         <div className="p-5 bg-white absolute z-index-4  top-40 right-31%  flex flex-col justify-center items-center rounded-md">
              {/* title */}
@@ -113,8 +105,29 @@ const ItemChanges = ({
                     </div>
                  </div>
             </div>
-        </div>    
-    </div>
-    )
-}
-export default ItemChanges
+            <div className="flex flex-col justify-center items-start">
+              <h1 className="mr-2 mb-2 font-semibold text-xl ">کلید</h1>
+              <input
+                placeholder={clickedItem[2]}
+                className="w-282 h-16 py-4 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-2xl "
+              />
+            </div>
+          </div>
+          <div className="flex flex-row-reverse justify-around items-start">
+            <div className="flex flex-col justicenter items-start">
+              <h1 className="mr-2 mb-2 font-semibold text-xl ">ملاحضات</h1>
+              <textarea className="w-282 h-40 py-4 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-2xl resize-none"></textarea>
+            </div>
+            <div className="flex flex-col justify-center items-start">
+              <h1 className="mr-2 mb-2 font-semibold text-xl ">عنوان</h1>
+              <input
+                placeholder={clickedItem[1]}
+                type="text"
+                className="w-282 h-16 py-4 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-2xl "
+              />
+            </div>
+          </div>
+        </div>
+      );
+  }
+export default ItemChanges;

@@ -1,8 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  mode: "jit",
+  purge: {
+    content: [
+      "./src/**/*.{js,jsx,ts,tsx}",
+      "./src/views/*.{js,jsx,ts,tsx}",
+      "./src/components/**/*.{js,jsx,ts,tsx}",
+      "./node_modules/tw-elements/dist/js/**/*.js",
+    ],
+  },
+  darkMode: false, // or 'media' or 'class'
   theme: {
     mode: "jit",
   purge: {
@@ -17,21 +24,9 @@ module.exports = {
       
     },
     extend: {
-      fontSize: {
-        "btnS": "20px",
-        "sm" : '3px',
-        "sizeBig" : "668px"
-      },
-      colors:{
-        btn:"#00B4FF",
-        charts: "#E6F6FD",
-        page:"#999999",
-        gray_fac: "#666666",
-        gray_line:"#DADADA",
-        lightGray : '#F2F8FE',
-        gray_input:"#FFFFFF",
-        gray_button: "#F5F5F5",
-        lightBlue : " #F2F8FE",
+      colors: {
+        btn: "#00B4FF",
+        chart: "#E6F6FD",
         error: "#EB5252",
         black : "#000",
         grayLine : "#FAFAFA",
@@ -70,5 +65,8 @@ module.exports = {
       }
     },
   },
+  variants: {
+    extend: {},
+  },
   plugins: [],
-}
+};
