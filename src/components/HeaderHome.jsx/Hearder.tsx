@@ -9,7 +9,7 @@ const Hearder = () => {
     <>
       <div className={`${style.row} items-center justify-between w-full`}>
         <div className={`${style.row} items-center gap-x-8`}>
-          <h1 className={`border-r-2 border-black pr-2 font-bold text-lg`}>
+          <h1 className={`border-r-4 border-black pr-2 font-bold text-lg`}>
             خرید
           </h1>
           <Date />

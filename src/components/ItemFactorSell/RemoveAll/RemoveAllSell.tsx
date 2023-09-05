@@ -5,47 +5,43 @@ import { CiWarning } from "react-icons/ci";
 import { useEffect } from "react";
 import axios from "axios";
 
-const RemoveAllSell = ({ open, setOpen }: any) => {
+const RemoveAllSell = ({ open, setOpen, id  }: any) => {
   const renoveF = () => {
-    //   localStorage.clear("items");
+    const jwt =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5Mzg5MjQ4MywianRpIjoiMjNiODIxMTgtZTdlMi00YzFiLTgyNjAtYWZhOTJmYTg5NzEyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5Mzg5MjQ4MywiZXhwIjoxNjkzOTc4ODgzfQ.OAOU4On0D11FgkIKqr3dMs4GOVmLCSACB1sg-LfNWDc";
+    async function fetchData() {
+      try {
+        const response = await axios.delete(
+          `https://lajward-mis.dev:8005/invoices?id=${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${jwt}`,
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          console.log("Data fetched successfully:", response.data);
+        } else {
+          console.log("Received status:", response.status);
+          console.log(response.data);
+
+          console.log();
+        }
+      } catch (error) {
+        // console.log("Error message:", error.message);
+        console.error("Error details:", error);
+      }
+    }
+
+    fetchData();
   };
   const reject = () => {
-    const jwt =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5MzQ1Mzk2OCwianRpIjoiN2U5MmYzYmMtZWQzYy00YjdlLTlhMDctYTMxYTIyNmRjYmMyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5MzQ1Mzk2OCwiZXhwIjoxNjkzNTQwMzY4fQ.vbIP9wznDZyE8hM7TpML1VHREGPJV9E4097dgtFIrM8";
-
-    useEffect(() => {
-      async function fetchData() {
-        try {
-          const response = await axios.get(
-            `https://lajward-mis.dev:8005/invoices`,
-            {
-              headers: {
-                Authorization: `Bearer ${jwt}`,
-              },
-            }
-          );
-
-          if (response.status === 200) {
-            console.log("Data fetched successfully:", response.data);
-            setData(response.data);
-          } else {
-            console.log("Received status:", response.status);
-            console.log(response.data);
-
-            console.log();
-          }
-        } catch (error) {
-          // console.log("Error message:", error.message);
-          console.error("Error details:", error);
-        }
-      }
-
-      fetchData();
-    }, []);
+    setOpen(false)
   };
   return (
     <div
-      className={` absolute top-0 left-0 right-0 bottom-0 ${
+      className={` fixed  top-0 left-0 right-0 bottom-0 ${
         style.row
       } items-center justify-center w-full ${
         open == true ? "flex" : "hidden"
@@ -71,7 +67,7 @@ const RemoveAllSell = ({ open, setOpen }: any) => {
             >
               لغو
             </button>
-            <Link to="/sell">
+            <Link to="/Sell">
               <button
                 className={`px-5 py-2 text-white rounded-md bg-error`}
                 onClick={renoveF}

@@ -1,7 +1,7 @@
 import React from "react";
 import { style } from "../../../assets/style/styles";
 
-const FooterItem = () => {
+const FooterItem = ({arr}:any) => {
   return (
     <>
       <div
@@ -13,9 +13,12 @@ const FooterItem = () => {
           </label>
           <div
             id="off"
-            className={`w-full py-2 px-5 border border-gray-300 rounded-lg outline-none font-bold `}
+            className={`w-full py-2 px-5 border border-gray-300 rounded-md outline-none font-bold h-[44px] `}
           >
-            23,000
+            {
+              arr == null ? "" : arr[0].discount
+
+            }
           </div>
         </div>
         <div className={`${style.col} w-1/3 gap-y-2 `}>
@@ -24,9 +27,11 @@ const FooterItem = () => {
           </label>
           <div
             id="off"
-            className={`w-full py-2 px-5 border border-gray-300 rounded-lg outline-none font-bold`}
+            className={`w-full py-2 px-5 border border-gray-300 rounded-md outline-none font-bold h-[44px]`}
           >
-            23,000
+            {
+              arr == null ? "" : arr[0].taxes
+            }
           </div>
         </div>
         <div className={`${style.col} w-1/3 gap-y-2 `}>
@@ -35,9 +40,12 @@ const FooterItem = () => {
           </label>
           <div
             id="off"
-            className={`w-full py-2 px-5 border border-gray-300 rounded-lg outline-none font-bold`}
+            className={`w-full py-2 px-5 border border-gray-300 rounded-md outline-none font-bold h-[44px]`}
           >
-            23,000
+            {
+              arr == null ? "" : arr[0].payable_amount
+
+            }
           </div>
         </div>
       </div>

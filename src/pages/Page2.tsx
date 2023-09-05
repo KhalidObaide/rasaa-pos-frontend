@@ -9,7 +9,11 @@ import axios from "axios";
 import { getJWT } from "../shared";
 const Page2 = () => {
   const [pageNext, setPageNext] = useState(false);
+  const [itemsPerPage, setItemsPerPage] = useState(12);
+  const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState([]);
+  const jwt =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5Mzg5MjQ4MywianRpIjoiMjNiODIxMTgtZTdlMi00YzFiLTgyNjAtYWZhOTJmYTg5NzEyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5Mzg5MjQ4MywiZXhwIjoxNjkzOTc4ODgzfQ.OAOU4On0D11FgkIKqr3dMs4GOVmLCSACB1sg-LfNWDc";
 
   useEffect(() => {
     async function fetchData() {
@@ -18,7 +22,7 @@ const Page2 = () => {
           `https://lajward-mis.dev:8005/invoices`,
           {
             headers: {
-              Authorization: `Bearer ${getJWT}`,
+              Authorization: `Bearer ${jwt}`,
             },
           }
         );
@@ -38,11 +42,37 @@ const Page2 = () => {
 
     fetchData();
   }, []);
-  const [currentPage, setCurrentPage] = useState(1);
   const [post, setPost] = useState(12);
   const lastPostIndex = currentPage * post;
   const firstPostIndex = lastPostIndex - post;
   const currentPost = data.slice(firstPostIndex, lastPostIndex);
+
+  let totalPages = Math.ceil(data.length / itemsPerPage);
+  let startIndex = (currentPage - 1) * itemsPerPage;
+  let endIndex = startIndex + itemsPerPage;
+  let currentItems = data.slice(startIndex, endIndex);
+  let nums = [...Array(totalPages + 1).keys()].slice(1);
+
+  const updatePagination = () => {
+    currentItems = data.slice(startIndex, endIndex);
+    totalPages = Math.ceil(data.length / itemsPerPage);
+    nums = [...Array(totalPages + 1).keys()].slice(1);
+  };
+  const pageNumbers = [];
+  if (totalPages <= 3) {
+    for (let i = 1; i <= totalPages; i++) {
+      pageNumbers.push(i);
+    }
+  } else {
+    if (currentPage === 1) {
+      pageNumbers.push(1, 2, 3);
+    } else if (currentPage === totalPages) {
+      pageNumbers.push(totalPages - 2, totalPages - 1, totalPages);
+    } else {
+      pageNumbers.push(currentPage - 1, currentPage, currentPage + 1);
+    }
+  }
+
   return (
     <>
       <div className={`p-5 w-full  ${style.col} items-center justify-center`}>
@@ -53,6 +83,7 @@ const Page2 = () => {
             setPageNext={setPageNext}
             data={currentPost}
             setData={setData}
+            currentItems={currentItems}
           />
           <FooterSell
             pageNext={pageNext}
@@ -60,6 +91,9 @@ const Page2 = () => {
             totalPost={data.length}
             postsPerPage={post}
             setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+            pageNumbers={pageNumbers}
+            totalPages={totalPages}
           />
         </div>
       </div>

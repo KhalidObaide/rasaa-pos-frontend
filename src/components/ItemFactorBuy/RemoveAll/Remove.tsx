@@ -2,9 +2,9 @@ import React from "react";
 import { style } from "../../../assets/style/styles";
 import { Link } from "react-router-dom";
 import { CiWarning } from "react-icons/ci";
-const Remove = ({setOpen , open}:any) => {
+const Remove = ({ setOpen, open }: any) => {
   const renoveF = () => {
-    //   localStorage.clear("items");
+    
   };
   const reject = () => {
     setOpen(false);
@@ -12,7 +12,7 @@ const Remove = ({setOpen , open}:any) => {
   return (
     <>
       <div
-        className={` absolute top-0 left-0 right-0 bottom-0 ${
+        className={` fixed top-0 left-0 right-0 bottom-0 ${
           style.row
         } items-center justify-center w-full ${
           open == true ? "flex" : "hidden"
@@ -22,7 +22,7 @@ const Remove = ({setOpen , open}:any) => {
           <div
             className={`bg-error text-center rounded-t-xl ${style.row} items-center justify-center py-6 w-full`}
           >
-            < CiWarning className="text-[80px] text-white" />
+            <CiWarning className="text-[80px] text-white" />
           </div>
           <div
             className={`${style.col} items-center justify-center gap-y-5 p-5`}
@@ -40,7 +40,7 @@ const Remove = ({setOpen , open}:any) => {
               >
                 لغو
               </button>
-              <Link to="/sell">
+              <Link to="/itemFactor">
                 <button
                   className={`px-5 py-2 text-white rounded-md bg-error`}
                   onClick={renoveF}

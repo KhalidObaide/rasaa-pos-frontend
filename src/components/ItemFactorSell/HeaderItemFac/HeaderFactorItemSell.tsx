@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { style } from "../../../assets/style/styles";
 import { Link } from "react-router-dom";
 import {
@@ -7,10 +7,11 @@ import {
   BiTrashAlt,
   BiCheck,
   BiChevronRight,
-  BiChevronLeft
+  BiChevronLeft,
 } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
+import axios from "axios";
 const HeaderFactorItemSell = ({
   setOpen,
   setData,
@@ -19,8 +20,9 @@ const HeaderFactorItemSell = ({
   setArr,
   data,
   edit,
-  id,
 }: any) => {
+  const queryParams = new URLSearchParams(window.location.search);
+  const id = queryParams.get("id");
   const removingAll = () => {
     setOpen(true);
   };
@@ -28,7 +30,6 @@ const HeaderFactorItemSell = ({
     setData(arr);
     setEdit(true);
   };
-  console.log(data);
   const editF = () => {
     setEdit(false);
   };
@@ -39,13 +40,46 @@ const HeaderFactorItemSell = ({
   const handlePrint = () => {
     window.print();
   };
+  const [headerData, setHeaderData] = useState([]);
 
+  const jwt =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5Mzg5MjQ4MywianRpIjoiMjNiODIxMTgtZTdlMi00YzFiLTgyNjAtYWZhOTJmYTg5NzEyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5Mzg5MjQ4MywiZXhwIjoxNjkzOTc4ODgzfQ.OAOU4On0D11FgkIKqr3dMs4GOVmLCSACB1sg-LfNWDc";
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get(
+          `https://lajward-mis.dev:8005/invoice?id=${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${jwt}`,
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          const data = response.data;
+          setHeaderData(data[0]);
+        } else {
+          console.log("Received status:", response.status);
+        }
+      } catch (error) {
+        // console.log("Error message:", error.message);
+        console.error("Error details:", error);
+      }
+    }
+
+    fetchData();
+  }, []);
+ 
   return (
     <>
       <div className={`${style.row} items-ceter`}>
         <div className={`${style.row} justify-between items-center w-full`}>
           <div className={`${style.row} items-center `}>
-            <h1 className={`border-r-2 border-black pr-2 font-bold `}>نمایش فاکتور</h1>
+            <h1 className={`border-r-4 border-black pr-2 font-bold `}>
+              نمایش فاکتور
+            </h1>
           </div>
           <div
             className={`${style.row} items-center gap-x-2 ${
@@ -90,10 +124,29 @@ const HeaderFactorItemSell = ({
             </button>
           </div>
         </div>
-        <Link to="/page2" className={`bg-[#F5F5F5] mr-4 py-3 px-3 ${ edit == false ? "hidden" : "flex"} text-[#999999] ${style.row} items-center rounded-md`}>
-        بازگشت
-        <BiChevronLeft className="text-xl" />
+        <Link
+          to="/Sell"
+          className={`bg-[#F5F5F5] mr-4 py-3 px-3 ${
+            edit == false ? "hidden" : "flex"
+          } text-[#999999] ${style.row} items-center rounded-md`}
+        >
+          بازگشت
+          <BiChevronLeft className="text-xl" />
         </Link>
+      </div>
+      <div className={`${style.row} items-center gap-x-5 mt-5`}>
+        <div className={`${style.row} items-center gap-x-3`}>
+          <p className={`font-bold`}>نام مشتری:</p>
+          <p>{headerData == undefined ? "" : headerData.contact}</p>
+        </div>
+        <div className={`${style.row} items-center gap-x-3`}>
+          <p className={`font-bold`}>شماره فاکتور:</p>
+          <p>{headerData === undefined ? "" : headerData.invoice_num}</p>
+        </div>
+        <div className={`${style.row} items-center gap-x-3`}>
+          <p className={`font-bold`}>تاریخ:</p>
+          <p>{headerData == undefined ? "" : headerData.date}</p>
+        </div>
       </div>
     </>
   );

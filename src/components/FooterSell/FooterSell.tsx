@@ -1,31 +1,47 @@
 import React from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { style } from "../../assets/style/styles";
-const FooterSell = ({
-  totalPost,
-  setCurrentPage,
-  postsPerPage,
-}: any) => {
-  let pages = [];
-  for (let i = 1; i <= Math.ceil(totalPost / postsPerPage); i++) {
-    pages.push(i);
-  }
+const FooterSell = ({  setCurrentPage , totalPages , pageNumbers , currentPage }: any) => {
   return (
     <>
-     
-      <div className={`${style.row} items-center justify-center w-full gap-x-3 mt-3`}>
-        {pages.map((page, index) => {
-          return (
-            <button
-              key={index}
-              onClick={() => setCurrentPage(page)}
-              className={`py-2 border border-gray-200 rounded-md  px-4`}
-            >
-              {page}
-            </button>
-          );
-        })}
-      </div>
+      {true && (
+        <div className="p-4 text-center justify-self-end">
+          <ul className="flex justify-center space-x-1">
+            <li>
+              <button
+                className="w-12 h-10 flex items-center justify-center border rounded text-gray-500 hover:text-blue-500 ml-1"
+                disabled={currentPage === 1}
+                onClick={() => setCurrentPage(currentPage - 1)}
+              >
+                <BsChevronRight />
+              </button>
+            </li>
+            {pageNumbers.map((pageNumber: any) => (
+              <li key={pageNumber}>
+                <button
+                  className={`w-12 h-10 flex items-center justify-center border rounded ${
+                    pageNumber === currentPage
+                      ? "bg-btn text-white"
+                      : "text-gray-500 hover:text-blue-500"
+                  }`}
+                  onClick={() => setCurrentPage(pageNumber)}
+                >
+                  {pageNumber}
+                </button>
+              </li>
+            ))}
+            <li>
+              <button
+                className="w-12 h-10 flex items-center justify-center border rounded text-gray-500 hover:text-blue-500"
+                disabled={currentPage === totalPages}
+                onClick={() => setCurrentPage(currentPage + 1)}
+              >
+                <BsChevronLeft />
+              </button>
+            </li>
+          </ul>
+        </div>
+      )}
     </>
   );
 };
