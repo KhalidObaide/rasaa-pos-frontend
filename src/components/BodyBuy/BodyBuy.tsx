@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { style } from "../../assets/style/styles";
 import Text from "../Text";
 import { Link } from "react-router-dom";
-export const BodyBuy = ({ pageNext , data , currentItems }: any) => {
+export const BodyBuy = ({ pageNext, data, currentItems }: any) => {
   return (
     <>
       <div
@@ -19,67 +19,71 @@ export const BodyBuy = ({ pageNext , data , currentItems }: any) => {
           <div className={`${style.chartHeader} w-1/5`}>مجموع کل</div>
         </div>
         <div className={`${style.col} items-center p-0 w-full`}>
-          {currentItems == null
-            ? ""
-            : currentItems.map((item:any, index:any) => {
-                return (
-                  <Link
-                    to="/itemFactor"
-                    className={`${style.row} items-center p-0 w-full`}
-                  >
-                    <div className={`${style.row} items-center p-0 w-full`}>
-                      <div
-                        key={index}
-                        className={`${style.chart} ${
-                          index % 2 ? "bg-gray-100" : "bg-white"
-                        }  w-10 `}
-                      >
-                        {index + 1}
-                      </div>
-                      <div
-                        key={index}
-                        className={`${style.chart} ${
-                          index % 2 ? "bg-gray-100" : "bg-white"
-                        }   w-1/5 h-[48px]`}
-                      >
-                        {item.contact}
-                      </div>
-                      <div
-                        key={index}
-                        className={`${style.chart} ${
-                          index % 2 ? "bg-gray-100" : "bg-white"
-                        }  w-1/5 h-[48px]`}
-                      >
-                        {item.invoice_num}
-                      </div>
-                      <div
-                        key={index}
-                        className={`${style.chart} ${
-                          index % 2 ? "bg-gray-100" : "bg-white"
-                        }   w-1/5`}
-                      >
-                        {item.date}
-                      </div>
-                      <div
-                        key={index}
-                        className={`${style.chart} ${
-                          index % 2 ? "bg-gray-100" : "bg-white"
-                        }   w-1/5 h-[48px]`}
-                      >
-                        {item.payable_amount}
-                      </div>
-                      <div
-                        key={index}
-                        className={`${style.chart} ${
-                          index % 2 ? "bg-gray-100" : "bg-white"
-                        }  w-1/5 h-[48px]`}
-                      >
-                        {item.remaining}
-                      </div>
+          {currentItems == null ? (
+            <div className="w-full flex flex-row items-center justify-center h-[50px] my-[100px]">
+              <div className="loader"></div>
+            </div>
+          ) : (
+            currentItems.map((item: any, index: any) => {
+              return (
+                <Link
+                  to={`/itemFactor/buy?id=${item.id}`}
+                  className={`${style.row} items-center p-0 w-full`}
+                >
+                  <div className={`${style.row} items-center p-0 w-full`}>
+                    <div
+                      key={index}
+                      className={`${style.chart} ${
+                        index % 2 ? "bg-gray-100" : "bg-white"
+                      }  w-10 `}
+                    >
+                      {index + 1}
                     </div>
-                  </Link>
-                );
-              })}
+                    <div
+                      key={index}
+                      className={`${style.chart} ${
+                        index % 2 ? "bg-gray-100" : "bg-white"
+                      }   w-1/5 h-[48px]`}
+                    >
+                      {item.contact}
+                    </div>
+                    <div
+                      key={index}
+                      className={`${style.chart} ${
+                        index % 2 ? "bg-gray-100" : "bg-white"
+                      }  w-1/5 h-[48px]`}
+                    >
+                      {item.invoice_num}
+                    </div>
+                    <div
+                      key={index}
+                      className={`${style.chart} ${
+                        index % 2 ? "bg-gray-100" : "bg-white"
+                      }   w-1/5`}
+                    >
+                      {item.date}
+                    </div>
+                    <div
+                      key={index}
+                      className={`${style.chart} ${
+                        index % 2 ? "bg-gray-100" : "bg-white"
+                      }   w-1/5 h-[48px]`}
+                    >
+                      {item.payable_amount}
+                    </div>
+                    <div
+                      key={index}
+                      className={`${style.chart} ${
+                        index % 2 ? "bg-gray-100" : "bg-white"
+                      }  w-1/5 h-[48px]`}
+                    >
+                      {item.remaining}
+                    </div>
+                  </div>
+                </Link>
+              );
+            })
+          )}
         </div>
       </div>
     </>

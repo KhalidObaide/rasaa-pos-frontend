@@ -14,7 +14,6 @@ const ItemFactorSell = () => {
   const [apiData, setApiData] = useState();
   const queryParams = new URLSearchParams(window.location.search);
   const id = queryParams.get("id");
-  console.log("hamed" , id)
   return (
     <>
       <div className={`${style.col} items-center justify-center w-full p-5`}>
@@ -28,10 +27,13 @@ const ItemFactorSell = () => {
             apiData={apiData}
             setEdit={setEdit}
             setData={setData}
-            
           />
           <BodyFactorItemSell arr={arr} setArr={setArr} edit={edit} id={id} />
-          <RemoveAllSell setOpen={setOpen} open={open} id={id} />
+          <RemoveAllSell
+            setOpen={setOpen}
+            open={open}
+            id={id}
+          />
         </div>
       </div>
     </>

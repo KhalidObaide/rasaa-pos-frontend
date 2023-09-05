@@ -10,7 +10,7 @@ const HeaderSell = () => {
     <>
       <div className={`${style.row} items-center justify-between w-full`}>
         <div>
-          <h1 className={`border-r-2 border-black pr-2 font-bold text-lg`}>
+          <h1 className={`border-r-4 border-black pr-2 font-bold text-lg`}>
             فروش
           </h1>
         </div>
