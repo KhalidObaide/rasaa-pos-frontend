@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import {useState} from "react"
 import {GiCycle} from 'react-icons/gi'
+import {MdPublishedWithChanges} from 'react-icons/md'
 import SaveNewFac from "./saveFactro";
 const BuyFactor = ()=>{
     const [showSaveF,setShowSaveF]  = useState(false)
@@ -94,7 +95,7 @@ const BuyFactor = ()=>{
                             placeholder="شماره فاکتور"
                             value={FactorInvoice}
                             />
-                            <button onClick={()=>GenerateFactorInvoice()} className="flex flex-row justify-center items-center w-10 h-10 rounded-lg bg-charts text-black mx-2 px-5"><GiCycle className="w-7 h-7 text-btn"/></button>
+                            <button onClick={()=>GenerateFactorInvoice()} className=""><MdPublishedWithChanges className="w-10 h-10 text-btn"/></button>
                         </div>
                         <input 
                         type="text" 
@@ -116,21 +117,21 @@ const BuyFactor = ()=>{
                     <div className=""><h1 className="font-semibold text-lg">مشخصات فاکتور</h1></div>
                     <div className="flex flex-col ml-16 ">
                           <div className="flex flex-row  items-center mb-2">
-                            <div className="flex flex-row justify-center items-center rounded-md w-10 h-10 bg-lightBlue  font-normal mx-2 ">No</div>
-                            <div className="w-72 h-12  py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-lightBlue  ">نام جنس فروخته شده</div>
-                            <div className="w-60 h-12  py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-lightBlue ">تعداد</div>
-                            <div className="w-60 h-12  py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-lightBlue ">قیمت فی</div>
-                            <div className="w-60 h-12  py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-lightBlue ">قیمت فی</div>
+                            <div className="flex flex-row justify-center items-center rounded-md w-10 h-10 bg-chart  font-normal mx-2 ">No</div>
+                            <div className="w-72 h-12  py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-chart  ">نام جنس فروخته شده</div>
+                            <div className="w-60 h-12  py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-chart ">تعداد</div>
+                            <div className="w-60 h-12  py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-chart ">قیمت فی</div>
+                            <div className="w-60 h-12  py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-chart ">قیمت فی</div>
                           </div>
                           <div className="flex flex-row  items-center mb-2">
-                            <div className="flex flex-row justify-center items-center rounded-md   bg-lightBlue  font-normal mx-2 "><p className="w-10 h-10 flex flex-row justify-center items-center">2</p></div>
+                            <div className="flex flex-row justify-center items-center rounded-md bg-chart font-normal mx-2 "><p className="w-10 h-10 flex flex-row justify-center items-center">1</p></div>
                             <input type="text" className="w-72 h-12  py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg outline-none bg-grayLine" value={productName} onChange={(e)=>setProductName(e.target.value)}/>
                             <input type="text" className="w-60 h-12  py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg outline-none bg-grayLine" value={numbe} onChange={(e)=>setNumber(e.target.value)}/>
                             <input type="text" className="w-60 h-12  py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg outline-none bg-grayLine"  value={pricePer} onChange={(e)=>setPricePer(e.target.value)}/>
                             <input type="text" className="w-60 h-12  py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg outline-none bg-grayLine" value={totalPrice} onChange={(e)=>setTotalPrice(e.target.value)}/>
                           </div>
                           <div className="flex flex-row items-center">
-                            <div className="flex flex-row justify-center items-center rounded-md bg-lightBlue  font-normal mx-2"><p className="w-10 h-10 flex flex-row justify-center items-center">1</p></div>
+                            <div className="flex flex-row justify-center items-center rounded-md bg-chart font-normal mx-2"><p className="w-10 h-10 flex flex-row justify-center items-center">2</p></div>
                                 <input type="text" className="w-72 h-12  py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg  outline-none bg-grayLine "/>
                             <div className=""><input type="text" className="w-60 h-12  py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg outline-none bg-grayLine"/></div>
                             <div className=""><input type="text" className="w-60 h-12  py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg outline-none bg-grayLine"/></div>
@@ -159,9 +160,9 @@ const BuyFactor = ()=>{
                     </div>
                 </div>
                 {/* the subment buttons */}
-                <div className="w-full flex flex-row justify-end items-center ml-72 pl-2 mt-12 px-5 m ">
-                    <button className="bg-gray_button text-gray_fac text-lg py-2 px-4 mb-2 font-medium rounded-md ">لغو</button>
-                    <button className=" border border-gray_line text-gray_fac text-lg py-2 px-6 mb-2 font-medium rounded-md  mr-5">پرداخت و ثبت کردن</button>
+                <div className="w-full flex flex-row justify-end items-center ml-52 pl-2 mt-12 px-5 m ">
+                    <button className="bg-grayLine  text-graybutton text-lg py-2 px-4 mb-2 font-medium rounded-md ">لغو</button>
+                    <button className=" border border-textGray text-gray_fac text-lg py-2 px-6 mb-2 font-medium rounded-md  mr-5">پرداخت و ثبت کردن</button>
                     <button onClick={()=>handelSaveMethod()} className="bg-btn text-white text-lg py-2 px-4 mb-2 font-medium rounded-md  mr-5">ثبت کردن</button>
                 </div>
                 {/* the art of saving the new item */}
