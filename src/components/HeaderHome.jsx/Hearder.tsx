@@ -29,7 +29,7 @@ const Hearder = () => {
               <CiSearch className={`text-3xl`} />
             </button>
           </div>
-          <Link to="BuyFactor">
+          <Link to="Buy/BuyFactor">
           <button
             className={`text-white  font-medium bg-btn py-3 px-4 rounded-md`}
           >
