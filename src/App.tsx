@@ -16,7 +16,8 @@ function passRoutesToBase() {
         {title: "صفحه اصلی", route: ""},
         {title: "فروش", route: "Sell"},
         {title: "خرید", route: "Buy"},
-        {title:"" , route:"/itemFactor/Buy"},
+        {title: "تنظیمات", route: "utilities"},
+        {title:"" , route:""},
         {title:"" , route:"/itemFactor/sell"},
     ];
     localStorage.setItem("headers.pos", JSON.stringify(routes));
@@ -35,7 +36,7 @@ function App() {
             <Route path="/ha" element={<ItemChanges/> } />
             <Route path="Buy/BuyFactor" element={<BuyFactor/>} />
             <Route path="/hamed" element={<Page2 />} />
-            <Route path="/uti"element={<Types/>} />
+            <Route path="/utilities"element={<Types/>} />
         </Routes>
       </div>
     );

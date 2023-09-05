@@ -38,8 +38,8 @@ const ItemChanges = ({ setShowEdit, clickedItem, setReReand}:any)=>{
       
       
       return(
-        <div className=' w-full h-full absolute top-0 left-0 z-index-10  bg-shadow'>
-        <div className="p-5 bg-white absolute z-index-4  top-40 right-31%  flex flex-col justify-center items-center rounded-md">
+        <div className=' w-full h-full fixed top-0 left-0 z-index-10  bg-shadow'>
+        <div className="p-5 bg-white absolute z-index-4  top-40 right-30%  flex flex-col justify-center items-center rounded-md">
              {/* title */}
             <div className="flex flex-row-reverse justify-between item-center w-full mb-5 ">
                 <div className='flex flex-row justify-center items-center '>
@@ -66,7 +66,6 @@ const ItemChanges = ({ setShowEdit, clickedItem, setReReand}:any)=>{
                 <div className=" flex flex-row justify-center items-center mr-2 ">
                 <div className="w-1  h-6 rounded-md bg-black ml-2"></div>
                    <h1 className="mb-1 font-Estedad text-black text-xl " >مورد جدید</h1>
-                   <div className="ml-2 w-1 h-[70%] bg-black rounded-[10px]"></div>
                 </div>
             </div>
        
@@ -77,15 +76,14 @@ const ItemChanges = ({ setShowEdit, clickedItem, setReReand}:any)=>{
                         <h1 className='mr-2 mb-2 font-semibold text-base '>مقدار</h1>
                     <input
                       type="text"    
-                  
                       placeholder={clickedItem[3]}
-                      className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-lg "/>
+                      className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-graybutton rounded-md outline-none mx-2 text-lg "/>
                     </div>
                     <div className='flex flex-col justify-center items-start'>
                         <h1 className='mr-2 mb-2 font-semibold text-base '>کلید</h1>
                       <input 
                          placeholder={clickedItem[2]}
-                         className='w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-lg '/>
+                         className='w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-graybutton rounded-md outline-none mx-2 text-lg '/>
                     </div>
                 </div>
                 <div className="flex flex-row-reverse justify-around items-start">
@@ -93,7 +91,7 @@ const ItemChanges = ({ setShowEdit, clickedItem, setReReand}:any)=>{
                         <h1 className='mr-2 mb-2 font-semibold text-base '>ملاحضات</h1>
                         <textarea
 
-                            className="w-80 h-20  py-2 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-lg  resize-none">
+                            className="w-80 h-20  py-2 px-2 pr-5 text-right border-solid border border-graybutton rounded-md outline-none mx-2 text-lg  resize-none">
                         </textarea>
                    </div>
                     <div className='flex flex-col justify-center items-start'>
@@ -101,31 +99,12 @@ const ItemChanges = ({ setShowEdit, clickedItem, setReReand}:any)=>{
                         <input
                         placeholder={clickedItem[1]}
                         type="text"
-                        className="w-80 h-16 py-4 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-2xl "/>
+                        className="w-80 h-16 py-4 px-2 pr-5 text-right border-solid border border-graybutton rounded-md outline-none mx-2 text-2xl "/>
                     </div>
                  </div>
             </div>
-            <div className="flex flex-col justify-center items-start">
-              <h1 className="mr-2 mb-2 font-semibold text-xl ">کلید</h1>
-              <input
-                placeholder={clickedItem[2]}
-                className="w-282 h-16 py-4 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-2xl "
-              />
-            </div>
           </div>
           <div className="flex flex-row-reverse justify-around items-start">
-            <div className="flex flex-col justicenter items-start">
-              <h1 className="mr-2 mb-2 font-semibold text-xl ">ملاحضات</h1>
-              <textarea className="w-282 h-40 py-4 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-2xl resize-none"></textarea>
-            </div>
-            <div className="flex flex-col justify-center items-start">
-              <h1 className="mr-2 mb-2 font-semibold text-xl ">عنوان</h1>
-              <input
-                placeholder={clickedItem[1]}
-                type="text"
-                className="w-282 h-16 py-4 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-2xl "
-              />
-            </div>
           </div>
         </div>
       );

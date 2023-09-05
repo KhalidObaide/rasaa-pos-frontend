@@ -35,7 +35,9 @@ module.exports = {
         shadow : "rgba(0,0,0,0.3)" ,
         editGreen : "#52C181",
         delet  :"#EC615A", 
-       textGray : "#808080"
+       textGray : "#808080",
+       btnGray : "#F5F5F5",
+       graybutton : '#999999'
       },
       spacing: {
         // "1000": "1000px",
@@ -58,7 +60,7 @@ module.exports = {
         // "112px":"112px",
         // "104": "104px",
         // "52": "52px",
-        "31%": "31%", 
+        "30%": "30%", 
         // "88" : "88px",
         // "18" : "18px"
 

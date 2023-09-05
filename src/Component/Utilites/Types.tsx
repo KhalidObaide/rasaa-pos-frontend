@@ -56,7 +56,7 @@ getData()
         <div className='font-Estedad flex flex-col justify-center items-center shadow-md shadow-[rgb(235, 235, 235)] rounded-md mx-5 p-4 '>
                {/* header */}
                <div className=" w-full flex flex-row-reverse justify-between items-center mb-5">
-                 <button onClick={()=>handelAddnewFac()} className=' bg-btn text-white text-lg py-2 px-5  pb-4 font-medium rounded-md '>ثبت مورد جدید</button>
+                 <button onClick={()=>handelAddnewFac()} className=' bg-btn text-white text-lg py-2 px-5 font-medium rounded-md '>ثبت مورد جدید</button>
                  <div className="flex flex-row justify-center items-center mr-2">
                      <div className="w-1  h-6 rounded-md bg-black ml-2  "></div>
                      <div><h1 className='mb-1 font-Estedad font-bold text-black text-base'>مورد ها</h1></div>
@@ -71,7 +71,7 @@ getData()
              <div className="w-full">
             <table className='w-full' >
                 <thead>
-                   <tr className=' bg-charts '>
+                   <tr className=' bg-chart '>
                     <td className='w-14  text-lg text-center py-3'>No</td>
                     <td className='w-324 text-lg text-center '>عنوان</td>
                     <td className='w-324 text-lg text-center '>کلید</td>
