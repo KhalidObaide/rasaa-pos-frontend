@@ -120,7 +120,7 @@ const BuyFactor = ()=>{
                      {/* the sub title */}
                     <div className=""><h1 className="font-semibold text-3xl">مشخصات فاکتور</h1></div>
                     <div className="flex flex-col w-3/4">
-                          <div className="flex flex-row flex-wrap items-center mb-2">
+                          <div className="flex flex-row flex-wrap items-center mb-2 w-full">
                             <div className=" flex flex-row justify-center items-center rounded-md  w-52 h-38 bg-lightBlue text-2xl font-normal mx-2 ">No</div>
                             <div className=""><input type="text" className="w-300 h-38 rounded-md py-3 px-4 mx-2 bg-lightBlue outline-none border border-lightBlue focus:border-btn text-2xl" value="نام جنس"   /></div>
                             <div className=""><input type="text" className="w-235 h-38 rounded-md py-3 px-4 mx-2 bg-lightBlue outline-none border border-lightBlue focus:border-btn text-2xl" value="تعدا"      /></div>
@@ -137,7 +137,7 @@ const BuyFactor = ()=>{
                           <div className="flex flex-row flex-wrap items-center">
                             <div className=" flex flex-row justify-center items-center rounded-md  w-52 h-44 bg-lightBlue text-2xl font-normal mx-2">2</div>
                             <div className=""><input type="text" className="w-300 h-38 rounded-md py-4 px-4 mx-2 bg-gray_button text-2xl outline-none"/></div>
-                            <div className=""><input type="text" className="w-235 h-38 rounded-md py-4 px-4 mx-2 bg-gray_button text-2xl outline-none"/></div>
+                            <div className=""><input type="text" className="w-235 h-38 rounded-md py-4 px-4 mx-2 bg-gray_button text-2xl outline-none"/></div> 
                             <div className=""><input type="text" className="w-235 h-38 rounded-md py-4 px-4 mx-2 bg-gray_button text-2xl outline-none"/></div>
                             <div className=""><input type="text" className="w-235 h-38 rounded-md py-4 px-4 mx-2 bg-gray_button text-2xl outline-none"/></div>
                           </div>

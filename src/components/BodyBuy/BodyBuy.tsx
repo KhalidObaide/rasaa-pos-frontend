@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { style } from "../../assets/style/styles";
 import Text from "../Text";
 import { Link } from "react-router-dom";
-export const BodyBuy = ({ pageNext , data }: any) => {
+export const BodyBuy = ({ pageNext , data , currentItems }: any) => {
   return (
     <>
       <div
@@ -19,9 +19,9 @@ export const BodyBuy = ({ pageNext , data }: any) => {
           <div className={`${style.chartHeader} w-1/5`}>مجموع کل</div>
         </div>
         <div className={`${style.col} items-center p-0 w-full`}>
-          {data == null
+          {currentItems == null
             ? ""
-            : data.map((item:any, index:any) => {
+            : currentItems.map((item:any, index:any) => {
                 return (
                   <Link
                     to="/itemFactor"
@@ -40,7 +40,7 @@ export const BodyBuy = ({ pageNext , data }: any) => {
                         key={index}
                         className={`${style.chart} ${
                           index % 2 ? "bg-gray-100" : "bg-white"
-                        }   w-1/5`}
+                        }   w-1/5 h-[48px]`}
                       >
                         {item.contact}
                       </div>
@@ -48,7 +48,7 @@ export const BodyBuy = ({ pageNext , data }: any) => {
                         key={index}
                         className={`${style.chart} ${
                           index % 2 ? "bg-gray-100" : "bg-white"
-                        }  w-1/5`}
+                        }  w-1/5 h-[48px]`}
                       >
                         {item.invoice_num}
                       </div>
@@ -64,7 +64,7 @@ export const BodyBuy = ({ pageNext , data }: any) => {
                         key={index}
                         className={`${style.chart} ${
                           index % 2 ? "bg-gray-100" : "bg-white"
-                        }   w-1/5`}
+                        }   w-1/5 h-[48px]`}
                       >
                         {item.payable_amount}
                       </div>
@@ -72,7 +72,7 @@ export const BodyBuy = ({ pageNext , data }: any) => {
                         key={index}
                         className={`${style.chart} ${
                           index % 2 ? "bg-gray-100" : "bg-white"
-                        }  w-1/5`}
+                        }  w-1/5 h-[48px]`}
                       >
                         {item.remaining}
                       </div>

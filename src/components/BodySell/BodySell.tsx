@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { style } from "../../assets/style/styles";
 import { Link } from "react-router-dom";
-export const  BodySell = ({ pageNext, data }: any) => {
+export const  BodySell = ({ pageNext, data , currentItems }: any) => {
   return (
     <>
       <div
@@ -18,9 +18,9 @@ export const  BodySell = ({ pageNext, data }: any) => {
           <div className={`${style.chartHeader} w-1/5`}>مجموع کل</div>
         </div>
         <div className={`${style.col} items-center p-0 w-full`}>
-          {data == null
+          {currentItems == null
             ? ""
-            : data.map((item: any, index: any) => {
+            : currentItems.map((item: any, index: any) => {
                 const deCode = JSON.parse(item.invoice_items);
                 return (
                   <Link

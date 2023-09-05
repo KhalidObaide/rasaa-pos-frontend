@@ -8,8 +8,8 @@ const BodyFactorItemSell = ({ edit, id }: any) => {
   const [data, setData] = useState([]);
   const [arr, setArr] = useState(data);
 
-  const jwt = getJWT()
-
+  const jwt =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5Mzg5MjQ4MywianRpIjoiMjNiODIxMTgtZTdlMi00YzFiLTgyNjAtYWZhOTJmYTg5NzEyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5Mzg5MjQ4MywiZXhwIjoxNjkzOTc4ODgzfQ.OAOU4On0D11FgkIKqr3dMs4GOVmLCSACB1sg-LfNWDc";
 
   useEffect(() => {
     async function fetchData() {
