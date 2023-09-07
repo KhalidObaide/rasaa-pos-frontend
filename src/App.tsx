@@ -11,7 +11,9 @@ import ItemChanges from "./Component/Utilites/Changes";
 import BuyFactor from "./Component/buyFactor/BuyFactor";
 import Types from "./Component/Utilites/Types";
 import MainSell from './Component/Sell/MainSell'
+import "./pos-tailwind.css"
 // import Bio from "./Component/SellPage/Sell"
+// import './postailwind.css'
 
 function passRoutesToBase() {
     const routes = [
@@ -19,8 +21,8 @@ function passRoutesToBase() {
         {title: "فروش", route: "Sell"},
         {title: "خرید", route: "Buy"},
         {title: "تنظیمات", route: "utilities"},
-        {title:"" , route:""},
-        {title:"" , route:"/itemFactor/sell"},
+        // {title:"" , route:""},
+        // {title:"" , route:"/itemFactor/sell"},
     ];
     localStorage.setItem("headers.pos", JSON.stringify(routes));
 }
