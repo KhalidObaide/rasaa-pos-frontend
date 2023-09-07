@@ -37,7 +37,8 @@ module.exports = {
         delet  :"#EC615A", 
        textGray : "#808080",
        btnGray : "#F5F5F5",
-       graybutton : '#999999'
+       graybutton : '#999999',
+       borderColor : "#DADADA"
       },
       spacing: {
         // "1000": "1000px",

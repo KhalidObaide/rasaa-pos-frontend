@@ -11,12 +11,18 @@ const BuyFactor = ()=>{
     const [data,setDate] = useState('14/66/89')
     const [unit,setUnit] = useState('')
     const [productName,setProductName] = useState('')
-    const [numbe ,setNumber] = useState()
+    const [numbe ,setNumber] = useState("")
     const [pricePer,setPricePer] = useState("")
-    const [totalPrice,setTotalPrice]= useState()
+    const [totalPrice,setTotalPrice]= useState("")
     const [discount,setDiscount] = useState("")
     const [taxs,setTaxs] = useState("")
-    const [payebla,setPayebal] = useState("")
+    const [payebla,setPayebal] = useState<any>()
+    // let a = numbe*pricePer
+    // console.log(a);
+    console.log(payebla);
+    
+    
+    
     const EmployeeData = {
         invoice_num: FactorInvoice,
             contact: "Test_5",
@@ -67,6 +73,13 @@ const BuyFactor = ()=>{
         const FactorInioce = Math.floor(100000 + Math.random() * 900000)    
         setFactorInvoic(FactorInioce)
         }
+        const handelcal=()=>{
+            console.log(payebla);
+            const nano = pricePer + numbe
+            setPayebal(nano)
+            console.log(payebla);
+            
+        }
     return(
         <div className='flex flex-col justify-start items-center  p-5 mx-5 shadow-md shadow-shadow rounded-lg '>
             {/* the header part */}
@@ -77,10 +90,10 @@ const BuyFactor = ()=>{
                 </div>
             </div>
             {/* the input sections */}
-                <div className=" w-full flex flex-row justify-around items-start mt-16">
+                <div className=" w-full flex flex-row justify-around items-start mt-16 ">
                      {/* the sub title */}
                     <div className=""><h1 className="font-semibold text-lg mb-2">مشخصات فاکتور</h1></div>
-                    <div className="flex flex-row flex-wrap w-3/4">
+                    <div className="flex flex-row flex-wrap  w-3/4 ml-28 ">
                         <input
                         type="text"
                         className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-lg " 
@@ -121,14 +134,14 @@ const BuyFactor = ()=>{
                             <div className="w-72 h-12  py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-chart  ">نام جنس فروخته شده</div>
                             <div className="w-60 h-12  py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-chart ">تعداد</div>
                             <div className="w-60 h-12  py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-chart ">قیمت فی</div>
-                            <div className="w-60 h-12  py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-chart ">قیمت فی</div>
+                            <div className="w-60 h-12  py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-chart ">مجموعه</div>
                           </div>
                           <div className="flex flex-row  items-center mb-2">
                             <div className="flex flex-row justify-center items-center rounded-md bg-chart font-normal mx-2 "><p className="w-10 h-10 flex flex-row justify-center items-center">1</p></div>
                             <input type="text" className="w-72 h-12  py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg outline-none bg-grayLine" value={productName} onChange={(e)=>setProductName(e.target.value)}/>
-                            <input type="text" className="w-60 h-12  py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg outline-none bg-grayLine" value={numbe} onChange={(e)=>setNumber(e.target.value)}/>
-                            <input type="text" className="w-60 h-12  py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg outline-none bg-grayLine"  value={pricePer} onChange={(e)=>setPricePer(e.target.value)}/>
-                            <input type="text" className="w-60 h-12  py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg outline-none bg-grayLine" value={totalPrice} onChange={(e)=>setTotalPrice(e.target.value)}/>
+                            <input type="text" className="w-60 h-12  py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg outline-none bg-grayLine" value={numbe} onChange={(e)=>setNumber(Number(e.target.value))}/>
+                            <input type="text" className="w-60 h-12  py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg outline-none bg-grayLine"  value={pricePer} onChange={(e)=>setPricePer(Number(e.target.value))}/>
+                            <input type="text" className="w-60 h-12  py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg outline-none bg-grayLine" value={payebla}  />
                           </div>
                           <div className="flex flex-row items-center">
                             <div className="flex flex-row justify-center items-center rounded-md bg-chart font-normal mx-2"><p className="w-10 h-10 flex flex-row justify-center items-center">2</p></div>
@@ -140,29 +153,28 @@ const BuyFactor = ()=>{
                     </div>
                 </div>
                 {/* the totla amount */}
-                <div className="w-full text-left ml-64 mt-5 text-lg font-semibold"><h1>مجموعه کل : <span className="text-btn">25,000</span> افغانی</h1></div>
+                <div className="w-full text-left ml-96 mt-20 text-lg font-semibold"><h1>مجموعه کل : <span className="text-btn">25,000</span> افغانی</h1></div>
                 {/* the taz and final calculat */}
                 <div className=" w-full flex flex-row fled justify-end items-start mt-16 ml-40">
                      {/* the sub title */}
                     <div className="flex flex-row flex-wrap justify-center items-center w-3/4 pr-5 mr-20">
                         <div className="flex flex-col justify-start items-start">
                             <h1 className="mr-2  text-lg mb-2  text-textGray">مبلغ تخفیف : </h1>
-                            <input value={discount} onChange={(e)=>setDiscount(e.target.value)} type="text" className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-lg "/>
+                            <input value={discount}  placeholder="25,500"  onChange={(e)=>setDiscount(e.target.value)} type="text" className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-lg "/>
                         </div>
                         <div className="flex flex-col justify-start items-start">
                             <h1 className="mr-2 text-lg mb-2  text-textGray">مالیات : </h1>
-                            <input value={taxs} onChange={(e)=>setTaxs(e.target.value)} type="text" className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-lg " />
+                            <input value={taxs}  placeholder="25,500"  onChange={(e)=>setTaxs(e.target.value)} type="text" className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-lg " />
                         </div>
                         <div className="flex flex-col justify-start items-start">
                             <h1 className="mr-2  text-lg mb-2  text-textGray">قابل پرداخت : </h1>
-                            <input type="text" className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-lg  "/>
+                            <input type="text" placeholder="25,500" className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-lg  "/>
                         </div>
                     </div>
                 </div>
                 {/* the subment buttons */}
                 <div className="w-full flex flex-row justify-end items-center ml-52 pl-2 mt-12 px-5 m ">
-                    <button className="bg-grayLine  text-graybutton text-lg py-2 px-4 mb-2 font-medium rounded-md ">لغو</button>
-                    <button className=" border border-textGray text-gray_fac text-lg py-2 px-6 mb-2 font-medium rounded-md  mr-5">پرداخت و ثبت کردن</button>
+                    <button onClick={()=>handelcal()} className="bg-grayLine  text-graybutton text-lg py-2 px-4 mb-2 font-medium rounded-md ">لغو</button>
                     <button onClick={()=>handelSaveMethod()} className="bg-btn text-white text-lg py-2 px-4 mb-2 font-medium rounded-md  mr-5">ثبت کردن</button>
                 </div>
                 {/* the art of saving the new item */}
