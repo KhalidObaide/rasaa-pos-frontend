@@ -120,7 +120,7 @@ const SaveNewProduct = ({setDisplayState,setReReand,setLoader,clickedData }:any)
                 <div className="w-full px-2 flex flex-row-reverse justify-start items-start mt-10">
                     
                          {
-                            style ? <button className='bg-btn mr-5 py-3 px-7 rounded-md'><TbLoader className='animate-spin w-5 h-5 text-white '/></button>
+                            style ? <button className='bg-btn mr-5 py-3 px-7 rounded-md'><TbLoader className='animate-spin w-5 h-5 text-white  '/></button>
                             :  <button onClick={()=>handelsaveNewItem()}  className="bg-btn text-white text-lg py-2 px-4 mb-2 font-medium rounded-md  mr-5"> ثبت کردن</button> 
                         }
                       
