@@ -42,6 +42,7 @@ function App() {
             <Route path="/hamed" element={<Page2 />} />
             <Route path="/utilities"element={<Types/>} />        
             <Route path="/sell/mainSell" element={<MainSell/>}/>
+            <Route path="/Buyfactor" element={<BuyFactor/>}/>
         </Routes>
       </div>
     );

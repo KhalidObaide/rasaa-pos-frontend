@@ -62,11 +62,11 @@ const Types = ()=>{
       console.error("Error itmes:", error);
     }
 }
-  // if (reReand) {
-  //   getData()
-  // }else{
-  //   // return null
-  // }
+  if (reReand) {
+    getData()
+  }else{
+    
+  }
 
     useEffect(()=>{
         getData()
@@ -145,7 +145,7 @@ const Types = ()=>{
                  {
                   style
                    &&
-                  <div className='fixed top-40 left-1/2 -translate-y-1/2 -translate-x-1/2'><TbLoader className='animate-spin w-10 h-10 text-btn duration-1000'/></div>
+                  <div className='fixed top-40 left-1/2 -translate-y-1/2 -translate-x-1/2'><TbLoader className='animate-spin w-10 h-10 text-btn duration-1000 fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2  z-10 ئ'/></div>
                  } 
                  {/* the delet alart */}
                  <div className="p-4 text-center justify-self-end">
