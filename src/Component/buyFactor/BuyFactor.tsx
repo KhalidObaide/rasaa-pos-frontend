@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext } from "react";
 import axios from "axios";
 import {useState} from "react"
 import {GiCycle} from 'react-icons/gi'
@@ -6,22 +6,28 @@ import {MdPublishedWithChanges} from 'react-icons/md'
 import SaveNewFac from "./saveFactro";
 import List from "./List";
 import { Link } from "react-router-dom";
+import { MyDatePicker } from "./MyDatePicker";
+import Date from "../../components/Date/Date";
+
+
+
+  const BuyFactorProps = createContext()
+
 const BuyFactor = ()=>{
     const [showSaveF,setShowSaveF]  = useState(false)
     const [sellerNmae,setSellerName] = useState('')
     const [FactorInvoice,setFactorInvoic] = useState()
     const [data,setDate] = useState('14/66/89')
-    const [unit,setUnit] = useState('')
     const [productName,setProductName] = useState('')
     const [number ,setNumber] = useState("")
     const [pricePer,setPricePer] = useState("")
     const [totalPrice,setTotalPrice]= useState(0)
     const [discount,setDiscount] = useState("")
     const [taxs,setTaxs] = useState("")
-    const [payebla,setPayebal] = useState<any>()
-    // let a = numbe*pricePer
-    // console.log(a);
-    console.log(payebla);
+    let [total,setTotal] = useState()
+
+    // final preactice
+    const [totalAmount,setTotalAmount] = useState(0)
     
     
     
@@ -46,12 +52,6 @@ const BuyFactor = ()=>{
         
         const handelSaveMethod = ()=>{
             const HandlPost = async () => {
-                // const calculate = numbe*pricePer
-                // setTotalPrice(calculate)
-                alert('start')
-                // console.log(to);
-                
-
                 const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NDA2MTY5NiwianRpIjoiM2Q1ZDkxZWMtMzAzNS00NDkxLTljNWYtNzdiOWQ2ZGY1ZWVlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NDA2MTY5NiwiZXhwIjoxNjk0MTQ4MDk2fQ.a7pcHV7LVtS8o30HBZvxjefVArwOrKbznrPqdb6Iyy8"
                 const res = await axios({
                     method:'post',
@@ -76,16 +76,15 @@ const BuyFactor = ()=>{
         setFactorInvoic(FactorInioce)
         }
         const handelcal=()=>{
-        //   setPayebal(Number(pricePer*number))
-          console.log(sellerNmae,pricePer,number);
+  
         }
-        // const handelNano = (e)=>{
-        //     setPricePer((e.target.value))
-        //     console.log(pricePer);
-            
-            
-        // }
+    
     return(
+    <BuyFactorProps.Provider value={{
+        number: number,
+        pricePer:pricePer,
+        setTotalAmount : setTotalAmount
+    }}>
         <div className='flex flex-col justify-start items-center  p-5 mx-5 shadow-md shadow-shadow rounded-lg'>
             {/* the header part */}
             <div className=" w-full flex flex-row justify-between items-center ">
@@ -95,8 +94,7 @@ const BuyFactor = ()=>{
                 </div>
             </div>
             {/* the input sections */}
-                     {/* the sub title */}
-                    {/* <div className=""><h1 className="font-semibold text-lg mb-2">مشخصات فاکتور</h1></div> */}
+
                     <div className=" w-full flex flex-row justify-around items-start">
                         <div className="flex flex-col justify-center items-center">
                             <h1 className="mt-10 mb-28  ml-10">فکاتور خرید</h1>
@@ -121,25 +119,17 @@ const BuyFactor = ()=>{
                                     />
                                     <button onClick={()=>GenerateFactorInvoice()} className=""><MdPublishedWithChanges className="w-10 h-10 text-btn"/></button>
                                 </div>
-                                <input 
-                                type="text" 
-                                className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-lg " 
-                                placeholder="تاریخ"
-                                />
+                                <Date/>
                            </div>
                            <List
-                            sellerNmae={sellerNmae} 
-                            setSellerName = {setSellerName}
-                            number={number}
-                            setNumber ={setNumber}
-                            pricePer = {pricePer}
-                            setPricePer = {setPricePer}
-                            
+                          number = {number}
+                          pricePer= {pricePer}
+                          setTotalAmount= {setTotalAmount}
                             />
                           </div>
                     </div>      
                         {/* the totla amount */}
-                        <div className="w-full text-left ml-96 mt-10 text-lg font-semibold"><h1>مجموعه کل : <span className="text-btn">25,000</span> افغانی</h1></div>
+                        <div className="w-full text-left ml-96 mt-10 text-lg font-semibold"><h1>مجموعه کل : <span className="text-btn">{totalAmount}</span> افغانی</h1></div>
                         {/* the taz and final calculat */}
                         <div className=" w-full flex flex-row fled justify-end items-start mt-16 ml-40">
                              {/* the sub title */}
@@ -165,13 +155,13 @@ const BuyFactor = ()=>{
                             </Link>
                             <button onClick={()=>handelSaveMethod()} className="bg-btn text-white text-lg py-2 px-4 mb-2 font-medium rounded-md  mr-5">ثبت کردن</button>
                         </div>
-                        {/* the art of saving the new item */}
                         {
                             showSaveF 
                             &&
                             <SaveNewFac/>
                         }
         </div>
+    </BuyFactorProps.Provider>    
     )
 }
 export default BuyFactor

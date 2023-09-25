@@ -30,7 +30,7 @@ const SaveNewProduct = ({setDisplayState,setReReand,setLoader,clickedData }:any)
         
         setStyle(true)
         // alert('KASJLjas')
-        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NDA2MTY5NiwianRpIjoiM2Q1ZDkxZWMtMzAzNS00NDkxLTljNWYtNzdiOWQ2ZGY1ZWVlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NDA2MTY5NiwiZXhwIjoxNjk0MTQ4MDk2fQ.a7pcHV7LVtS8o30HBZvxjefVArwOrKbznrPqdb6Iyy8"
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NTU1NTAwMywianRpIjoiNzFmODU1ZWUtZTczZi00Mzg1LWE4MDUtNWY5NThiNmE4NmE1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NTU1NTAwMywiZXhwIjoxNjk1NjQxNDAzfQ.XMD2fvwCDzTe8n5ojjQZ2IDI8E2hkm70e92S03ugBp0"
         const res = await axios({
             method:'post',
             url : 'https://lajward-mis.dev:8005/utilities',
@@ -43,14 +43,15 @@ const SaveNewProduct = ({setDisplayState,setReReand,setLoader,clickedData }:any)
             setReReand(true)
             setDisplayState(false)
         }else{
-            alert('There was an Error')
-            console.log(res)
+            console.log('no');
+            
         }
-        
+       
+        setReReand(false)
     };
     const handelsaveNewItem = ()=>{
-        HandlPost()
         setReReand(false)
+        HandlPost()
         }
 
     const handleInputChange = (event:any) => {
