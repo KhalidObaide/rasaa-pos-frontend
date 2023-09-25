@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { style } from "../../assets/style/styles";
 import { Link } from "react-router-dom";
 export const BodySell = ({ pageNext, data, currentItems }: any) => {
+  let num = 0;
+  let num2 = 0;
   return (
     <>
       <div
@@ -18,7 +20,7 @@ export const BodySell = ({ pageNext, data, currentItems }: any) => {
           <div className={`${style.chartHeader} w-1/5`}>مجموع کل</div>
         </div>
         <div className={`${style.col} items-center p-0 w-full`}>
-          {currentItems === null ? (
+          {currentItems === undefined ? (
             <div className="w-full flex flex-row items-center justify-center h-[50px] my-[100px]">
               <div className="loader"></div>
             </div>
@@ -70,6 +72,9 @@ export const BodySell = ({ pageNext, data, currentItems }: any) => {
                       }   w-1/5 h-[48px]`}
                     >
                       {deCode.map((item: any, index: any) => {
+                        num = index[0]
+                        num2 += num
+                        console.log("good",num2)
                         return item.amount;
                       })}
                     </div>

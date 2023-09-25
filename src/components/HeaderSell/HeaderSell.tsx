@@ -3,8 +3,11 @@ import { style } from "../../assets/style/styles";
 import { CiSearch } from "react-icons/ci";
 import { Link } from "react-router-dom";
 
-const HeaderSell = () => {
-
+const HeaderSell = ({serch , setSearch}:any) => {
+  const getValue = (e) =>{
+    setSearch(e.target.value)
+    console.log(serch)
+  }
 
   return (
     <>
@@ -23,6 +26,7 @@ const HeaderSell = () => {
                 type="text"
                 placeholder="جستجو..."
                 className={`outline-none px-5   py-3`}
+                onChange={getValue}
               />
               <button>
                 <CiSearch className={`text-3xl`} />

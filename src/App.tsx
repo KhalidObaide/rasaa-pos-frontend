@@ -10,7 +10,6 @@ import ItemFactorSell from "./components/ItemFactorSell/ItemFactorSell";
 import ItemChanges from "./Component/Utilites/Changes";
 import BuyFactor from "./Component/buyFactor/BuyFactor";
 import Types from "./Component/Utilites/Types";
-
 function passRoutesToBase() {
     const routes = [
         {title: "صفحه اصلی", route: ""},

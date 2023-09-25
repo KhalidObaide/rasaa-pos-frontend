@@ -6,6 +6,7 @@ import Remove from "./RemoveAll/Remove";
 import BodyItem from "./BodyItemFactor/BodyItem";
 import FooterItem from "./FooterItemFac/FooterItem";
 import axios from "axios";
+import RemoveAllSell from "../ItemFactorSell/RemoveAll/RemoveAllSell";
 
 const ItemFactor = () => {
   const [data, setData] = useState();
@@ -16,7 +17,8 @@ const ItemFactor = () => {
   const queryParams = new URLSearchParams(window.location.search);
   const id = queryParams.get("id");
   const jwt =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5Mzg5MjQ4MywianRpIjoiMjNiODIxMTgtZTdlMi00YzFiLTgyNjAtYWZhOTJmYTg5NzEyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5Mzg5MjQ4MywiZXhwIjoxNjkzOTc4ODgzfQ.OAOU4On0D11FgkIKqr3dMs4GOVmLCSACB1sg-LfNWDc";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NTU0OTE2MywianRpIjoiYjc4MjgxMGQtZTQ1Zi00NWU2LWIwZGYtMjlmMzRhYjU1MDhjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NTU0OTE2MywiZXhwIjoxNjk1NjM1NTYzfQ.19bIN1FSZRyWG1_ioMc8VMApywH6gg9GTqo-owchgwc";
+    
 
   useEffect(() => {
     async function fetchData() {
@@ -44,6 +46,7 @@ const ItemFactor = () => {
 
     fetchData();
   }, []);
+
   return (
     <>
       <div className="p-5 rounded-lg shadow-lg ">
@@ -59,7 +62,7 @@ const ItemFactor = () => {
         />
         <BodyItem arr={arr} setArr={setArr} edit={edit} />
         <FooterItem arr={arr} />
-        <Remove open={open}  setOpen={setOpen} />
+        <Remove setOpen={setOpen} open={open} id={id} />
       </div>
     </>
   );

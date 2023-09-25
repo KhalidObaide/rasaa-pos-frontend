@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { style } from "../../assets/style/styles";
 import Text from "../Text";
 import { Link } from "react-router-dom";
-export const BodyBuy = ({ pageNext, data, currentItems }: any) => {
+export const BodyBuy = ({ pageNext, currentItems }: any) => {
+  console.log("Hamed Good" ,typeof currentItems)
   return (
     <>
       <div
@@ -19,8 +20,8 @@ export const BodyBuy = ({ pageNext, data, currentItems }: any) => {
           <div className={`${style.chartHeader} w-1/5`}>مجموع کل</div>
         </div>
         <div className={`${style.col} items-center p-0 w-full`}>
-          {currentItems == null ? (
-            <div className="w-full flex flex-row items-center justify-center h-[50px] my-[100px]">
+          {currentItems == Object ? (
+            <div className={`w-full flex flex-row items-center justify-center h-[50px] my-[100px]`}>
               <div className="loader"></div>
             </div>
           ) : (
