@@ -44,12 +44,11 @@ const Types = ()=>{
   
   const [data, setData]= useState([])
   console.log(clickedData);
-  
    async function getData() {
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NDA2MTY5NiwianRpIjoiM2Q1ZDkxZWMtMzAzNS00NDkxLTljNWYtNzdiOWQ2ZGY1ZWVlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NDA2MTY5NiwiZXhwIjoxNjk0MTQ4MDk2fQ.a7pcHV7LVtS8o30HBZvxjefVArwOrKbznrPqdb6Iyy8"
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NTU1NTAwMywianRpIjoiNzFmODU1ZWUtZTczZi00Mzg1LWE4MDUtNWY5NThiNmE4NmE1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NTU1NTAwMywiZXhwIjoxNjk1NjQxNDAzfQ.XMD2fvwCDzTe8n5ojjQZ2IDI8E2hkm70e92S03ugBp0"
     try {
       const response = await axios.get('https://lajward-mis.dev:8005/utilities',{headers: { Authorization: `Bearer ${token}` },});
-      if (response.status) {
+      if (response.status = 200) {
         setStyle(false)
         setData(response.data);
         console.log('start');
@@ -59,20 +58,21 @@ const Types = ()=>{
         alert('no')
       }
     } catch (error) {
-      console.error("Error itmes:", error);
+     console.log('problem');
+     
     }
 }
-  if (reReand) {
-    getData()
-  }else{
-    
-  }
+if (reReand) {
+  getData()
+}else{
+  
+}
 
-    useEffect(()=>{
-        getData()
-      },[]);
+useEffect(()=>{
+  getData()
+},[]);
 
-      // start calculatuiong the pagnation
+// start calculatuiong the pagnation
       
   let totalPages = Math.ceil(items.length / itemsPerPage);
   let startIndex = (currentPage - 1) * itemsPerPage;
@@ -173,6 +173,7 @@ const Types = ()=>{
                 </button>
               </li>
             ))}
+                <input type="text" value={'this is the value'} />
             <li>
               <button
                 className="w-12 h-10 flex items-center justify-center border rounded text-gray-500 hover:text-blue-500"

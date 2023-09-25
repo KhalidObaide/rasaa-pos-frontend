@@ -19,42 +19,71 @@ const ItemChanges = ({ setShowEdit, clickedItem, setReReand}:any)=>{
     const [display2,setDisplay2] = useState(true) 
     const [dispaly,setdisplay] = useState(false)
     const [deletLoader,setDeletLoader] = useState(false)
+
+
+
+
+  const newData = {
+    key : key,
+    title : title,
+    value : mount
+  }
+
+
+
+
     const handelDelet = ()=>{
       setdisplay(true)
-     
       } 
       const startDelet=() =>{
+        console.log('the delet methos stared');
+        
         setDeletLoader(true)
-        console.log("this is the cliced item",clickedItem.id);
-        async function getData() {
-            const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NDA2MTY5NiwianRpIjoiM2Q1ZDkxZWMtMzAzNS00NDkxLTljNWYtNzdiOWQ2ZGY1ZWVlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NDA2MTY5NiwiZXhwIjoxNjk0MTQ4MDk2fQ.a7pcHV7LVtS8o30HBZvxjefVArwOrKbznrPqdb6Iyy8"
-            try {
-              const response = await axios.delete(`https://lajward-mis.dev:8005/utilities?id=${clickedItem.id}`,{headers: { Authorization: `Bearer ${token}` },});
-              if (response.data = 200) {
-                // console.log(`https://lajward-mis.dev:8005/utilities?id=${clickedItem.id}`);
-                console.log(clickedItem);
-                setReReand(true)
-                setShowEdit(false)
-                setdisplay(false)
-                setDeletLoader(false)
-              }else{
-                console.log(error);
-                
-              }
-            } catch (error) {
-              console.error('Error itmes:', error)
+        getData()
+        setReReand(false)
+
+      } 
+      console.log("this is the cliced item",clickedItem.id);
+      async function getData() {
+          const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NTU1NTAwMywianRpIjoiNzFmODU1ZWUtZTczZi00Mzg1LWE4MDUtNWY5NThiNmE4NmE1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NTU1NTAwMywiZXhwIjoxNjk1NjQxNDAzfQ.XMD2fvwCDzTe8n5ojjQZ2IDI8E2hkm70e92S03ugBp0"
+          try {
+            const response = await axios.delete(`https://lajward-mis.dev:8005/utilities?id=${clickedItem.id}`,{headers: { Authorization: `Bearer ${token}` },});
+            if (response.data = 200) {
+              console.log('the request sent');
+              setReReand(true)
+              setShowEdit(false)
+              setdisplay(false)
+              setDeletLoader(false)
+            }else{
+              console.log(error);
+              
             }
+          } catch (error) {
+            console.error('Error itmes:', error)
           }
           setReReand(false)
-          getData()
-          // the style time
-      } 
+        }
+        
       // start Editing
+
+
+
       const hnadelEdit = ()=>{
-       clickedItem.key = key 
-       
-        
-        
+        async function getData() {
+          const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NTU1NTAwMywianRpIjoiNzFmODU1ZWUtZTczZi00Mzg1LWE4MDUtNWY5NThiNmE4NmE1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NTU1NTAwMywiZXhwIjoxNjk1NjQxNDAzfQ.XMD2fvwCDzTe8n5ojjQZ2IDI8E2hkm70e92S03ugBp0"
+          try {
+            const response = await axios.put(`https://lajward-mis.dev:8005/utilities?id=${clickedItem.id}`,newData,{headers: { Authorization: `Bearer ${token}` }});
+            if (response.data = 200) {
+            
+            }else{
+              console.log(error);
+              
+            }
+          } catch (error) {
+            console.error('Error itmes:', error)
+          }
+        }
+        getData()
       }
 
       
@@ -103,12 +132,14 @@ const ItemChanges = ({ setShowEdit, clickedItem, setReReand}:any)=>{
                     <input
                       // type="text"    
                       placeholder={clickedItem.value}
+                      value={mount}
+                      onChange={(e)=>setMount(e.target.value)}
                       className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-graybutton rounded-md outline-none mx-2 text-lg "/>
                     </div>
                     <div className='flex flex-col justify-center items-start'>
                         <h1 className='mr-2 mb-2 font-semibold text-base '>کلید</h1>
                       <input 
-                      value={key}
+                      value={clickedItem.key}
                       onChange={(e)=>setKey(e.target.value)}
 
                          placeholder={clickedItem.key}
@@ -128,12 +159,15 @@ const ItemChanges = ({ setShowEdit, clickedItem, setReReand}:any)=>{
                         <input
                         placeholder={clickedItem.title}
                         // type="text"
+                        value={title}
+                        onChange={(e)=>setTitle(e.target.value)}
                         className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-graybutton rounded-md outline-none mx-2 text-lg "/>
                     </div>
                  </div>
             </div>
           </div>
           <div className="flex flex-row-reverse justify-around items-start">
+        
           </div>
          {
            dispaly &&

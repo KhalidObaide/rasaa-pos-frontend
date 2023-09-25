@@ -12,6 +12,7 @@ import BuyFactor from "./Component/buyFactor/BuyFactor";
 import Types from "./Component/Utilites/Types";
 import MainSell from './Component/Sell/MainSell'
 import "./pos-tailwind.css"
+import MyComponent from "./Component/text/Test";
 // import Bio from "./Component/SellPage/Sell"
 // import './postailwind.css'
 
@@ -43,6 +44,7 @@ function App() {
             <Route path="/utilities"element={<Types/>} />        
             <Route path="/sell/mainSell" element={<MainSell/>}/>
             <Route path="/Buyfactor" element={<BuyFactor/>}/>
+            <Route path="/Test" element={<MyComponent/>}/>
         </Routes>
       </div>
     );

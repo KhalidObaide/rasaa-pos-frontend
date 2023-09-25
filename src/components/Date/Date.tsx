@@ -8,7 +8,7 @@ import { IoCalendarOutline } from "react-icons/io5";
 export default function Date() {
   return (
     <div
-      className={`${style.row} items-center gap-x-2 border border-gray-200 rounded-md py-2 px-3`}
+      className={`${style.row} w-80 items-center gap-x-2 border border-gray-200 rounded-md py-2 px-3 mr-5`}
     >
       <label htmlFor="date">
         <IoCalendarOutline className="text-gray-500 text-2xl cursor-pointer" />
