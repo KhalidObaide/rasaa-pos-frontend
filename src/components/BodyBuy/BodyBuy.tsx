@@ -26,6 +26,7 @@ export const BodyBuy = ({ pageNext, currentItems }: any) => {
             </div>
           ) : (
             currentItems.map((item: any, index: any) => {
+              const deCode = JSON.parse(item.invoice_items)
               return (
                 <Link
                   to={`/itemFactor/buy?id=${item.id}`}
@@ -70,7 +71,9 @@ export const BodyBuy = ({ pageNext, currentItems }: any) => {
                         index % 2 ? "bg-gray-100" : "bg-white"
                       }   w-1/5 h-[48px]`}
                     >
-                      {item.payable_amount}
+                      {
+                        deCode.length
+                      }
                     </div>
                     <div
                       key={index}

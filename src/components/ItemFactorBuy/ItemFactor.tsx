@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import HeaderFac from "./HeaderItemFactor/HeaderFac";
-import Text from "../Text";
 import Remove from "./RemoveAll/Remove";
 import BodyItem from "./BodyItemFactor/BodyItem";
 import FooterItem from "./FooterItemFac/FooterItem";
 import axios from "axios";
-import RemoveAllSell from "../ItemFactorSell/RemoveAll/RemoveAllSell";
 
 const ItemFactor = () => {
   const [data, setData] = useState();
@@ -17,7 +15,7 @@ const ItemFactor = () => {
   const queryParams = new URLSearchParams(window.location.search);
   const id = queryParams.get("id");
   const jwt =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NTU0OTE2MywianRpIjoiYjc4MjgxMGQtZTQ1Zi00NWU2LWIwZGYtMjlmMzRhYjU1MDhjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NTU0OTE2MywiZXhwIjoxNjk1NjM1NTYzfQ.19bIN1FSZRyWG1_ioMc8VMApywH6gg9GTqo-owchgwc";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NTYzNTk2NSwianRpIjoiMjI1MGFlZWUtYTg3YS00YWI2LTkwZWYtNGY1ODU5ZGY0MjgwIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NTYzNTk2NSwiZXhwIjoxNjk1NzIyMzY1fQ.YHp2q3Wnu3u41KA0c58elr139qDQ1tuRSHBVBeyZ8Nc";
     
 
   useEffect(() => {

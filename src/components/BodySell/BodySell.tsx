@@ -27,6 +27,10 @@ export const BodySell = ({ pageNext, data, currentItems }: any) => {
           ) : (
             currentItems.map((item: any, index: any) => {
               const deCode = JSON.parse(item.invoice_items);
+              deCode.map((item: any , index:any) => {
+                num = item.price * item.amount;
+                num2 += num;
+              });
               return (
                 <Link
                   to={`/itemFactor/sell?id=${item.id}`}
@@ -71,12 +75,7 @@ export const BodySell = ({ pageNext, data, currentItems }: any) => {
                         index % 2 ? "bg-gray-100" : "bg-white"
                       }   w-1/5 h-[48px]`}
                     >
-                      {deCode.map((item: any, index: any) => {
-                        num = index[0]
-                        num2 += num
-                        console.log("good",num2)
-                        return item.amount;
-                      })}
+                      {deCode.length}
                     </div>
                     <div
                       key={index}
@@ -84,7 +83,7 @@ export const BodySell = ({ pageNext, data, currentItems }: any) => {
                         index % 2 ? "bg-gray-100" : "bg-white"
                       }  w-1/5 h-[48px] `}
                     >
-                      {item.total_amount}
+                      {num2}
                     </div>
                   </div>
                 </Link>
