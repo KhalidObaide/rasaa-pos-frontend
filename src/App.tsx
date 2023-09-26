@@ -10,13 +10,20 @@ import ItemFactorSell from "./components/ItemFactorSell/ItemFactorSell";
 import ItemChanges from "./Component/Utilites/Changes";
 import BuyFactor from "./Component/buyFactor/BuyFactor";
 import Types from "./Component/Utilites/Types";
+import MainSell from './Component/Sell/MainSell'
+import "./pos-tailwind.css"
+import MyComponent from "./Component/text/Test";
+// import Bio from "./Component/SellPage/Sell"
+// import './postailwind.css'
+
 function passRoutesToBase() {
     const routes = [
         {title: "صفحه اصلی", route: ""},
         {title: "فروش", route: "Sell"},
         {title: "خرید", route: "Buy"},
-        {title:"" , route:"/itemFactor/Buy"},
-        {title:"" , route:"/itemFactor/sell"},
+        {title: "تنظیمات", route: "utilities"},
+        // {title:"" , route:""},
+        // {title:"" , route:"/itemFactor/sell"},
     ];
     localStorage.setItem("headers.pos", JSON.stringify(routes));
 }
@@ -32,9 +39,13 @@ function App() {
             <Route path="/itemFactor/Buy" element={<ItemFactor />} />
             <Route path="/itemFactor/sell" element={<ItemFactorSell />} />
             <Route path="/ha" element={<ItemChanges/> } />
-            <Route path="Buy/BuyFactor" element={<BuyFactor/>} />
+            <Route path="/BuyFactor" element={<BuyFactor/>} />
             <Route path="/hamed" element={<Page2 />} />
-            <Route path="/uti"element={<Types/>} />
+            <Route path="/utilities"element={<Types/>} />        
+            <Route path="/mainSell" element={<MainSell/>}/>
+            <Route path="/Buyfactor" element={<BuyFactor/>}/>
+            <Route path="/Test" element={<MyComponent/>}/>
+            <Route path="*" element={<h1>Page not found</h1>} />
         </Routes>
       </div>
     );

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { style } from "../../assets/style/styles";
 import { CiSearch } from "react-icons/ci";
 import Date from "../Date/Date";
+import { Link } from "react-router-dom";
+// import Types from "../../Component/Utilites/Types";
 // import {  Print , Cross , Remove , Edit , Check } from "../../assets/img";
 
 const Hearder = () => {
@@ -27,11 +29,15 @@ const Hearder = () => {
               <CiSearch className={`text-3xl`} />
             </button>
           </div>
+          <Link to="Buyfactor">
           <button
             className={`text-white  font-medium bg-btn py-3 px-4 rounded-md`}
           >
+            {/* <link rel="" ="" /> */}
+    
             ثبت فاکتور خرید
           </button>
+            </Link>
         </div>
       </div>
     </>
