@@ -9,7 +9,6 @@ const BodyItem = ({ arr, setArr, edit }: any) => {
     const updatedItems = arr.filter((item: { id: any }) => item.id !== itemId);
     setArr(updatedItems);
   };
-  var num = 0;
   const handelChange = (
     value: string,
     id: string | undefined,
@@ -33,7 +32,8 @@ const BodyItem = ({ arr, setArr, edit }: any) => {
     }
   };
   //-----------------------------------
-
+  let num = 0;
+  let num2 = 0;
   return (
     <>
       <div className={`${style.col}`}>
@@ -70,9 +70,9 @@ const BodyItem = ({ arr, setArr, edit }: any) => {
         ) : (
           arr.map((item: any, index: any) => {
             const deCode = JSON.parse(item.invoice_items);
-            const collect = item.price * item.amount;
-            num += collect;
             return deCode.map((item: any, index: any) => {
+              num = item.price * item.amount;
+              num2 += num;
               return (
                 <div
                   className={`w-full gap-x-5 py-3 h-auto ${style.row} items-center`}
@@ -143,7 +143,7 @@ const BodyItem = ({ arr, setArr, edit }: any) => {
         <div className={`w-full ${style.row} items-end justify-end mt-2`}>
           <div className={`text-xl`}>مجموع کل:</div>
           <div className={`mr-2 text-xl`}>
-            <span className={`text-btn`}>23232323</span> افغانی
+            <span className={`text-btn`}>{num2}</span> افغانی
           </div>
         </div>
       </div>

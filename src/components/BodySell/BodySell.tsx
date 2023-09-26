@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { style } from "../../assets/style/styles";
 import { Link } from "react-router-dom";
 export const BodySell = ({ pageNext, data, currentItems }: any) => {
+  let num = 0;
+  let num2 = 0;
   return (
     <>
       <div
@@ -18,13 +20,17 @@ export const BodySell = ({ pageNext, data, currentItems }: any) => {
           <div className={`${style.chartHeader} w-1/5`}>مجموع کل</div>
         </div>
         <div className={`${style.col} items-center p-0 w-full`}>
-          {currentItems === null ? (
+          {currentItems === undefined ? (
             <div className="w-full flex flex-row items-center justify-center h-[50px] my-[100px]">
               <div className="loader"></div>
             </div>
           ) : (
             currentItems.map((item: any, index: any) => {
               const deCode = JSON.parse(item.invoice_items);
+              deCode.map((item: any , index:any) => {
+                num = item.price * item.amount;
+                num2 += num;
+              });
               return (
                 <Link
                   to={`/itemFactor/sell?id=${item.id}`}
@@ -69,9 +75,7 @@ export const BodySell = ({ pageNext, data, currentItems }: any) => {
                         index % 2 ? "bg-gray-100" : "bg-white"
                       }   w-1/5 h-[48px]`}
                     >
-                      {deCode.map((item: any, index: any) => {
-                        return item.amount;
-                      })}
+                      {deCode.length}
                     </div>
                     <div
                       key={index}
@@ -79,7 +83,7 @@ export const BodySell = ({ pageNext, data, currentItems }: any) => {
                         index % 2 ? "bg-gray-100" : "bg-white"
                       }  w-1/5 h-[48px] `}
                     >
-                      {item.total_amount}
+                      {num2}
                     </div>
                   </div>
                 </Link>

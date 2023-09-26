@@ -6,7 +6,6 @@ import {
   BiPrinter,
   BiTrashAlt,
   BiCheck,
-  BiChevronRight,
   BiChevronLeft,
 } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
@@ -43,7 +42,7 @@ const HeaderFactorItemSell = ({
   const [headerData, setHeaderData] = useState([]);
 
   const jwt =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5Mzg5MjQ4MywianRpIjoiMjNiODIxMTgtZTdlMi00YzFiLTgyNjAtYWZhOTJmYTg5NzEyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5Mzg5MjQ4MywiZXhwIjoxNjkzOTc4ODgzfQ.OAOU4On0D11FgkIKqr3dMs4GOVmLCSACB1sg-LfNWDc";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NTU0OTE2MywianRpIjoiYjc4MjgxMGQtZTQ1Zi00NWU2LWIwZGYtMjlmMzRhYjU1MDhjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NTU0OTE2MywiZXhwIjoxNjk1NjM1NTYzfQ.19bIN1FSZRyWG1_ioMc8VMApywH6gg9GTqo-owchgwc";
 
   useEffect(() => {
     async function fetchData() {
@@ -141,7 +140,7 @@ const HeaderFactorItemSell = ({
         </div>
         <div className={`${style.row} items-center gap-x-3`}>
           <p className={`font-bold`}>شماره فاکتور:</p>
-          <p>{headerData === undefined ? "" : headerData.invoice_num}</p>
+          <p>{headerData == undefined ? "" : headerData.invoice_num}</p>
         </div>
         <div className={`${style.row} items-center gap-x-3`}>
           <p className={`font-bold`}>تاریخ:</p>

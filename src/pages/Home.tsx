@@ -8,12 +8,20 @@ import axios from "axios";
 import Text from "../components/Text";
 import FooterBuy from "../components/FooterBuy/FooterBuy";
 import { getJWT } from "../shared";
+import Date from "../components/Date/Date";
+import { CiSearch } from "react-icons/ci";
 export const Home = () => {
   const [pageNext, setPageNext] = useState(false);
   const [itemsPerPage, setItemsPerPage] = useState(12);
   const [currentPage, setCurrentPage] = useState(1);
+  const [search, setSearch] = useState("");
+
   const [data, setData] = useState([]);
-  const jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5Mzg5MjQ4MywianRpIjoiMjNiODIxMTgtZTdlMi00YzFiLTgyNjAtYWZhOTJmYTg5NzEyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5Mzg5MjQ4MywiZXhwIjoxNjkzOTc4ODgzfQ.OAOU4On0D11FgkIKqr3dMs4GOVmLCSACB1sg-LfNWDc";
+  const filteredData = data.filter((item) =>
+    item.contact.toLowerCase().includes(search.toLowerCase())
+  );
+  const jwt =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NTYzNTk2NSwianRpIjoiMjI1MGFlZWUtYTg3YS00YWI2LTkwZWYtNGY1ODU5ZGY0MjgwIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NTYzNTk2NSwiZXhwIjoxNjk1NzIyMzY1fQ.YHp2q3Wnu3u41KA0c58elr139qDQ1tuRSHBVBeyZ8Nc";
 
   useEffect(() => {
     async function fetchData() {
@@ -30,15 +38,13 @@ export const Home = () => {
         if (response.status === 200) {
           console.log("Data fetched successfully:", response.data);
           setData(response.data);
+          console.log(typeof data);
         } else {
           console.log("Received status:", response.status);
           console.log(response.data);
-
-          console.log();
         }
       } catch (error) {
-        // console.log("Error message:", error.message);
-        console.error("Error details:", error);
+        alert("مشکلی پیش اماده است لطفا صفحه را دوباره باز کنید.");
       }
     }
 
@@ -47,17 +53,17 @@ export const Home = () => {
   const [post, setPost] = useState(12);
   const lastPostIndex = currentPage * post;
   const firstPostIndex = lastPostIndex - post;
-  const currentPost = data.slice(firstPostIndex, lastPostIndex);
+  const currentPost = filteredData.slice(firstPostIndex, lastPostIndex);
 
-  let totalPages = Math.ceil(data.length / itemsPerPage);
+  let totalPages = Math.ceil(filteredData.length / itemsPerPage);
   let startIndex = (currentPage - 1) * itemsPerPage;
   let endIndex = startIndex + itemsPerPage;
-  let currentItems = data.slice(startIndex, endIndex);
+  let currentItems = filteredData.slice(startIndex, endIndex);
   let nums = [...Array(totalPages + 1).keys()].slice(1);
 
   const updatePagination = () => {
-    currentItems = data.slice(startIndex, endIndex);
-    totalPages = Math.ceil(data.length / itemsPerPage);
+    currentItems = filteredData.slice(startIndex, endIndex);
+    totalPages = Math.ceil(filteredData.length / itemsPerPage);
     nums = [...Array(totalPages + 1).keys()].slice(1);
   };
   const pageNumbers = [];
@@ -74,13 +80,42 @@ export const Home = () => {
       pageNumbers.push(currentPage - 1, currentPage, currentPage + 1);
     }
   }
+  const getValue = (e) => {
+    setSearch(e.target.value);
+  };
   return (
     <>
       <div className={`${style.col} justify-center items-center p-5 w-full`}>
         <div className={`${style.col} rounded-lg shadow-lg w-full p-5`}>
-          <Hearder />
+          <div className={`${style.row} items-center justify-between w-full`}>
+            <div className={`${style.row} items-center gap-x-8`}>
+              <h1 className={`border-r-4 border-black pr-2 font-bold text-lg`}>
+                خرید
+              </h1>
+              <Date />
+            </div>
+            <div className={`${style.row} items-center gap-x-5`}>
+              <div
+                className={`${style.row} bg-white items-center justify-between px-4 w-[360px] py-1 font-medium rounded-md drop-shadow-xl`}
+              >
+                <input
+                  type="text"
+                  placeholder="جستجو..."
+                  className={`outline-none px-5 py-2`}
+                  onChange={getValue}
+                />
+                <button>
+                  <CiSearch className={`text-3xl`} />
+                </button>
+              </div>
+              <button
+                className={`text-white  font-medium bg-btn py-3 px-4 rounded-md`}
+              >
+                ثبت فاکتور خرید
+              </button>
+            </div>
+          </div>
           <BodyBuy
-            data={currentPost}
             setData={setData}
             pageNext={pageNext}
             setPageNext={setPageNext}
