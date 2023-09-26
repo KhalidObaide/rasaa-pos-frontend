@@ -109,7 +109,7 @@ const Page2 = () => {
                   </button>
                 </div>
                 <Link
-                  to="BuyFactor"
+                  to="/SellFactor"
                   className={`text-white  font-medium bg-btn py-3 px-4 rounded-md`}
                 >
                   ثبت فاکتور فروش

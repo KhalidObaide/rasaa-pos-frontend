@@ -10,6 +10,7 @@ import FooterBuy from "../components/FooterBuy/FooterBuy";
 import { getJWT } from "../shared";
 import Date from "../components/Date/Date";
 import { CiSearch } from "react-icons/ci";
+import { Link } from "react-router-dom";
 export const Home = () => {
   const [pageNext, setPageNext] = useState(false);
   const [itemsPerPage, setItemsPerPage] = useState(12);
@@ -108,11 +109,12 @@ export const Home = () => {
                   <CiSearch className={`text-3xl`} />
                 </button>
               </div>
-              <button
+              <Link
+                to="/BuyFactor"
                 className={`text-white  font-medium bg-btn py-3 px-4 rounded-md`}
               >
                 ثبت فاکتور خرید
-              </button>
+              </Link>
             </div>
           </div>
           <BodyBuy

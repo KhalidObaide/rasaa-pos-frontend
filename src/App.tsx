@@ -38,7 +38,7 @@ function App() {
             <Route path="Sell" element={<Page2 />} />
             <Route path="/itemFactor/Buy" element={<ItemFactor />} />
             <Route path="/itemFactor/sell" element={<ItemFactorSell />} />
-            <Route path="/ha" element={<ItemChanges/> } />
+            <Route path="/SellFactor" element={<ItemChanges/> } />
             <Route path="/BuyFactor" element={<BuyFactor/>} />
             <Route path="/hamed" element={<Page2 />} />
             <Route path="/utilities"element={<Types/>} />        
