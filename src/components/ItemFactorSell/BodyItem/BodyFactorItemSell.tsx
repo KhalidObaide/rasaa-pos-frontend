@@ -5,11 +5,12 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { getJWT } from "../../../shared";
 const BodyFactorItemSell = ({ edit, id }: any) => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
   const [arr, setArr] = useState(data);
+  const [all , setAll] = useState(0)
 
   const jwt =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5Mzg5MjQ4MywianRpIjoiMjNiODIxMTgtZTdlMi00YzFiLTgyNjAtYWZhOTJmYTg5NzEyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5Mzg5MjQ4MywiZXhwIjoxNjkzOTc4ODgzfQ.OAOU4On0D11FgkIKqr3dMs4GOVmLCSACB1sg-LfNWDc";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NTYzNTk2NSwianRpIjoiMjI1MGFlZWUtYTg3YS00YWI2LTkwZWYtNGY1ODU5ZGY0MjgwIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NTYzNTk2NSwiZXhwIjoxNjk1NzIyMzY1fQ.YHp2q3Wnu3u41KA0c58elr139qDQ1tuRSHBVBeyZ8Nc";
 
   useEffect(() => {
     async function fetchData() {
@@ -32,6 +33,7 @@ const BodyFactorItemSell = ({ edit, id }: any) => {
       } catch (error) {
         // console.log("Error message:", error.message);
         console.error("Error details:", error);
+        alert("Pleas Check Your Network!!!")
       }
     }
 
@@ -77,7 +79,8 @@ const BodyFactorItemSell = ({ edit, id }: any) => {
       setArr(copyarr);
     }
   };
-
+  let num = 0;
+  let num2 = 0;
   return (
     <>
       <div className={`${style.col} mt-5`}>
@@ -109,6 +112,9 @@ const BodyFactorItemSell = ({ edit, id }: any) => {
           arr.map((item: any, index: any) => {
             const deCode = JSON.parse(item.invoice_items);
             return deCode.map((item: any, index: any) => {
+              // setAll(item.price * item.amount)
+              num = item.price * item.amount
+              num2 += num
               return (
                 <div
                   className={`w-full gap-x-5 py-3 h-auto ${style.row} items-center`}
@@ -179,7 +185,7 @@ const BodyFactorItemSell = ({ edit, id }: any) => {
         <div className={`w-full ${style.row} items-end justify-end mt-2`}>
           <div className={`text-xl`}>مجموع کل:</div>
           <div className={`mr-2 text-xl`}>
-            <span className={`text-btn`}>25,000</span> افغانی
+            <span className={`text-btn`}>{num2}</span> افغانی
           </div>
         </div>
       </div>

@@ -38,14 +38,14 @@ function App() {
             <Route path="Sell" element={<Page2 />} />
             <Route path="/itemFactor/Buy" element={<ItemFactor />} />
             <Route path="/itemFactor/sell" element={<ItemFactorSell />} />
-            <Route path="/ha" element={<ItemChanges/> } />
-            <Route path="Buy/BuyFactor" element={<BuyFactor/>} />
+            <Route path="/SellFactor" element={<ItemChanges/> } />
+            <Route path="/BuyFactor" element={<BuyFactor/>} />
             <Route path="/hamed" element={<Page2 />} />
             <Route path="/utilities"element={<Types/>} />        
-            <Route path="/sell/mainSell" element={<MainSell/>}/>
+            <Route path="/mainSell" element={<MainSell/>}/>
             <Route path="/Buyfactor" element={<BuyFactor/>}/>
             <Route path="/Test" element={<MyComponent/>}/>
-            <Route path="/sellNano" element={<MainSell/>}/>
+            <Route path="*" element={<h1>Page not found</h1>} />
         </Routes>
       </div>
     );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { style } from "../../../assets/style/styles";
 import { Link } from "react-router-dom";
 import { BsChevronLeft } from "react-icons/bs";
@@ -10,6 +10,7 @@ import {
   BiChevronRight,
 } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
+import axios from "axios";
 
 const HeaderFac = ({
   setOpen,
@@ -20,7 +21,8 @@ const HeaderFac = ({
   data,
   edit,
 }: any) => {
-
+  const queryParams = new URLSearchParams(window.location.search);
+  const id = queryParams.get("id");
   const removingAll = () => {
     setOpen(true);
   };
@@ -39,6 +41,37 @@ const HeaderFac = ({
   const handlePrint = () => {
     window.print();
   };
+  const [headerData, setHeaderData] = useState([]);
+
+  const jwt =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NTU0OTE2MywianRpIjoiYjc4MjgxMGQtZTQ1Zi00NWU2LWIwZGYtMjlmMzRhYjU1MDhjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NTU0OTE2MywiZXhwIjoxNjk1NjM1NTYzfQ.19bIN1FSZRyWG1_ioMc8VMApywH6gg9GTqo-owchgwc";
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get(
+          `https://lajward-mis.dev:8005/invoice?id=${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${jwt}`,
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          const data = response.data;
+          setHeaderData(data[0]);
+        } else {
+          console.log("Received status:", response.status);
+        }
+      } catch (error) {
+        // console.log("Error message:", error.message);
+        console.error("Error details:", error);
+      }
+    }
+
+    fetchData();
+  }, []);
   return (
     <>
       <Link to="/" className={`${style.row} items-center `}>
@@ -103,19 +136,21 @@ const HeaderFac = ({
         >
           <div className={`${style.row} items-center gap-x-2`}>
             <h3 className={`text-black font-medium`}>نام مشتری:</h3>
-            <p className={`text-gray_fac`}>انبار مرکزی</p>
+            <p className={`text-gray_fac`}>
+              {headerData == null ? "" : headerData.contact}
+            </p>
           </div>
           <div className={`${style.row} items-center gap-x-2`}>
             <h3 className={`text-black font-medium`}>شماره فاکتور:</h3>
-            <p className={`text-gray_fac`}>3456</p>
+            <p className={`text-gray_fac`}>
+            {headerData == null ? "" : headerData.invoice_num}
+            </p>
           </div>
           <div className={`${style.row} items-center gap-x-2`}>
             <h3 className={`text-black font-medium`}>تاریخ:</h3>
-            <p className={`text-gray_fac`}>1401/12/12</p>
-          </div>
-          <div className={`${style.row} items-center gap-x-2`}>
-            <h3 className={`text-black font-medium`}>واحد پول:</h3>
-            <p className={`text-gray_fac`}>افغانی</p>
+            <p className={`text-gray_fac`}>
+              {headerData == null ? "" : headerData.date}
+            </p>
           </div>
         </div>
       </div>
