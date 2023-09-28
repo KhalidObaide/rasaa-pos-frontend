@@ -45,6 +45,7 @@ function App() {
             <Route path="/sell/mainSell" element={<MainSell/>}/>
             <Route path="/Buyfactor" element={<BuyFactor/>}/>
             <Route path="/Test" element={<MyComponent/>}/>
+            <Route path="/sellNano" element={<MainSell/>}/>
         </Routes>
       </div>
     );
