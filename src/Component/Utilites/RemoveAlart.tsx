@@ -4,9 +4,13 @@ import {TbLoader} from "react-icons/tb"
 import {CiWarning} from 'react-icons/ci'
 // import
 
-const RemoveAll = ({startDelet,deletLoader,setDisplay}:any)=>{
-    const handex=()=>{
-        setDisplay(false)
+const RemoveAll = ({startDelet,deletLoader,setDispalyDelet,dispalyDelet}:any)=>{
+    const handCancellingDelet = ()=>{
+      console.log(dispalyDelet);
+      setDispalyDelet(false)
+      console.log(dispalyDelet);
+
+      
     }
     return(
         <div
@@ -29,7 +33,7 @@ const RemoveAll = ({startDelet,deletLoader,setDisplay}:any)=>{
               className={`${style.row} items-center justify-end w-full gap-x-4`}
             >
               <button
-                onClick={()=>handex()}
+                onClick={()=>handCancellingDelet()}
                 className={`px-4 py-2 bg-gray-100 rounded-md`}
                 // onClick={reject}
               >
