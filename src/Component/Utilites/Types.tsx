@@ -110,7 +110,7 @@ useEffect(()=>{
           {/* the alart componet */}
           <div className={`fixed bg-textGray p-2 rounded-md text-white text-lg flex flex-col justify-center items-center ${Style.anmation} ${alartNetwork ? 'mb-96 ':'mb-32'}`}>
             <h1> Test the Alart </h1>
-            <button onClick={()=>setAlartNetWork(true)} className='mt-3 bg-grayLine text-black rounded-md px-2'>Hide</button>
+            <button onClick={()=>setAlartNetWork(true)} className='mt-3 w-10 bg-grayLine text-black rounded-md px-2'>Hide</button>
           </div>
                {/* header */}
                <div className=" w-full flex flex-row-reverse justify-between items-center mb-5">
