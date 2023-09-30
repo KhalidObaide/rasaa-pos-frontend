@@ -60,8 +60,8 @@ const Types = ()=>{
       }
     } catch (error) {
       // setStyle(false)
-      
-      // THE ALAERT  FUNCTION
+console.log("test")  
+    // THE ALAERT  FUNCTION
       alart()
 
 

@@ -11,6 +11,7 @@ import {
 import { CgClose } from "react-icons/cg";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { getJWT } from "../../../shared";
 const HeaderFactorItemSell = ({
   setOpen,
   setData,
@@ -41,10 +42,8 @@ const HeaderFactorItemSell = ({
   };
   const [headerData, setHeaderData] = useState([]);
 
-  const jwt =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NTU0OTE2MywianRpIjoiYjc4MjgxMGQtZTQ1Zi00NWU2LWIwZGYtMjlmMzRhYjU1MDhjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NTU0OTE2MywiZXhwIjoxNjk1NjM1NTYzfQ.19bIN1FSZRyWG1_ioMc8VMApywH6gg9GTqo-owchgwc";
-
-  useEffect(() => {
+  const jwt = getJWT()
+    useEffect(() => {
     async function fetchData() {
       try {
         const response = await axios.get(

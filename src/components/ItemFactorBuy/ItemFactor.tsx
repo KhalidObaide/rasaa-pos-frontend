@@ -5,6 +5,7 @@ import Remove from "./RemoveAll/Remove";
 import BodyItem from "./BodyItemFactor/BodyItem";
 import FooterItem from "./FooterItemFac/FooterItem";
 import axios from "axios";
+import { getJWT } from "../../shared";
 
 const ItemFactor = () => {
   const [data, setData] = useState();
@@ -14,9 +15,7 @@ const ItemFactor = () => {
   const [apiData, setApiData] = useState();
   const queryParams = new URLSearchParams(window.location.search);
   const id = queryParams.get("id");
-  const jwt =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NTYzNTk2NSwianRpIjoiMjI1MGFlZWUtYTg3YS00YWI2LTkwZWYtNGY1ODU5ZGY0MjgwIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NTYzNTk2NSwiZXhwIjoxNjk1NzIyMzY1fQ.YHp2q3Wnu3u41KA0c58elr139qDQ1tuRSHBVBeyZ8Nc";
-    
+  const jwt = getJWT()    
 
   useEffect(() => {
     async function fetchData() {

@@ -11,20 +11,10 @@ module.exports = {
   },
   darkMode: false, // or 'media' or 'class'
   theme: {
-    mode: "jit",
-  purge: {
-    content: [
-      "./src//*.{js,jsx,ts,tsx}",
-      "./src/views/*.{js,jsx,ts,tsx}",
-      "./src/components//*.{js,jsx,ts,tsx}",
-      "./node_modules/tw-elements/dist/js/**/*.js",
-    ],
-  },
-    colors: {
-      
-    },
     extend: {
       colors: {
+        chart:"#E6F6FD",
+        error:"#EB5252",
         btn: "#00B4FF",
         chart: "#E6F6FD",
         error: "#EB5252",
