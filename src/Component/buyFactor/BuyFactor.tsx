@@ -117,7 +117,9 @@ const BuyFactor = ()=>{
                                     />
                                     <button onClick={()=>GenerateFactorInvoice()} className=""><MdPublishedWithChanges className="w-10 h-10 text-btn"/></button>
                                 </div>
-                                <Date/>
+                                <div className="mx-3">
+                                    <Date/>
+                                </div>
                            </div>
                            <List
                           number = {number}

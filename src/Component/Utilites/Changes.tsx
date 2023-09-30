@@ -34,7 +34,6 @@ const ItemChanges = ({ setShowEdit, clickedItem, setReReand}:any)=>{
 
 
 
-
     const handelDelet = ()=>{
       setDispalyDelet(true)
       } 
@@ -47,7 +46,7 @@ const ItemChanges = ({ setShowEdit, clickedItem, setReReand}:any)=>{
 
       console.log("this is the cliced item",clickedItem.id);
       async function getData() {
-          const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NTcwMjc4MywianRpIjoiMWMyNzAxNjEtMzg5ZC00NWYzLWFlNzAtYjcyNWMyOWVlMWQ2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NTcwMjc4MywiZXhwIjoxNjk1Nzg5MTgzfQ.7DrAEN9QhcrC66T7UgN_O6ktS8J4NBIglJotGPfXNyc"
+          const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NjA1MjU4MSwianRpIjoiNjNiYWViN2UtOWM0NS00MGM0LWIxMTktZjcwNDViM2NiZjU2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NjA1MjU4MSwiZXhwIjoxNjk2MTM4OTgxfQ.vKmPzadWSKfx-T-E480cF7X6dyl84NRZl00Lg0054y8"
           try {
             const response = await axios.delete(`https://lajward-mis.dev:8005/utilities?id=${clickedItem.id}`,{headers: { Authorization: `Bearer ${token}` },});
             if (response.data = 200) {
@@ -57,7 +56,9 @@ const ItemChanges = ({ setShowEdit, clickedItem, setReReand}:any)=>{
               setdisplay(false)
               setDeletLoader(false)
             }else{
-              console.log(error);
+              // console.log(error);
+              console.log('the request is not sent');
+              
               
             }
           } catch (error) {
@@ -149,10 +150,11 @@ const ItemChanges = ({ setShowEdit, clickedItem, setReReand}:any)=>{
                     <div className='flex flex-col justify-center items-start'>
                         <h1 className='mr-2 mb-2 font-medium text-base '>کلید</h1>
                       <input 
-                      value={clickedItem.key}
+                      
+                      placeholder={clickedItem.key}
+                      value={key}
                       onChange={(e)=>setKey(e.target.value)}
 
-                         placeholder={clickedItem.key}
                          className='w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-graybutton rounded-md outline-none mx-2 text-lg '/>
                     </div>
                 </div>
