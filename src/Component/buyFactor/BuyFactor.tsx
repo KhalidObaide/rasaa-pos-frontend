@@ -8,12 +8,8 @@ import List from "./List";
 import { Link } from "react-router-dom";
 import { MyDatePicker } from "./MyDatePicker";
 import Date from "../../components/Date/Date";
-import { getJWT } from "../../shared";
-
-
 
   const BuyFactorProps = createContext()
-
 const BuyFactor = ()=>{
     const [showSaveF,setShowSaveF]  = useState(false)
     const [sellerNmae,setSellerName] = useState('')
@@ -28,10 +24,9 @@ const BuyFactor = ()=>{
     let [total,setTotal] = useState()
 
     // final preactice
-    const [totalAmount,setTotalAmount] = useState(0)
-    
-    
-    
+    const [totalAmount,setTotalAmount] = useState('')
+    const calculat = totalAmount *discount / 100
+    const filterPaybelAmount = totalAmount - calculat +taxs
     const EmployeeData = {
         invoice_num: FactorInvoice,
             contact: "Test_5",
@@ -52,8 +47,10 @@ const BuyFactor = ()=>{
         }
         
         const handelSaveMethod = ()=>{
+            console.log(calculat);
+            
             const HandlPost = async () => {
-                const token = getJWT()
+                const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NDA2MTY5NiwianRpIjoiM2Q1ZDkxZWMtMzAzNS00NDkxLTljNWYtNzdiOWQ2ZGY1ZWVlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NDA2MTY5NiwiZXhwIjoxNjk0MTQ4MDk2fQ.a7pcHV7LVtS8o30HBZvxjefVArwOrKbznrPqdb6Iyy8"
                 const res = await axios({
                     method:'post',
                     url : 'https://lajward-mis.dev:8005/invoices',
@@ -137,15 +134,15 @@ const BuyFactor = ()=>{
                             <div className="flex flex-row flex-wrap justify-center items-center w-3/4 pr-5 mr-20">
                                 <div className="flex flex-col justify-start items-start">
                                     <h1 className="mr-2  text-lg mb-2  text-textGray">مبلغ تخفیف : </h1>
-                                    <input value={discount}  placeholder="25,500"  onChange={(e)=>setDiscount(e.target.value)} type="text" className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-lg "/>
+                                    <input value={discount}   onChange={(e)=>setDiscount(e.target.value)} type="text" className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-lg "/>
                                 </div>
                                 <div className="flex flex-col justify-start items-start">
                                     <h1 className="mr-2 text-lg mb-2  text-textGray">مالیات : </h1>
-                                    <input value={taxs}  placeholder="25,500"  onChange={(e)=>setTaxs(e.target.value)} type="text" className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-lg " />
+                                    <input value={taxs}  onChange={(e)=>setTaxs(Number(e.target.value))} type="text" className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-lg " />
                                 </div>
                                 <div className="flex flex-col justify-start items-start">
                                     <h1 className="mr-2  text-lg mb-2  text-textGray">قابل پرداخت : </h1>
-                                    <input type="text" placeholder="25,500" className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-lg  "/>
+                                    <input type="text" value={filterPaybelAmount} className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-lg  "/>
                                 </div>
                             </div>
                         </div>

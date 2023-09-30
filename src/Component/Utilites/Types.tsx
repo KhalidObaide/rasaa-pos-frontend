@@ -1,17 +1,11 @@
 import React, { Component, useState, useEffect } from 'react'
 import {TbLoader} from 'react-icons/tb'
-import dataBase from '../../data/data'
-import {BiChevronRight} from 'react-icons/bi'
-import {BiChevronLeft} from 'react-icons/bi'
 import {BsChevronRight} from 'react-icons/bs'
 import {BsChevronLeft} from 'react-icons/bs'
-// import {BiChevronRight}
-import Change_items from './Save_new_product'
 import axios from 'axios'
 import Item_changes from './Changes'
 import SaveNewProduct from './Save_new_product'
-import RemoveAll from './RemoveAlart'
-import { getJWT } from '../../shared'
+import Style from './Types.module.css'
 
 const Types = ()=>{
    const [one,setOne] = useState(1)
@@ -20,6 +14,7 @@ const Types = ()=>{
    const [foure,setFour] = useState(5)
    const [douth,setDouth] = useState('...')
    const [dispaly , setDisplay]=useState(false)
+  //  this the new change
    const [display2,setdisplay2] = useState(false)
    const [clickedData,setClickedData]= useState()
    const [reReand,setReReand] = useState(false)
@@ -30,8 +25,8 @@ const Types = ()=>{
   const [items, setItems] = useState([]);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-
-   
+  // the style states
+  const [alartNetwork ,setAlartNetWork] = useState(true)
    
    const listClicked = (data:any)=>{
      setClickedData(data)
@@ -40,13 +35,18 @@ const Types = ()=>{
    const handelAddnewFac = ()=>{
     setDisplay(true)
   }
-  
+
+  // ALART FUNCTION
+  const alart = ()=>{
+  setAlartNetWork(false)
+  }
+
   
   
   const [data, setData]= useState([])
   console.log(clickedData);
    async function getData() {
-    const token = getJWT()
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NTg3ODY2OCwianRpIjoiNDJmNjE5YzQtY2Q1YS00YjcwLThmOGItMzkyMDlhNTNlZjE4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NTg3ODY2OCwiZXhwIjoxNjk1OTY1MDY4fQ.g1mmDmYTCu8Z9PWSeWoAA-YfWZ7zykMVrn26OHZKY9I"
     try {
       const response = await axios.get('https://lajward-mis.dev:8005/utilities',{headers: { Authorization: `Bearer ${token}` },});
       if (response.status = 200) {
@@ -59,8 +59,14 @@ const Types = ()=>{
         alert('no')
       }
     } catch (error) {
-     console.log('problem');
-     
+      setStyle(false)
+      
+      // THE ALAERT  FUNCTION
+      alart()
+
+
+
+
     }
 }
 if (reReand) {
@@ -68,6 +74,8 @@ if (reReand) {
 }else{
   
 }
+
+
 
 useEffect(()=>{
   getData()
@@ -99,6 +107,11 @@ useEffect(()=>{
 
     return(
         <div className='font-Estedad flex flex-col justify-center items-center shadow-md shadow-[rgb(235, 235, 235)] rounded-md mx-5 p-4 '>
+          {/* the alart componet */}
+          <div className={`fixed bg-textGray p-2 rounded-md text-white text-lg flex flex-col justify-center items-center ${Style.anmation} ${alartNetwork ? 'mb-96 ':'mb-32'}`}>
+            <h1> Test the Alart </h1>
+            <button onClick={()=>setAlartNetWork(true)} className='mt-3 w-10 bg-grayLine text-black rounded-md px-2'>Hide</button>
+          </div>
                {/* header */}
                <div className=" w-full flex flex-row-reverse justify-between items-center mb-5">
                  <button onClick={()=>handelAddnewFac()} className=' bg-btn text-white text-lg py-2 px-5 font-medium rounded-md '>ثبت مورد جدید</button>
@@ -128,7 +141,7 @@ useEffect(()=>{
                     {currentItems == null ? "" :
                     currentItems.map((data:any, index:any)=>(
                         <tr onClick={()=>listClicked(data)}  className={`cursor-pointer ${index %2 !=0 ? "bg-grayLine" : 'bg-white ' }`} >
-                             <td className="w-14  text-center text-lg py-3">{index+1}</td>
+                             <td className="w-14  text-center text-lg py-3">{index+1} </td>
                              <td className='w-324 text-center text-lg'>{data.key}</td>
                              <td className='w-324 text-center text-lg'>{data.title}</td>
                              <td className='w-324 text-center text-lg'>{data.value}</td> 
@@ -146,7 +159,7 @@ useEffect(()=>{
                  {
                   style
                    &&
-                  <div className='fixed top-40 left-1/2 -translate-y-1/2 -translate-x-1/2'><TbLoader className='animate-spin w-10 h-10 text-btn duration-1000 fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2  z-10 ئ'/></div>
+                  <div className=' w-full h-full fixed  '><TbLoader className=' animate-spin w-10 h-10 text-btn duration-1000 fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2  z-10 ئ'/></div>
                  } 
                  {/* the delet alart */}
                  <div className="p-4 text-center justify-self-end">
@@ -174,7 +187,6 @@ useEffect(()=>{
                 </button>
               </li>
             ))}
-                <input type="text" value={'this is the value'} />
             <li>
               <button
                 className="w-12 h-10 flex items-center justify-center border rounded text-gray-500 hover:text-blue-500"
@@ -186,7 +198,6 @@ useEffect(()=>{
             </li>
           </ul>
         </div>
-                
         </div>
     )
 }

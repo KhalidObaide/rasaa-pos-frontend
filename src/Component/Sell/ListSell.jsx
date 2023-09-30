@@ -1,6 +1,7 @@
+// this the new sell List
 import React, { useState, useEffect } from 'react';
-import  style  from './List.module.css';
-const List = ({ number,  pricePer, setTotalAmount }: any) => {
+// import  style  from './List.module.css';
+const ListSell = () => {
   const [tableRows, setTableRows] = useState(["1"]);
   const [counter, setCounter] = useState(tableRows.length);
   const [inputValues, setInputValues] = useState([]);
@@ -14,7 +15,7 @@ const List = ({ number,  pricePer, setTotalAmount }: any) => {
   useEffect(()=>{
     let totalAmount  = 0
     practice.forEach(data =>totalAmount+=data)
-    setTotalAmount(totalAmount)
+    // setTotalAmount(totalAmount)
     
     
   })
@@ -34,19 +35,19 @@ const List = ({ number,  pricePer, setTotalAmount }: any) => {
    }
   }
 
-  // checing if the value of input is number or not
-  const handleInputChange = (event: any) => {
-    let newValue = event.target.value;
+//   // checing if the value of input is number or not
+//   const handleInputChange = (event: any) => {
+//     let newValue = event.target.value;
   
-    // Check if the new value contains only numbers
-    if (/^\d+$/.test(newValue)) {
-      // setError('');
-      // setContainsOnlyNumbers(true);
-    } else {
-      // setError('فقط از اعداد استفاده کنید');
-      // setContainsOnlyNumbers(false);
-    }
-  };
+//     // Check if the new value contains only numbers
+//     if (/^\d+$/.test(newValue)) {
+//       // setError('');
+//       // setContainsOnlyNumbers(true);
+//     } else {
+//       // setError('فقط از اعداد استفاده کنید');
+//       // setContainsOnlyNumbers(false);
+//     }
+//   };
 
 
 
@@ -134,4 +135,4 @@ const List = ({ number,  pricePer, setTotalAmount }: any) => {
   );
 }
 
-export default List;
+export default ListSell;

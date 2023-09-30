@@ -1,5 +1,7 @@
 import React, { Component, useEffect, useState } from 'react'
+import {CiWarning} from 'react-icons/ci'
 import {TbLoader} from 'react-icons/tb'
+import {IoCloseOutline} from 'react-icons/io5'
 import axios from 'axios'
 const SaveNewProduct = ({setDisplayState,setReReand,setLoader,clickedData }:any)=>{
     const [alltodo,setAllTodo] =useState([]) 
@@ -11,6 +13,8 @@ const SaveNewProduct = ({setDisplayState,setReReand,setLoader,clickedData }:any)
     const [error, setError] = useState('');  
     const [capital,setCapital] = useState(false)
     const [style,setStyle] = useState(false)
+    // select input Eroor 
+    const [activeInput,setActiveInput] = useState(true)
 
     // start posting the data
     const getJWT = () => {
@@ -27,28 +31,32 @@ const SaveNewProduct = ({setDisplayState,setReReand,setLoader,clickedData }:any)
 
       const HandlPost = async () => {
         console.log(clickedData);
-        
-        setStyle(true)
-        // alert('KASJLjas')
-        const token = getJWT()
-        const res = await axios({
-            method:'post',
-            url : 'https://lajward-mis.dev:8005/utilities',
+      
+        setStyle(true);
+      
+        try {
+          const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NTcwNDkwNSwianRpIjoiMmMxNzY2ZDQtYzBmOC00NDNmLWIxZWItNDExYzQzODA5Yzc4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NTcwNDkwNSwiZXhwIjoxNjk1NzkxMzA1fQ.5cDRdxY_6VMLbf34LOZDf4TKUKYLRbI93HbgfXO7WFw";
+          const res = await axios({
+            method: 'post',
+            url: 'https://lajward-mis.dev:8005/utilities',
             headers: { Authorization: `Bearer ${token}` },
-            data : EmployeeData
-        })
-        if(res.status === 200){
-            //    alert('done')
+            data: EmployeeData
+          });
+      
+          if (res.status === 200) {
+            setStyle(false);
+            setReReand(true);
+            setDisplayState(false);
+          } else {
+            console.log('The request was not successful.');
+          }
+        } catch (error) {
             setStyle(false)
-            setReReand(true)
-            setDisplayState(false)
-        }else{
-            console.log('no');
-            
         }
-       
-        setReReand(false)
-    };
+      
+        setReReand(false);
+      };
+
     const handelsaveNewItem = ()=>{
         setReReand(false)
         HandlPost()
@@ -59,17 +67,21 @@ const SaveNewProduct = ({setDisplayState,setReReand,setLoader,clickedData }:any)
         setKey(newValue)
         // Check if the new value contains any capital litters
         if (/[A-Z]/.test(newValue)) {
-          setError('از حروف کوچگ انگلیسی استفاده کنید');
+          setError(`از حروف کوچگ انگلیسی استفاده کنید `);
           setCapital(false)
+          // SELECT THE INPUT 
+          setActiveInput(false)
         } else {
           setError('');
           setInputValue(newValue);
           setCapital(true)
+          setActiveInput(true)
+
         }
     };
     return(
        <>
-        <div  onClick={()=>setDisplayState(false)} className=' w-full h-full fixed top-0 left-0   bg-shadow'>
+        <div  onClick={()=>setDisplayState(false)} className=' w-full h-full fixed top-0 left-0  bg-shadow'>
                     </div>
             <div className=" p-5 bg-white  z-index-10  fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 rounded-md">
                  {/* title */}
@@ -83,15 +95,18 @@ const SaveNewProduct = ({setDisplayState,setReReand,setLoader,clickedData }:any)
            
              {/* the account part */}
              <div className=" w-full flex flex-col justify-center items-center ">
+                          {/* <TiWarningOutline/> */}
                     <div className="flex flex-row  justify-around items-start mb-2">
-                        <div>
+                        <div className='flex flex-row' >
+                          <div>
                           <input
                              value={key}
                              
                              onChange={handleInputChange} 
                              placeholder='کلید'
-                             className='w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-borderColor rounded-md outline-none mx-2 text-lg '/>
-                             {error && <p style={{ color: 'red' }} className=" text-right pr-4 mt-2" >{error}</p>}
+                             className={`w-80 h-12  py-2 px-2 pr-5 text-right rounded-md outline-none mx-2 text-lg ${activeInput ? 'border-solid border border-borderColor' : '  border-solid border-2 border-error'}`}/>
+                             {error && <div  style={{ color: 'red' }} className=" flex flex-row-reverse justify-end items-center text-right mb-2 mt-2 text-xs" >{`${error}`} <CiWarning className='w-4 h-4 '/></div>}
+                          </div>
                         <input
                          value={mount}
                          onChange={(e)=>setMount(e.target.value)}
@@ -113,7 +128,6 @@ const SaveNewProduct = ({setDisplayState,setReReand,setLoader,clickedData }:any)
                           value={desc}
                           onChange={(e)=>setDesc(e.target.value)}
                           >
-                            
                           </textarea>
                      </div>
                 </div>
@@ -124,7 +138,6 @@ const SaveNewProduct = ({setDisplayState,setReReand,setLoader,clickedData }:any)
                             style ? <button className='bg-btn mr-5 py-3 px-7 rounded-md'><TbLoader className='animate-spin w-5 h-5 text-white  '/></button>
                             :  <button onClick={()=>handelsaveNewItem()}  className="bg-btn text-white text-lg py-2 px-4 mb-2 font-medium rounded-md  mr-5"> ثبت کردن</button> 
                         }
-                      
                     <button onClick={()=>setDisplayState(false)} className="bg-btnGray text-gray_fac text-lg py-2 px-4 mb-2 font-medium rounded-md ">لغو</button>
                 </div>
             </div>    
