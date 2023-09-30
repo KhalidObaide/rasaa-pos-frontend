@@ -4,11 +4,11 @@ import { style } from "../../../assets/style/styles";
 import { CiWarning } from "react-icons/ci";
 import { useEffect } from "react";
 import axios from "axios";
+import { getJWT } from "../../../shared";
 
 const Remove = ({ open, setOpen, id  }: any) => {
   const renoveF = () => {
-    const jwt =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NTQ2MzkyMCwianRpIjoiYmU0Mzk1N2UtMjJjZS00YjBmLWE3Y2EtZDRhZmFhYmIwODQ0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NTQ2MzkyMCwiZXhwIjoxNjk1NTUwMzIwfQ.qQ-WelpsiKqGe-TFEfmvd9g-HHlqILptuKEReQEt3jo";
+    const jwt = getJWT()
     async function fetchData() {
       try {
         const response = await axios.delete(

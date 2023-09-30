@@ -13,17 +13,16 @@ import Types from "./Component/Utilites/Types";
 import MainSell from './Component/Sell/MainSell'
 import "./pos-tailwind.css"
 import MyComponent from "./Component/text/Test";
-// import Bio from "./Component/SellPage/Sell"
-// import './postailwind.css'
-
+const queryParams = new URLSearchParams(window.location.search);
+const id = queryParams.get("id");
 function passRoutesToBase() {
     const routes = [
         {title: "صفحه اصلی", route: ""},
         {title: "فروش", route: "Sell"},
         {title: "خرید", route: "Buy"},
         {title: "تنظیمات", route: "utilities"},
-        // {title:"" , route:""},
-        // {title:"" , route:"/itemFactor/sell"},
+        {route: `/itemFactor/Buy?id=${id}`},
+        {route: `/itemFactor/sell?id=${id}`},
     ];
     localStorage.setItem("headers.pos", JSON.stringify(routes));
 }
