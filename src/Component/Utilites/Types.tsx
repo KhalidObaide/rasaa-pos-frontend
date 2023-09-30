@@ -11,6 +11,7 @@ import axios from 'axios'
 import Item_changes from './Changes'
 import SaveNewProduct from './Save_new_product'
 import RemoveAll from './RemoveAlart'
+import { getJWT } from '../../shared'
 
 const Types = ()=>{
    const [one,setOne] = useState(1)
@@ -45,7 +46,7 @@ const Types = ()=>{
   const [data, setData]= useState([])
   console.log(clickedData);
    async function getData() {
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NTU1NTAwMywianRpIjoiNzFmODU1ZWUtZTczZi00Mzg1LWE4MDUtNWY5NThiNmE4NmE1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NTU1NTAwMywiZXhwIjoxNjk1NjQxNDAzfQ.XMD2fvwCDzTe8n5ojjQZ2IDI8E2hkm70e92S03ugBp0"
+    const token = getJWT()
     try {
       const response = await axios.get('https://lajward-mis.dev:8005/utilities',{headers: { Authorization: `Bearer ${token}` },});
       if (response.status = 200) {

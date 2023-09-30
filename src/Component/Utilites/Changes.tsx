@@ -7,6 +7,7 @@ import { BiEdit } from "react-icons/bi";
 import { AiOutlineDelete } from "react-icons/ai";
 import axios from "axios";
 import RemoveAll from "./RemoveAlart";
+import { getJWT } from "../../shared";
 
 const ItemChanges = ({ setShowEdit, clickedItem, setReReand}:any)=>{
     
@@ -45,7 +46,7 @@ const ItemChanges = ({ setShowEdit, clickedItem, setReReand}:any)=>{
       } 
       console.log("this is the cliced item",clickedItem.id);
       async function getData() {
-          const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NTU1NTAwMywianRpIjoiNzFmODU1ZWUtZTczZi00Mzg1LWE4MDUtNWY5NThiNmE4NmE1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NTU1NTAwMywiZXhwIjoxNjk1NjQxNDAzfQ.XMD2fvwCDzTe8n5ojjQZ2IDI8E2hkm70e92S03ugBp0"
+          const token = getJWT()
           try {
             const response = await axios.delete(`https://lajward-mis.dev:8005/utilities?id=${clickedItem.id}`,{headers: { Authorization: `Bearer ${token}` },});
             if (response.data = 200) {
@@ -70,7 +71,7 @@ const ItemChanges = ({ setShowEdit, clickedItem, setReReand}:any)=>{
 
       const hnadelEdit = ()=>{
         async function getData() {
-          const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NTU1NTAwMywianRpIjoiNzFmODU1ZWUtZTczZi00Mzg1LWE4MDUtNWY5NThiNmE4NmE1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NTU1NTAwMywiZXhwIjoxNjk1NjQxNDAzfQ.XMD2fvwCDzTe8n5ojjQZ2IDI8E2hkm70e92S03ugBp0"
+          const token = getJWT()
           try {
             const response = await axios.put(`https://lajward-mis.dev:8005/utilities?id=${clickedItem.id}`,newData,{headers: { Authorization: `Bearer ${token}` }});
             if (response.data = 200) {

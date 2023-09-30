@@ -8,6 +8,7 @@ import List from "./List";
 import { Link } from "react-router-dom";
 import { MyDatePicker } from "./MyDatePicker";
 import Date from "../../components/Date/Date";
+import { getJWT } from "../../shared";
 
 
 
@@ -52,7 +53,7 @@ const BuyFactor = ()=>{
         
         const handelSaveMethod = ()=>{
             const HandlPost = async () => {
-                const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NDA2MTY5NiwianRpIjoiM2Q1ZDkxZWMtMzAzNS00NDkxLTljNWYtNzdiOWQ2ZGY1ZWVlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NDA2MTY5NiwiZXhwIjoxNjk0MTQ4MDk2fQ.a7pcHV7LVtS8o30HBZvxjefVArwOrKbznrPqdb6Iyy8"
+                const token = getJWT()
                 const res = await axios({
                     method:'post',
                     url : 'https://lajward-mis.dev:8005/invoices',
