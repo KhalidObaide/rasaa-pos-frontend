@@ -46,7 +46,7 @@ const Types = ()=>{
   const [data, setData]= useState([])
   console.log(clickedData);
    async function getData() {
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NTg3ODY2OCwianRpIjoiNDJmNjE5YzQtY2Q1YS00YjcwLThmOGItMzkyMDlhNTNlZjE4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NTg3ODY2OCwiZXhwIjoxNjk1OTY1MDY4fQ.g1mmDmYTCu8Z9PWSeWoAA-YfWZ7zykMVrn26OHZKY9I"
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NjA1MjU4MSwianRpIjoiNjNiYWViN2UtOWM0NS00MGM0LWIxMTktZjcwNDViM2NiZjU2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NjA1MjU4MSwiZXhwIjoxNjk2MTM4OTgxfQ.vKmPzadWSKfx-T-E480cF7X6dyl84NRZl00Lg0054y8"
     try {
       const response = await axios.get('https://lajward-mis.dev:8005/utilities',{headers: { Authorization: `Bearer ${token}` },});
       if (response.status = 200) {
@@ -59,9 +59,9 @@ const Types = ()=>{
         alert('no')
       }
     } catch (error) {
-      setStyle(false)
-      
-      // THE ALAERT  FUNCTION
+      // setStyle(false)
+console.log("test")  
+    // THE ALAERT  FUNCTION
       alart()
 
 
@@ -107,11 +107,7 @@ useEffect(()=>{
 
     return(
         <div className='font-Estedad flex flex-col justify-center items-center shadow-md shadow-[rgb(235, 235, 235)] rounded-md mx-5 p-4 '>
-          {/* the alart componet */}
-          <div className={`fixed bg-textGray p-2 rounded-md text-white text-lg flex flex-col justify-center items-center ${Style.anmation} ${alartNetwork ? 'mb-96 ':'mb-32'}`}>
-            <h1> Test the Alart </h1>
-            <button onClick={()=>setAlartNetWork(true)} className='mt-3 w-10 bg-grayLine text-black rounded-md px-2'>Hide</button>
-          </div>
+         
                {/* header */}
                <div className=" w-full flex flex-row-reverse justify-between items-center mb-5">
                  <button onClick={()=>handelAddnewFac()} className=' bg-btn text-white text-lg py-2 px-5 font-medium rounded-md '>ثبت مورد جدید</button>
