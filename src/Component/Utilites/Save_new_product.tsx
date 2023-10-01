@@ -35,7 +35,7 @@ const SaveNewProduct = ({setDisplayState,setReReand,setLoader,clickedData }:any)
         setStyle(true);
       
         try {
-          const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NTcwNDkwNSwianRpIjoiMmMxNzY2ZDQtYzBmOC00NDNmLWIxZWItNDExYzQzODA5Yzc4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NTcwNDkwNSwiZXhwIjoxNjk1NzkxMzA1fQ.5cDRdxY_6VMLbf34LOZDf4TKUKYLRbI93HbgfXO7WFw";
+          const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NjA1MjU4MSwianRpIjoiNjNiYWViN2UtOWM0NS00MGM0LWIxMTktZjcwNDViM2NiZjU2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NjA1MjU4MSwiZXhwIjoxNjk2MTM4OTgxfQ.vKmPzadWSKfx-T-E480cF7X6dyl84NRZl00Lg0054y8";
           const res = await axios({
             method: 'post',
             url: 'https://lajward-mis.dev:8005/utilities',

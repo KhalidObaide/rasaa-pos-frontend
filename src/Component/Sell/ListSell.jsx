@@ -1,12 +1,13 @@
 // this the new sell List
 import React, { useState, useEffect } from 'react';
 // import  style  from './List.module.css';
-const ListSell = () => {
+const ListSell = ({setTotalAmount}) => {
   const [tableRows, setTableRows] = useState(["1"]);
   const [counter, setCounter] = useState(tableRows.length);
   const [inputValues, setInputValues] = useState([]);
   const [quantityValues, setQuantityValues] = useState([]);
   const [priceValues, setPriceValues] = useState([]);
+  const [mount,setMount] = useState([])
   const [singlePrice, setSinglePrice] = useState([]);
   const [practice, setPractice] = useState([]);
   const [checkNewList,setCheckNewList] = useState([])
@@ -15,7 +16,8 @@ const ListSell = () => {
   useEffect(()=>{
     let totalAmount  = 0
     practice.forEach(data =>totalAmount+=data)
-    // setTotalAmount(totalAmount)
+    setTotalAmount(totalAmount)
+    console.log(mount);
     
     
   })
@@ -26,6 +28,7 @@ const ListSell = () => {
     setTableRows([...tableRows, counter + 1]);
     setInputValues([...inputValues, ""]);
     setQuantityValues([...quantityValues, ""]);
+    setMount([...mount, ""]);
     setPriceValues([...priceValues, ""]);
     setSinglePrice([...singlePrice, ""]);
     
@@ -34,22 +37,6 @@ const ListSell = () => {
     setCheckNewList([index])
    }
   }
-
-//   // checing if the value of input is number or not
-//   const handleInputChange = (event: any) => {
-//     let newValue = event.target.value;
-  
-//     // Check if the new value contains only numbers
-//     if (/^\d+$/.test(newValue)) {
-//       // setError('');
-//       // setContainsOnlyNumbers(true);
-//     } else {
-//       // setError('فقط از اعداد استفاده کنید');
-//       // setContainsOnlyNumbers(false);
-//     }
-//   };
-
-
 
   return (
     <>
@@ -61,13 +48,16 @@ const ListSell = () => {
           <div className="w-72 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-chart">
             نام جنس فروخته شده
           </div>
-          <div className="w-60 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-chart">
+          <div className="w-44 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-chart">
             تعداد
           </div>
-          <div className="w-60 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-chart">
+          <div className="w-44 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-chart">
+             واحد
+          </div>
+          <div className="w-44 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-chart">
             قیمت فی
           </div>
-          <div className="w-60 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-chart">
+          <div className="w-44 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-chart">
             مجموعه
           </div>
         </div>
@@ -89,7 +79,7 @@ const ListSell = () => {
             />
             <input
               type="text"
-              className={`w-60 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg  bg-grayLine`}
+              className={`w-44 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg  bg-grayLine`}
               value={quantityValues[index]}
               onChange={(e) => {
                 const updatedQuantityValues = [...quantityValues];
@@ -104,9 +94,23 @@ const ListSell = () => {
                 }
               }}
             />
+
+              <input
+                 type="text"
+                 className={`w-44 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-grayLine`}
+                 value={mount[index]}
+                 onChange={(e) => {
+                  const ubdataMount = [...mount];
+                  ubdataMount[index] = e.target.value;
+                  setMount(ubdataMount);
+                }}
+
+              />
+
+
                 <input
                   type="text"
-                  className="w-60 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-grayLine"
+                  className="w-44 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-grayLine"
                   value={priceValues[index]}
                   onChange={(e) => {
                     const updatedPriceValues = [...priceValues];
@@ -125,7 +129,7 @@ const ListSell = () => {
                   }}
                 />
             <div className="">
-              <input className="w-60 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-grayLine" value={ parseFloat(quantityValues[index]) * parseFloat(priceValues[index]) || ''}type="text" 
+              <input className="w-44 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-grayLine" value={ parseFloat(quantityValues[index]) * parseFloat(priceValues[index]) || ''}type="text" 
               />
             </div>
           </div>
