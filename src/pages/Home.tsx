@@ -2,26 +2,25 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { style } from "../assets/style/styles";
-import Hearder from "../components/HeaderHome.jsx/Hearder";
 import { BodyBuy } from "../components/BodyBuy/BodyBuy";
 import axios from "axios";
-import Text from "../components/Text";
 import FooterBuy from "../components/FooterBuy/FooterBuy";
 import { getJWT } from "../shared";
 import Date from "../components/Date/Date";
 import { CiSearch } from "react-icons/ci";
 import { Link } from "react-router-dom";
+import { TbLoader } from "react-icons/tb";
 export const Home = () => {
   const [pageNext, setPageNext] = useState(false);
   const [itemsPerPage, setItemsPerPage] = useState(12);
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
 
-  const [data, setData] = useState([]);
-  const filteredData = data.filter((item) =>
+  const [data, setData] = useState([])
+  const filteredData = data.filter((item:any) =>
     item.contact.toLowerCase().includes(search.toLowerCase())
   );
-  const jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NjA3MTkyOCwianRpIjoiZmNkN2ZkN2ItMjFkZC00NTAwLWEwYWUtMmYwNjI2M2FlYmQyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NjA3MTkyOCwiZXhwIjoxNjk2MTU4MzI4fQ.Pr5nNPHh-F-btpaU5CH2vFgcscNrhRg6MuTX_ZhgIG8"
+  const jwt =  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NjEzNzQxNCwianRpIjoiMjFmZTlmNWMtODI5OS00ODJlLWFiY2ItMThhMzI5MmVmY2VmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NjEzNzQxNCwiZXhwIjoxNjk2MjIzODE0fQ.jZv-DR6GhfMbfr4XvX8HyTObg13c0nb0zZVjf0b9fgU"
   useEffect(() => {
     async function fetchData() {
       try {
@@ -79,7 +78,7 @@ export const Home = () => {
       pageNumbers.push(currentPage - 1, currentPage, currentPage + 1);
     }
   }
-  const getValue = (e) => {
+  const getValue = (e:any) => {
     setSearch(e.target.value);
   };
   return (

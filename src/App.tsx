@@ -35,7 +35,7 @@ function App() {
             <Route path="" element={<Home />} />
             <Route path="Buy" element={<Page1 />} />
             <Route path="Sell" element={<Page2 />} />
-            <Route path="/itemFactor/Buy" element={<ItemFactor />} />
+            <Route path="`/itemFactor/Buy" element={<ItemFactor />} />
             <Route path="/itemFactor/sell" element={<ItemFactorSell />} />
             <Route path="/SellFactor" element={<ItemChanges/> } />
             <Route path="/BuyFactor" element={<BuyFactor/>} />

@@ -4,6 +4,7 @@ import { CiCircleRemove } from "react-icons/ci";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { getJWT } from "../../../shared";
+import { TbLoader } from "react-icons/tb";
 const BodyFactorItemSell = ({ edit, id }: any) => {
   const [data, setData] = useState();
   const [arr, setArr] = useState(data);
@@ -48,7 +49,7 @@ const BodyFactorItemSell = ({ edit, id }: any) => {
     );
     if (response.status === 200) {
       const updatedItems = arr.filter(
-        (item: { id: any }, index) => index !== index
+        (item: { id: any }, index:any) => index !== index
       );
       setArr(updatedItems);
       console.log(setArr);
@@ -103,8 +104,8 @@ const BodyFactorItemSell = ({ edit, id }: any) => {
           <div className={`${style.chartHeader} w-[40%] rounded-md`}>مجموع</div>
         </div>
         {arr == null ? (
-          <div className="w-full flex flex-row items-center justify-center h-[50px] my-[100px]">
-            <div className="loader"></div>
+          <div className={`${style.row} items-center justify-center p-10`}>
+            <TbLoader className="animate-spin text-6xl text-btn" />
           </div>
         ) : (
           arr.map((item: any, index: any) => {
