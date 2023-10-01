@@ -1,21 +1,18 @@
 import React, { Component, useEffect, useState } from "react";
-import { AiFillEdit, AiFillDelete } from "react-icons/ai";
-import { TbH1, TbLoader } from "react-icons/tb";
 import {TbEditCircle} from "react-icons/tb"
 import { BsCheck } from "react-icons/bs";
 import { IoIosClose } from "react-icons/io";
 import {RiDeleteBinLine} from 'react-icons/ri'
-import { BiEdit } from "react-icons/bi";
-import { AiOutlineDelete } from "react-icons/ai";
 import axios from "axios";
 import RemoveAll from "./RemoveAlart";
-
-const ItemChanges = ({ setShowEdit, clickedItem, setReReand}:any)=>{
-    
-    const [key,setKey] = useState('')
-    const [title,setTitle] = useState('')
-    const [mount,setMount] = useState('')
-    const [accepted,setAccepted] = useState('')
+const ItemChanges = ({ setShowEdit, clickedItem, setReReand,jwt}:any)=>{
+  
+    const [key,setKey] = useState(clickedItem.key)
+    const [UbdateKey,setUbdateKey] = useState(clickedItem.key)
+    const [title,setTitle] = useState(clickedItem.title)
+    const [UbdateTitle,setUbdateTitle] = useState(clickedItem.title)
+    const [mount,setMount] = useState(clickedItem.value)
+    const [UbdateMount,setUbdateMount] = useState(clickedItem.value)
     const [error, setError] = useState('');
     const [display,setDisplay] = useState(false)
     const [display2,setDisplay2] = useState(true) 
@@ -23,13 +20,16 @@ const ItemChanges = ({ setShowEdit, clickedItem, setReReand}:any)=>{
     const [dispalyDelet,setDispalyDelet] = useState(false)
     const [deletLoader,setDeletLoader] = useState(false)
 
-
+  useEffect(()=>{
+    console.log(UbdateKey);
+    
+  },[])
 
 
   const newData = {
-    key : key,
-    title : title,
-    value : mount
+    key : UbdateKey,
+    title : UbdateTitle,
+    value : UbdateMount
   }
 
 
@@ -44,9 +44,8 @@ const ItemChanges = ({ setShowEdit, clickedItem, setReReand}:any)=>{
         setReReand(false)
       } 
 
-      console.log("this is the cliced item",clickedItem.id);
       async function getData() {
-          const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NjA1MjU4MSwianRpIjoiNjNiYWViN2UtOWM0NS00MGM0LWIxMTktZjcwNDViM2NiZjU2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NjA1MjU4MSwiZXhwIjoxNjk2MTM4OTgxfQ.vKmPzadWSKfx-T-E480cF7X6dyl84NRZl00Lg0054y8"
+          const token = jwt
           try {
             const response = await axios.delete(`https://lajward-mis.dev:8005/utilities?id=${clickedItem.id}`,{headers: { Authorization: `Bearer ${token}` },});
             if (response.data = 200) {
@@ -55,11 +54,8 @@ const ItemChanges = ({ setShowEdit, clickedItem, setReReand}:any)=>{
               setShowEdit(false)
               setdisplay(false)
               setDeletLoader(false)
-            }else{
-              // console.log(error);
+            }else{  
               console.log('the request is not sent');
-              
-              
             }
           } catch (error) {
             console.error('Error itmes:', error)
@@ -73,6 +69,13 @@ const ItemChanges = ({ setShowEdit, clickedItem, setReReand}:any)=>{
         const checkToEdit = ()=>{
           setDisplay2(false)
           setDisplay(true)
+          if (!UbdateKey) {
+            // setUbdateKey('clickedItem')
+            //           console.log( 'this is the key',clickedItem.key);
+            //           console.log(UbdateKey);
+                      
+                      
+          }
         }
         // cansel the edit
         const CancellationEdit = ()=>{
@@ -81,21 +84,27 @@ const ItemChanges = ({ setShowEdit, clickedItem, setReReand}:any)=>{
         }
 
       const hnadelEdit = ()=>{
-        async function getData() {
-          const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NTcwMjc4MywianRpIjoiMWMyNzAxNjEtMzg5ZC00NWYzLWFlNzAtYjcyNWMyOWVlMWQ2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NTcwMjc4MywiZXhwIjoxNjk1Nzg5MTgzfQ.7DrAEN9QhcrC66T7UgN_O6ktS8J4NBIglJotGPfXNyc"
+        
+        async function ubdateDate() {
+          setReReand(false)
+          const token = jwt
           try {
             const response = await axios.put(`https://lajward-mis.dev:8005/utilities?id=${clickedItem.id}`,newData,{headers: { Authorization: `Bearer ${token}` }});
             if (response.data = 200) {
-            
-            }else{
-              console.log(error);
-              
-            }
-          } catch (error) {
+            console.log('the request is send ');
+            setShowEdit(false)
+           setReReand(true)
+           
+          }else{
+            console.log(error);     
+          }
+        } catch (error) {
             console.error('Error itmes:', error)
           }
+          setReReand(false)
         }
-        getData()
+        ubdateDate()
+        
       }
 
       
@@ -142,18 +151,18 @@ const ItemChanges = ({ setShowEdit, clickedItem, setReReand}:any)=>{
                         <h1 className='mr-2 mb-2 font-medium text-base '>مقدار</h1>
                     <input
                       // type="text"    
-                      placeholder={clickedItem.value}
+                      // placeholder={clickedItem.value}
                       value={mount}
-                      onChange={(e)=>setMount(e.target.value)}
+                      onChange={(e)=>{setMount(e.target.value),setUbdateMount(e.target.value)}}
                       className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-graybutton rounded-md outline-none mx-2 text-lg "/>
                     </div>
                     <div className='flex flex-col justify-center items-start'>
                         <h1 className='mr-2 mb-2 font-medium text-base '>کلید</h1>
                       <input 
                       
-                      placeholder={clickedItem.key}
+                      // placeholder={key}
                       value={key}
-                      onChange={(e)=>setKey(e.target.value)}
+                      onChange={(e)=>{setKey(e.target.value),setUbdateKey(e.target.value)}}
 
                          className='w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-graybutton rounded-md outline-none mx-2 text-lg '/>
                     </div>
@@ -169,10 +178,8 @@ const ItemChanges = ({ setShowEdit, clickedItem, setReReand}:any)=>{
                     <div className='flex flex-col justify-center items-start'>
                         <h1 className='mr-2 mb-2 font-medium text-base  '>عنوان</h1>
                         <input
-                        placeholder={clickedItem.title}
-                        // type="text"
                         value={title}
-                        onChange={(e)=>setTitle(e.target.value)}
+                        onChange={(e)=>{setTitle(e.target.value),setUbdateTitle(e.target.value )}}
                         className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-graybutton rounded-md outline-none mx-2 text-lg "/>
                     </div>
                  </div>
@@ -183,7 +190,7 @@ const ItemChanges = ({ setShowEdit, clickedItem, setReReand}:any)=>{
           </div>
          {
            dispalyDelet &&
-           <RemoveAll startDelet={startDelet} deletLoader={deletLoader} setDispalyDelet= {setDispalyDelet} dispalyDelet = {dispalyDelet} />
+           <RemoveAll startDelet={startDelet} deletLoader={deletLoader} setDispalyDelet= {setDispalyDelet} dispalyDelet = {dispalyDelet}/>
           }
         </>
       );
