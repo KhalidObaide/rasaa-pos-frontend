@@ -2,10 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { style } from "../assets/style/styles";
-import Hearder from "../components/HeaderHome.jsx/Hearder";
 import { BodyBuy } from "../components/BodyBuy/BodyBuy";
 import axios from "axios";
-import Text from "../components/Text";
 import FooterBuy from "../components/FooterBuy/FooterBuy";
 import { getJWT } from "../shared";
 import Date from "../components/Date/Date";
@@ -17,8 +15,8 @@ export const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
 
-  const [data, setData] = useState([]);
-  const filteredData = data.filter((item) =>
+  const [data, setData] = useState([])
+  const filteredData = data.filter((item:any) =>
     item.contact.toLowerCase().includes(search.toLowerCase())
   );
   const jwt =  getJWT()
@@ -79,7 +77,7 @@ export const Home = () => {
       pageNumbers.push(currentPage - 1, currentPage, currentPage + 1);
     }
   }
-  const getValue = (e) => {
+  const getValue = (e:any) => {
     setSearch(e.target.value);
   };
   return (

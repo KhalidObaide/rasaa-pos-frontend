@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { style } from "../assets/style/styles";
-import HeaderSell from "../components/HeaderSell/HeaderSell";
 import { BodyBuy } from "../components/BodyBuy/BodyBuy";
 import { BodySell } from "../components/BodySell/BodySell";
 import { useState } from "react";
@@ -16,7 +15,7 @@ const Page2 = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState([]);
 
-  const filteredData = data.filter((item) =>
+  const filteredData = data.filter((item:any) =>
     item.contact.toLowerCase().includes(search.toLowerCase())
   );
   const jwt = getJWT()
@@ -77,7 +76,7 @@ const Page2 = () => {
       pageNumbers.push(currentPage - 1, currentPage, currentPage + 1);
     }
   }
-  const getValue = (e) => {
+  const getValue = (e:any) => {
     setSearch(e.target.value);
     console.log(search);
   };
