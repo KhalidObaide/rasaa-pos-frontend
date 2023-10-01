@@ -3,6 +3,7 @@ import { style } from "../../../assets/style/styles";
 import { CiCircleRemove } from "react-icons/ci";
 import axios from "axios";
 import ItemChanges from "../../../Component/Utilites/Changes";
+import { TbLoader } from "react-icons/tb";
 const BodyItem = ({ arr, setArr, edit }: any) => {
   //------------------------------------------------------
   const handleRemove = (itemId: any) => {
@@ -64,8 +65,8 @@ const BodyItem = ({ arr, setArr, edit }: any) => {
           </div>
         </div>
         {arr == null ? (
-          <div className="w-full flex flex-row items-center justify-center h-[50px] my-[100px]">
-            <div className="loader"></div>
+          <div className={`${style.row} items-center justify-center p-10`}>
+            <TbLoader className="animate-spin text-6xl text-btn" />
           </div>
         ) : (
           arr.map((item: any, index: any) => {

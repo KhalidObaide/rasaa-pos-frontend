@@ -9,6 +9,7 @@ import { getJWT } from "../shared";
 import Date from "../components/Date/Date";
 import { CiSearch } from "react-icons/ci";
 import { Link } from "react-router-dom";
+import { TbLoader } from "react-icons/tb";
 export const Home = () => {
   const [pageNext, setPageNext] = useState(false);
   const [itemsPerPage, setItemsPerPage] = useState(12);
@@ -19,7 +20,7 @@ export const Home = () => {
   const filteredData = data.filter((item:any) =>
     item.contact.toLowerCase().includes(search.toLowerCase())
   );
-  const jwt =  getJWT()
+  const jwt =  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NjEzNzQxNCwianRpIjoiMjFmZTlmNWMtODI5OS00ODJlLWFiY2ItMThhMzI5MmVmY2VmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NjEzNzQxNCwiZXhwIjoxNjk2MjIzODE0fQ.jZv-DR6GhfMbfr4XvX8HyTObg13c0nb0zZVjf0b9fgU"
   useEffect(() => {
     async function fetchData() {
       try {

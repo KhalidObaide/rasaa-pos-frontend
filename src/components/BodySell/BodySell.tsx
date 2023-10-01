@@ -33,7 +33,7 @@ export const BodySell = ({ pageNext, data, currentItems }: any) => {
               });
               return (
                 <Link
-                  to={`/itemFactor/sell?id=${item.id}`}
+                  to={`pos/itemFactor/sell?id=${item.id}`}
                   className={`${style.row} items-center p-0 w-full`}
                 >
                   <div className={`${style.row} items-center p-0 w-full`}>
