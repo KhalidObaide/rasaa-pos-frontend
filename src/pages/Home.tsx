@@ -21,7 +21,7 @@ export const Home = () => {
   const filteredData = data.filter((item) =>
     item.contact.toLowerCase().includes(search.toLowerCase())
   );
-  const jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NjA3MTkyOCwianRpIjoiZmNkN2ZkN2ItMjFkZC00NTAwLWEwYWUtMmYwNjI2M2FlYmQyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NjA3MTkyOCwiZXhwIjoxNjk2MTU4MzI4fQ.Pr5nNPHh-F-btpaU5CH2vFgcscNrhRg6MuTX_ZhgIG8"
+  const jwt =  getJWT()
   useEffect(() => {
     async function fetchData() {
       try {

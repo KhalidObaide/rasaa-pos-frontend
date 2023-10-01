@@ -17,12 +17,11 @@ const queryParams = new URLSearchParams(window.location.search);
 const id = queryParams.get("id");
 function passRoutesToBase() {
     const routes = [
-        {title: "صفحه اصلی", route: ""},
-        {title: "فروش", route: "Sell"},
+        {title: "فروش", route: ""},
         {title: "خرید", route: "Buy"},
         {title: "تنظیمات", route: "utilities"},
-        {route: `/itemFactor/Buy?id=${id}`},
-        {route: `/itemFactor/sell?id=${id}`},
+        {route: `pos/itemFactor/Buy?id=${id}`},
+        {route: `pos/itemFactor/sell?id=${id}`},
     ];
     localStorage.setItem("headers.pos", JSON.stringify(routes));
 }
@@ -35,8 +34,8 @@ function App() {
             <Route path="" element={<Home />} />
             <Route path="Buy" element={<Page1 />} />
             <Route path="Sell" element={<Page2 />} />
-            <Route path="/itemFactor/Buy" element={<ItemFactor />} />
-            <Route path="/itemFactor/sell" element={<ItemFactorSell />} />
+            <Route path="pos/itemFactor/Buy" element={<ItemFactor />} />
+            <Route path="pos/itemFactor/sell" element={<ItemFactorSell />} />
             <Route path="/SellFactor" element={<ItemChanges/> } />
             <Route path="/BuyFactor" element={<BuyFactor/>} />
             <Route path="/hamed" element={<Page2 />} />
