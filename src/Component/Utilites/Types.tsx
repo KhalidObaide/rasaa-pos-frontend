@@ -5,29 +5,26 @@ import {BsChevronLeft} from 'react-icons/bs'
 import axios from 'axios'
 import Item_changes from './Changes'
 import SaveNewProduct from './Save_new_product'
-import Style from './Types.module.css'
+// import Style from './Types.module.css'
 
 const Types = ()=>{
-   const [one,setOne] = useState(1)
-   const [tow,seTow] = useState(2)
-   const [three,setThree] = useState(3)
-   const [foure,setFour] = useState(5)
-   const [douth,setDouth] = useState('...')
    const [dispaly , setDisplay]=useState(false)
-  //  this the new change
    const [display2,setdisplay2] = useState(false)
    const [clickedData,setClickedData]= useState()
    const [reReand,setReReand] = useState(false)
    const [style,setStyle] = useState(true)
-   const [style2,setStyle2] = useState(true)
-  //  pagination
   const [itemsPerPage, setItemsPerPage] = useState(7);
   const [items, setItems] = useState([]);
-  const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  // the style states
-  const [alartNetwork ,setAlartNetWork] = useState(true)
    
+    const jwt = localStorage.getItem("jwt")
+
+    useEffect(()=>{
+      getData()
+    },[]);
+    
+
+
    const listClicked = (data:any)=>{
      setClickedData(data)
     setdisplay2(true)
@@ -36,36 +33,21 @@ const Types = ()=>{
     setDisplay(true)
   }
 
-  // ALART FUNCTION
-  const alart = ()=>{
-  setAlartNetWork(false)
-  }
-
   
   
-  const [data, setData]= useState([])
-  console.log(clickedData);
    async function getData() {
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NjA1MjU4MSwianRpIjoiNjNiYWViN2UtOWM0NS00MGM0LWIxMTktZjcwNDViM2NiZjU2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NjA1MjU4MSwiZXhwIjoxNjk2MTM4OTgxfQ.vKmPzadWSKfx-T-E480cF7X6dyl84NRZl00Lg0054y8"
+    const token = jwt
     try {
       const response = await axios.get('https://lajward-mis.dev:8005/utilities',{headers: { Authorization: `Bearer ${token}` },});
       if (response.status = 200) {
         setStyle(false)
-        setData(response.data);
-        console.log('start');
         setItems(response.data)
-        
       }else{
-        alert('no')
+        alert('مشکلی در دریفات دیتا پیش آمده لطه صفخه را دوباره باز کنید')
       }
     } catch (error) {
-      // setStyle(false)
-console.log("test")  
-    // THE ALAERT  FUNCTION
-      alart()
-
-
-
+      alert('مشکلی در دریاف اطلاعات وجود دراد ')
+      style(false)
 
     }
 }
@@ -75,11 +57,6 @@ if (reReand) {
   
 }
 
-
-
-useEffect(()=>{
-  getData()
-},[]);
 
 // start calculatuiong the pagnation
       
@@ -102,9 +79,6 @@ useEffect(()=>{
       pageNumbers.push(currentPage - 1, currentPage, currentPage + 1);
     }
   }
-
-
-
     return(
         <div className='font-Estedad flex flex-col justify-center items-center shadow-md shadow-[rgb(235, 235, 235)] rounded-md mx-5 p-4 '>
          
@@ -119,17 +93,17 @@ useEffect(()=>{
              {/* the save alart Component */}
                 {
                     dispaly &&
-                    <SaveNewProduct setReReand={setReReand}  setDisplayState={setDisplay} clickedData={clickedData}/>
+                    <SaveNewProduct setReReand={setReReand}  setDisplayState={setDisplay} clickedData={clickedData} jwt = {jwt} />
                 }
              {/* the utilites list */}
              <div className="w-full">
             <table className='w-full' >
                 <thead>
                    <tr className=' bg-chart '>
-                    <td className='w-14  text-lg text-center py-3'>No</td>
-                    <td className='w-324 text-lg text-center '>عنوان</td>
-                    <td className='w-324 text-lg text-center '>کلید</td>
-                    <td className='w-324 text-lg text-center '>مقدار</td>
+                    <td className='w-14  text-lg text-center py-3 '>No</td>
+                    <td className='w-324 text-lg text-center  '>عنوان</td>
+                    <td className='w-324 text-lg text-center  '>کلید</td>
+                    <td className='w-324 text-lg text-center  '>مقدار</td>
                     {/* <td className='w-324 text-2xl text-center font-semibold'>ملاحضات</td> */}
                    </tr>
                 </thead>
@@ -138,17 +112,16 @@ useEffect(()=>{
                     currentItems.map((data:any, index:any)=>(
                         <tr onClick={()=>listClicked(data)}  className={`cursor-pointer ${index %2 !=0 ? "bg-grayLine" : 'bg-white ' }`} >
                              <td className="w-14  text-center text-lg py-3">{index+1} </td>
-                             <td className='w-324 text-center text-lg'>{data.key}</td>
-                             <td className='w-324 text-center text-lg'>{data.title}</td>
-                             <td className='w-324 text-center text-lg'>{data.value}</td> 
+                             <td className='w-1/3 text-center text-lg '>{data.key}</td>
+                             <td className='w-1/3 text-center text-lg '>{data.title}</td>
+                             <td className='w-1/3 text-center text-lg '>{data.value}</td> 
                         </tr>
                         ))}
                 </tbody>
             </table>
-                      {/* the loader section */}
                      {
                         display2 && 
-                         <Item_changes setReReand={setReReand} clickedItem = {clickedData}  setShowEdit={setdisplay2}/>
+                         <Item_changes setReReand={setReReand} clickedItem = {clickedData}  setShowEdit={setdisplay2} jwt={jwt}/>
                      }
                  </div>
                   {/* The loader  */}
@@ -198,10 +171,3 @@ useEffect(()=>{
     )
 }
 export default Types
-
-  // if (reReand) {
-  //   getData();
-  // } else {
-  //   console.log("ops");
-  // }
-  

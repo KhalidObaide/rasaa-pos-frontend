@@ -1,9 +1,8 @@
 import React, { Component, useEffect, useState } from 'react'
 import {CiWarning} from 'react-icons/ci'
 import {TbLoader} from 'react-icons/tb'
-import {IoCloseOutline} from 'react-icons/io5'
 import axios from 'axios'
-const SaveNewProduct = ({setDisplayState,setReReand,setLoader,clickedData }:any)=>{
+const SaveNewProduct = ({setDisplayState,setReReand,setLoader,clickedData,jwt }:any)=>{
     const [alltodo,setAllTodo] =useState([]) 
     const [key,setKey] = useState('')
     const [mount,setMount] = useState('')
@@ -13,15 +12,8 @@ const SaveNewProduct = ({setDisplayState,setReReand,setLoader,clickedData }:any)
     const [error, setError] = useState('');  
     const [capital,setCapital] = useState(false)
     const [style,setStyle] = useState(false)
-    // select input Eroor 
     const [activeInput,setActiveInput] = useState(true)
 
-    // start posting the data
-    const getJWT = () => {
-        return localStorage.getItem("jwt")
-       
-        }
-        getJWT()
 
     const EmployeeData = {
         title: title,
@@ -30,12 +22,9 @@ const SaveNewProduct = ({setDisplayState,setReReand,setLoader,clickedData }:any)
       };
 
       const HandlPost = async () => {
-        console.log(clickedData);
-      
         setStyle(true);
-      
         try {
-          const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NjA1MjU4MSwianRpIjoiNjNiYWViN2UtOWM0NS00MGM0LWIxMTktZjcwNDViM2NiZjU2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NjA1MjU4MSwiZXhwIjoxNjk2MTM4OTgxfQ.vKmPzadWSKfx-T-E480cF7X6dyl84NRZl00Lg0054y8";
+          const token = jwt
           const res = await axios({
             method: 'post',
             url: 'https://lajward-mis.dev:8005/utilities',
@@ -48,12 +37,13 @@ const SaveNewProduct = ({setDisplayState,setReReand,setLoader,clickedData }:any)
             setReReand(true);
             setDisplayState(false);
           } else {
-            console.log('The request was not successful.');
+            alert('The request was not successful.');
           }
         } catch (error) {
             setStyle(false)
+            alert('مشکلی در پوست اطلاعات وجود دراد ')
+
         }
-      
         setReReand(false);
       };
 
@@ -101,7 +91,6 @@ const SaveNewProduct = ({setDisplayState,setReReand,setLoader,clickedData }:any)
                           <div>
                           <input
                              value={key}
-                             
                              onChange={handleInputChange} 
                              placeholder='کلید'
                              className={`w-80 h-12  py-2 px-2 pr-5 text-right rounded-md outline-none mx-2 text-lg ${activeInput ? 'border-solid border border-borderColor' : '  border-solid border-2 border-error'}`}/>
@@ -133,7 +122,6 @@ const SaveNewProduct = ({setDisplayState,setReReand,setLoader,clickedData }:any)
                 </div>
                  {/* main subment buttons */}
                 <div className="w-full px-2 flex flex-row-reverse justify-start items-start mt-10">
-                    
                          {
                             style ? <button className='bg-btn mr-5 py-3 px-7 rounded-md'><TbLoader className='animate-spin w-5 h-5 text-white  '/></button>
                             :  <button onClick={()=>handelsaveNewItem()}  className="bg-btn text-white text-lg py-2 px-4 mb-2 font-medium rounded-md  mr-5"> ثبت کردن</button> 
