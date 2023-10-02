@@ -24,12 +24,8 @@ const RemoveAllSell = ({ open, setOpen, id  }: any) => {
           console.log("Data fetched successfully:", response.data);
         } else {
           console.log("Received status:", response.status);
-          console.log(response.data);
-
-          console.log();
         }
       } catch (error) {
-        // console.log("Error message:", error.message);
         console.error("Error details:", error);
       }
     }

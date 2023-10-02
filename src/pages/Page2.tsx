@@ -14,11 +14,14 @@ const Page2 = () => {
   const [itemsPerPage, setItemsPerPage] = useState(12);
   const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState([]);
+  const [loader , setLodaer] = useState(true)
 
-  const filteredData = data.filter((item:any) =>
-    item.contact.toLowerCase().includes(search.toLowerCase())
-  );
-  const jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NjEzNzQxNCwianRpIjoiMjFmZTlmNWMtODI5OS00ODJlLWFiY2ItMThhMzI5MmVmY2VmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NjEzNzQxNCwiZXhwIjoxNjk2MjIzODE0fQ.jZv-DR6GhfMbfr4XvX8HyTObg13c0nb0zZVjf0b9fgU"
+  const filteredData = data.filter((item: any) => {
+    const employeeNameMatch = item.contact && item.contact.toString().toLowerCase().includes(search.toLowerCase());
+    const employeeLastNameMatch = item.invoice_num && item.invoice_num.toString().toLowerCase().includes(search.toLowerCase());
+    return employeeNameMatch || employeeLastNameMatch;
+  });
+  const jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NjIzNDcyNywianRpIjoiZDFlMDZkZTMtMDI4My00Y2M4LThmMWItZjg2YTIxMDgwYTNlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NjIzNDcyNywiZXhwIjoxNjk2MzIxMTI3fQ.gPcvQwLpNvoxP9Ew4gGaO-PWu3npEAs1DADe37eBe5g"
   useEffect(() => {
     async function fetchData() {
       try {
@@ -34,9 +37,9 @@ const Page2 = () => {
         if (response.status === 200) {
           console.log("Data fetched successfully:", response.data);
           setData(response.data);
+          setLodaer(false)
         } else {
           console.log("Received status:", response.status);
-          console.log(response.data);
         }
       } catch (error) {
         console.error("Error details:", error);
@@ -77,7 +80,6 @@ const Page2 = () => {
   }
   const getValue = (e:any) => {
     setSearch(e.target.value);
-    console.log(search);
   };
 
   return (
@@ -121,6 +123,7 @@ const Page2 = () => {
             setData={setData}
             currentItems={currentItems}
             search={search}
+            loader={loader}
           />
           <FooterSell
             pageNext={pageNext}

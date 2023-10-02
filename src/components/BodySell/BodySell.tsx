@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { style } from "../../assets/style/styles";
 import { Link } from "react-router-dom";
-export const BodySell = ({ pageNext, data, currentItems }: any) => {
+import { TbLoader } from "react-icons/tb";
+export const BodySell = ({ pageNext, data, currentItems , loader }: any) => {
   let num = 0;
   let num2 = 0;
   return (
@@ -20,11 +21,10 @@ export const BodySell = ({ pageNext, data, currentItems }: any) => {
           <div className={`${style.chartHeader} w-1/5`}>مجموع کل</div>
         </div>
         <div className={`${style.col} items-center p-0 w-full`}>
-          {currentItems === undefined ? (
-            <div className="w-full flex flex-row items-center justify-center h-[50px] my-[100px]">
-              <div className="loader"></div>
-            </div>
-          ) : (
+          <div className={`${style.row} items-center justify-center p-10 w-full ${loader === true ? "flex" : "hidden"}`}>
+            <TbLoader className="animate-spin text-6xl text-btn" />
+          </div>
+          {currentItems === undefined ? "": (
             currentItems.map((item: any, index: any) => {
               const deCode = JSON.parse(item.invoice_items);
               deCode.map((item: any , index:any) => {
@@ -33,7 +33,7 @@ export const BodySell = ({ pageNext, data, currentItems }: any) => {
               });
               return (
                 <Link
-                  to={`pos/itemFactor/sell?id=${item.id}`}
+                  to={`itemFactor/sell?id=${item.id}`}
                   className={`${style.row} items-center p-0 w-full`}
                 >
                   <div className={`${style.row} items-center p-0 w-full`}>
