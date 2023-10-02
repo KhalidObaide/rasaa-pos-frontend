@@ -17,12 +17,13 @@ const queryParams = new URLSearchParams(window.location.search);
 const id = queryParams.get("id");
 function passRoutesToBase() {
     const routes = [
-        {title: "صفحه اصلی", route: ""},
+        {title: "خرید", route: "/"},
         {title: "فروش", route: "Sell"},
-        {title: "خرید", route: "Buy"},
         {title: "تنظیمات", route: "utilities"},
-        {route: `/itemFactor/Buy?id=${id}`},
-        {route: `/itemFactor/sell?id=${id}`},
+        {route: `/SellFactor}`},
+        {route: `/BuyFactor`},
+        {route: `itemFactor/Buy?id=${id}`},
+        {route: `itemFactor/sell?id=${id}`},
     ];
     localStorage.setItem("headers.pos", JSON.stringify(routes));
 }
@@ -35,8 +36,8 @@ function App() {
             <Route path="" element={<Home />} />
             <Route path="Buy" element={<Page1 />} />
             <Route path="Sell" element={<Page2 />} />
-            <Route path="`/itemFactor/Buy" element={<ItemFactor />} />
-            <Route path="/itemFactor/sell" element={<ItemFactorSell />} />
+            <Route path="itemFactor/Buy" element={<ItemFactor />} />
+            <Route path="itemFactor/sell" element={<ItemFactorSell />} />
             <Route path="/SellFactor" element={<ItemChanges/> } />
             <Route path="/BuyFactor" element={<BuyFactor/>} />
             <Route path="/hamed" element={<Page2 />} />
@@ -44,7 +45,7 @@ function App() {
             <Route path="/mainSell" element={<MainSell/>}/>
             <Route path="/Buyfactor" element={<BuyFactor/>}/>
             <Route path="/Test" element={<MyComponent/>}/>
-            <Route path="*" element={<h1>Page not found</h1>} />
+            <Route path="*" element={<h1 className="bg-red-500 text-center w-full p-5 text-bold text-white text-4xl">Page not found</h1>} />
         </Routes>
       </div>
     );

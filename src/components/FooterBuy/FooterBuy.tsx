@@ -18,7 +18,7 @@ const FooterBuy = ({
           <ul className="flex justify-center space-x-1">
             <li>
               <button
-                className="w-12 h-10 flex items-center justify-center border rounded text-gray-500 hover:text-blue-500 ml-1"
+                className="w-12 h-10 flex items-center justify-center   border border-gray-300  rounded text-gray-500 hover:text-blue-500 ml-1"
                 disabled={currentPage === 1}
                 onClick={() => setCurrentPage(currentPage - 1)}
               >
@@ -28,9 +28,9 @@ const FooterBuy = ({
             {pageNumbers.map((pageNumber:any) => (
               <li key={pageNumber}>
                 <button
-                  className={`w-12 h-10 flex items-center justify-center border rounded ${
+                  className={`w-12 h-10 flex items-center justify-center  border border-gray-300  rounded ${
                     pageNumber === currentPage
-                      ? "bg-btn text-white"
+                      ? "bg-btn text-white border border-gray-300"
                       : "text-gray-500 hover:text-blue-500"
                   }`}
                   onClick={() => setCurrentPage(pageNumber)}
@@ -41,7 +41,7 @@ const FooterBuy = ({
             ))}
             <li>
               <button
-                className="w-12 h-10 flex items-center justify-center border rounded text-gray-500 hover:text-blue-500"
+                className="w-12 h-10 flex items-center justify-center border border-gray-300 rounded text-gray-500 hover:text-blue-500"
                 disabled={currentPage === totalPages}
                 onClick={() => setCurrentPage(currentPage + 1)}
               >

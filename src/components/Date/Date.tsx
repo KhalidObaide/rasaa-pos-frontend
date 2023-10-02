@@ -24,15 +24,11 @@ export default function Date() {
     "حوت",
   ];
   const weekDays = ["ش", "ی", "د", "س", "چ", "پ", "ج"];
-  console.log(getValue);
   return (
     <>
       <DatePicker
         onChange={(date: any) => {
-          // setFormData({ ...formData, date: date.toDate() });
           setGetValue(date.toDate());
-
-          // console.log('this is the date :', date.toDate())
         }}
         months={months} 
         render={(value: any, openCalendar: any) => (

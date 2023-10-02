@@ -15,7 +15,7 @@ const ItemFactor = () => {
   const [apiData, setApiData] = useState();
   const queryParams = new URLSearchParams(window.location.search);
   const id = queryParams.get("id");
-  const jwt = getJWT()    
+  const jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NjIzNDcyNywianRpIjoiZDFlMDZkZTMtMDI4My00Y2M4LThmMWItZjg2YTIxMDgwYTNlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NjIzNDcyNywiZXhwIjoxNjk2MzIxMTI3fQ.gPcvQwLpNvoxP9Ew4gGaO-PWu3npEAs1DADe37eBe5g"    
 
   useEffect(() => {
     async function fetchData() {
@@ -36,7 +36,6 @@ const ItemFactor = () => {
           console.log("Received status:", response.status);
         }
       } catch (error) {
-        // console.log("Error message:", error.message);
         console.error("Error details:", error);
       }
     }

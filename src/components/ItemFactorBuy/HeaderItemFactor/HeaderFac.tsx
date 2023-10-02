@@ -31,7 +31,6 @@ const HeaderFac = ({
     setData(arr);
     setEdit(true);
   };
-  console.log(data);
   const editF = () => {
     setEdit(false);
   };
@@ -65,7 +64,6 @@ const HeaderFac = ({
           console.log("Received status:", response.status);
         }
       } catch (error) {
-        // console.log("Error message:", error.message);
         console.error("Error details:", error);
       }
     }

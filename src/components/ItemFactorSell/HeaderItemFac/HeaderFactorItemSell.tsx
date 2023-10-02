@@ -9,7 +9,6 @@ import {
   BiChevronLeft,
 } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
-import { useParams } from "react-router-dom";
 import axios from "axios";
 import { getJWT } from "../../../shared";
 const HeaderFactorItemSell = ({
@@ -42,7 +41,7 @@ const HeaderFactorItemSell = ({
   };
   const [headerData, setHeaderData] = useState([]);
 
-  const jwt = getJWT()
+  const jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NjEzNzQxNCwianRpIjoiMjFmZTlmNWMtODI5OS00ODJlLWFiY2ItMThhMzI5MmVmY2VmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NjEzNzQxNCwiZXhwIjoxNjk2MjIzODE0fQ.jZv-DR6GhfMbfr4XvX8HyTObg13c0nb0zZVjf0b9fgU"
     useEffect(() => {
     async function fetchData() {
       try {
@@ -62,7 +61,7 @@ const HeaderFactorItemSell = ({
           console.log("Received status:", response.status);
         }
       } catch (error) {
-        // console.log("Error message:", error.message);
+
         console.error("Error details:", error);
       }
     }

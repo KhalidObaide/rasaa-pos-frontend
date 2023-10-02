@@ -30,7 +30,6 @@ const BodyFactorItemSell = ({ edit, id }: any) => {
           console.log("Received status:", response.status);
         }
       } catch (error) {
-        // console.log("Error message:", error.message);
         console.error("Error details:", error);
         alert("Pleas Check Your Network!!!")
       }
@@ -52,7 +51,6 @@ const BodyFactorItemSell = ({ edit, id }: any) => {
         (item: { id: any }, index:any) => index !== index
       );
       setArr(updatedItems);
-      console.log(setArr);
     }
   };
 
