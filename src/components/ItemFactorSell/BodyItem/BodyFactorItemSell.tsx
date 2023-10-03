@@ -4,24 +4,22 @@ import { CiCircleRemove } from "react-icons/ci";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { getJWT } from "../../../shared";
+import appSettings from "../../../app.settings.json";
 import { TbLoader } from "react-icons/tb";
 const BodyFactorItemSell = ({ edit, id }: any) => {
   const [data, setData] = useState();
   const [arr, setArr] = useState(data);
-  const [all , setAll] = useState(0)
+  const [all, setAll] = useState(0);
 
-  const jwt = getJWT()
+  const jwt = getJWT();
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(
-          `https://lajward-mis.dev:8005/invoice?id=${id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${jwt}`,
-            },
-          }
-        );
+        const response = await axios.get(`${appSettings.api}invoice?id=${id}`, {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        });
 
         if (response.status === 200) {
           setData(response.data);
@@ -31,24 +29,21 @@ const BodyFactorItemSell = ({ edit, id }: any) => {
         }
       } catch (error) {
         console.error("Error details:", error);
-        alert("Pleas Check Your Network!!!")
+        alert("Pleas Check Your Network!!!");
       }
     }
 
     fetchData();
   }, []);
   const handleRemove = (itemId: any, index: any) => {
-    const response = axios.get(
-      `https://lajward-mis.dev:8005/invoice?index=${index}`,
-      {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      }
-    );
+    const response = axios.get(`${appSettings.api}invoice?index=${index}`, {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    });
     if (response.status === 200) {
       const updatedItems = arr.filter(
-        (item: { id: any }, index:any) => index !== index
+        (item: { id: any }, index: any) => index !== index,
       );
       setArr(updatedItems);
     }
@@ -57,21 +52,21 @@ const BodyFactorItemSell = ({ edit, id }: any) => {
   const handelChange = (
     value: string,
     id: string | undefined,
-    input: string
+    input: string,
   ) => {
     if (input === "fName") {
       let copyarr = arr.map((item: { id: any }) =>
-        item.id == id ? { ...item, fName: value } : item
+        item.id == id ? { ...item, fName: value } : item,
       );
       setArr(copyarr);
     } else if (input === "FNumber") {
       let copyarr = arr.map((item: { id: any }) =>
-        item.id == id ? { ...item, FNumber: value } : item
+        item.id == id ? { ...item, FNumber: value } : item,
       );
       setArr(copyarr);
     } else if (input === "howMany") {
       let copyarr = arr.map((item: { id: any }) =>
-        item.id == id ? { ...item, howMany: value } : item
+        item.id == id ? { ...item, howMany: value } : item,
       );
       setArr(copyarr);
     }
@@ -110,8 +105,8 @@ const BodyFactorItemSell = ({ edit, id }: any) => {
             const deCode = JSON.parse(item.invoice_items);
             return deCode.map((item: any, index: any) => {
               // setAll(item.price * item.amount)
-              num = item.price * item.amount
-              num2 += num
+              num = item.price * item.amount;
+              num2 += num;
               return (
                 <div
                   className={`w-full gap-x-5 py-3 h-auto ${style.row} items-center`}

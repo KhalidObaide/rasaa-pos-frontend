@@ -13,22 +13,22 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        chart:"#E6F6FD",
-        error:"#EB5252",
+        chart: "#E6F6FD",
+        error: "#EB5252",
         btn: "#00B4FF",
         chart: "#E6F6FD",
         error: "#EB5252",
-        black : "#000",
-        grayLine : "#FAFAFA",
-        B_blue: '#00B4FF',
-        white: '#fff',
-        shadow : "rgba(0,0,0,0.3)" ,
-        editGreen : "#52C181",
-        delet  :"#EC615A", 
-       textGray : "#808080",
-       btnGray : "#F5F5F5",
-       graybutton : '#999999',
-       borderColor : "#DADADA"
+        black: "#000",
+        grayLine: "#FAFAFA",
+        B_blue: "#00B4FF",
+        white: "#fff",
+        shadow: "rgba(0,0,0,0.3)",
+        editGreen: "#52C181",
+        delet: "#EC615A",
+        textGray: "#808080",
+        btnGray: "#F5F5F5",
+        graybutton: "#999999",
+        borderColor: "#DADADA",
       },
       spacing: {
         // "1000": "1000px",
@@ -44,18 +44,17 @@ module.exports = {
         // "300":"300px",
         // "324":"324px",
         // "310": "330px",
-        "50" : "50rem",
+        50: "50rem",
 
         // "256": "256px",
         // "235" : "235px",
         // "112px":"112px",
         // "104": "104px",
         // "52": "52px",
-        "30%": "30%", 
+        "30%": "30%",
         // "88" : "88px",
         // "18" : "18px"
-
-      }
+      },
     },
   },
   variants: {

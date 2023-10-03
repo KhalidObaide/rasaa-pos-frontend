@@ -5,19 +5,20 @@ import { CiWarning } from "react-icons/ci";
 import { useEffect } from "react";
 import axios from "axios";
 import { getJWT } from "../../../shared";
+import appSettings from "../../../app.settings.json";
 
-const RemoveAllSell = ({ open, setOpen, id  }: any) => {
+const RemoveAllSell = ({ open, setOpen, id }: any) => {
   const renoveF = () => {
-    const jwt = getJWT()
+    const jwt = getJWT();
     async function fetchData() {
       try {
         const response = await axios.delete(
-          `https://lajward-mis.dev:8005/invoices?id=${id}`,
+          `${appSettings.api}invoices?id=${id}`,
           {
             headers: {
               Authorization: `Bearer ${jwt}`,
             },
-          }
+          },
         );
 
         if (response.status === 200) {
@@ -33,7 +34,7 @@ const RemoveAllSell = ({ open, setOpen, id  }: any) => {
     fetchData();
   };
   const reject = () => {
-    setOpen(false)
+    setOpen(false);
   };
   return (
     <div

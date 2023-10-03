@@ -11,6 +11,8 @@ import {
 import { CgClose } from "react-icons/cg";
 import axios from "axios";
 import { getJWT } from "../../../shared";
+import appSettings from "../../../app.settings.json";
+
 const HeaderFactorItemSell = ({
   setOpen,
   setData,
@@ -41,18 +43,15 @@ const HeaderFactorItemSell = ({
   };
   const [headerData, setHeaderData] = useState([]);
 
-  const jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NjEzNzQxNCwianRpIjoiMjFmZTlmNWMtODI5OS00ODJlLWFiY2ItMThhMzI5MmVmY2VmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NjEzNzQxNCwiZXhwIjoxNjk2MjIzODE0fQ.jZv-DR6GhfMbfr4XvX8HyTObg13c0nb0zZVjf0b9fgU"
-    useEffect(() => {
+  const jwt = getJWT();
+  useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(
-          `https://lajward-mis.dev:8005/invoice?id=${id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${jwt}`,
-            },
-          }
-        );
+        const response = await axios.get(`${appSettings.api}invoice?id=${id}`, {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        });
 
         if (response.status === 200) {
           const data = response.data;
@@ -61,14 +60,13 @@ const HeaderFactorItemSell = ({
           console.log("Received status:", response.status);
         }
       } catch (error) {
-
         console.error("Error details:", error);
       }
     }
 
     fetchData();
   }, []);
- 
+
   return (
     <>
       <div className={`${style.row} items-ceter`}>

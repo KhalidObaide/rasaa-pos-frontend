@@ -1,41 +1,44 @@
 // this the new sell List
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 // import  style  from './List.module.css';
-const ListSell = ({setTotalAmount}) => {
+const ListSell = ({ setTotalAmount }) => {
   const [tableRows, setTableRows] = useState(["1"]);
   const [counter, setCounter] = useState(tableRows.length);
   const [inputValues, setInputValues] = useState([]);
   const [quantityValues, setQuantityValues] = useState([]);
   const [priceValues, setPriceValues] = useState([]);
-  const [mount,setMount] = useState([])
+  const [mount, setMount] = useState([]);
   const [singlePrice, setSinglePrice] = useState([]);
   const [practice, setPractice] = useState([]);
-  const [checkNewList,setCheckNewList] = useState([])
+  const [checkNewList, setCheckNewList] = useState([]);
 
-
-  useEffect(()=>{
-    let totalAmount  = 0
-    practice.forEach(data =>totalAmount+=data)
-    setTotalAmount(totalAmount)
+  useEffect(() => {
+    let totalAmount = 0;
+    practice.forEach((data) => (totalAmount += data));
+    setTotalAmount(totalAmount);
     console.log(mount);
-    
-    
-  })
-// start maping fro each paer
+  });
+  // start maping fro each paer
   function addRow(index) {
-   if (inputValues[index]&&quantityValues[index]&&priceValues[index]&& !checkNewList.includes(index)) {
-    setCounter(counter + 1);
-    setTableRows([...tableRows, counter + 1]);
-    setInputValues([...inputValues, ""]);
-    setQuantityValues([...quantityValues, ""]);
-    setMount([...mount, ""]);
-    setPriceValues([...priceValues, ""]);
-    setSinglePrice([...singlePrice, ""]);
-    
-    const calculate = parseFloat(quantityValues[index]) * parseFloat(priceValues[index]);
-    setPractice([...practice, calculate]);
-    setCheckNewList([index])
-   }
+    if (
+      inputValues[index] &&
+      quantityValues[index] &&
+      priceValues[index] &&
+      !checkNewList.includes(index)
+    ) {
+      setCounter(counter + 1);
+      setTableRows([...tableRows, counter + 1]);
+      setInputValues([...inputValues, ""]);
+      setQuantityValues([...quantityValues, ""]);
+      setMount([...mount, ""]);
+      setPriceValues([...priceValues, ""]);
+      setSinglePrice([...singlePrice, ""]);
+
+      const calculate =
+        parseFloat(quantityValues[index]) * parseFloat(priceValues[index]);
+      setPractice([...practice, calculate]);
+      setCheckNewList([index]);
+    }
   }
 
   return (
@@ -52,7 +55,7 @@ const ListSell = ({setTotalAmount}) => {
             تعداد
           </div>
           <div className="w-44 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-chart">
-             واحد
+            واحد
           </div>
           <div className="w-44 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-chart">
             قیمت فی
@@ -61,7 +64,7 @@ const ListSell = ({setTotalAmount}) => {
             مجموعه
           </div>
         </div>
-          {tableRows.map((row, index) => (
+        {tableRows.map((row, index) => (
           <div key={index} className="flex flex-row items-center mb-2">
             <div className="flex flex-row justify-center items-center rounded-md w-10 h-10 bg-chart font-normal mx-2">
               {index + 1}
@@ -74,8 +77,7 @@ const ListSell = ({setTotalAmount}) => {
                 const updatedInputValues = [...inputValues];
                 updatedInputValues[index] = e.target.value;
                 setInputValues(updatedInputValues);
-              }}  
-              
+              }}
             />
             <input
               type="text"
@@ -95,41 +97,45 @@ const ListSell = ({setTotalAmount}) => {
               }}
             />
 
-              <input
-                 type="text"
-                 className={`w-44 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-grayLine`}
-                 value={mount[index]}
-                 onChange={(e) => {
-                  const ubdataMount = [...mount];
-                  ubdataMount[index] = e.target.value;
-                  setMount(ubdataMount);
-                }}
+            <input
+              type="text"
+              className={`w-44 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-grayLine`}
+              value={mount[index]}
+              onChange={(e) => {
+                const ubdataMount = [...mount];
+                ubdataMount[index] = e.target.value;
+                setMount(ubdataMount);
+              }}
+            />
 
-              />
-
-
-                <input
-                  type="text"
-                  className="w-44 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-grayLine"
-                  value={priceValues[index]}
-                  onChange={(e) => {
-                    const updatedPriceValues = [...priceValues];
-                    updatedPriceValues[index] = e.target.value;
-                    setPriceValues(updatedPriceValues);
-                  }}
-                  onKeyPress={(e) => {
-                    if (e.key === 'Enter') {
-                      addRow(index)
-                    }
-                    const keyCode = e.which || e.keyCode;
+            <input
+              type="text"
+              className="w-44 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-grayLine"
+              value={priceValues[index]}
+              onChange={(e) => {
+                const updatedPriceValues = [...priceValues];
+                updatedPriceValues[index] = e.target.value;
+                setPriceValues(updatedPriceValues);
+              }}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  addRow(index);
+                }
+                const keyCode = e.which || e.keyCode;
                 const keyValue = String.fromCharCode(keyCode);
                 if (!/^\d+$/.test(keyValue)) {
                   e.preventDefault();
                 }
-                  }}
-                />
+              }}
+            />
             <div className="">
-              <input className="w-44 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-grayLine" value={ parseFloat(quantityValues[index]) * parseFloat(priceValues[index]) || ''}type="text" 
+              <input
+                className="w-44 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-grayLine"
+                value={
+                  parseFloat(quantityValues[index]) *
+                    parseFloat(priceValues[index]) || ""
+                }
+                type="text"
               />
             </div>
           </div>
@@ -137,6 +143,6 @@ const ListSell = ({setTotalAmount}) => {
       </div>
     </>
   );
-}
+};
 
 export default ListSell;

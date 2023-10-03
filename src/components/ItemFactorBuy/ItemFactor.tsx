@@ -6,6 +6,7 @@ import BodyItem from "./BodyItemFactor/BodyItem";
 import FooterItem from "./FooterItemFac/FooterItem";
 import axios from "axios";
 import { getJWT } from "../../shared";
+import appSettings from "../../app.settings.json";
 
 const ItemFactor = () => {
   const [data, setData] = useState();
@@ -15,19 +16,16 @@ const ItemFactor = () => {
   const [apiData, setApiData] = useState();
   const queryParams = new URLSearchParams(window.location.search);
   const id = queryParams.get("id");
-  const jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NjIzNDcyNywianRpIjoiZDFlMDZkZTMtMDI4My00Y2M4LThmMWItZjg2YTIxMDgwYTNlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NjIzNDcyNywiZXhwIjoxNjk2MzIxMTI3fQ.gPcvQwLpNvoxP9Ew4gGaO-PWu3npEAs1DADe37eBe5g"    
+  const jwt = getJWT();
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(
-          `https://lajward-mis.dev:8005/invoice?id=${id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${jwt}`,
-            },
-          }
-        );
+        const response = await axios.get(`${appSettings.api}invoice?id=${id}`, {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        });
 
         if (response.status === 200) {
           setData(response.data);

@@ -24,11 +24,7 @@ const ItemFactorSell = () => {
             setData={setData}
           />
           <BodyFactorItemSell arr={arr} setArr={setArr} edit={edit} id={id} />
-          <RemoveAllSell
-            setOpen={setOpen}
-            open={open}
-            id={id}
-          />
+          <RemoveAllSell setOpen={setOpen} open={open} id={id} />
         </div>
       </div>
     </>

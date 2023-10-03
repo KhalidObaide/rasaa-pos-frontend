@@ -6,6 +6,7 @@ import { BodyBuy } from "../components/BodyBuy/BodyBuy";
 import axios from "axios";
 import FooterBuy from "../components/FooterBuy/FooterBuy";
 import { getJWT } from "../shared";
+import appSettings from "../app.settings.json";
 import Date from "../components/Date/Date";
 import { CiSearch } from "react-icons/ci";
 import { Link } from "react-router-dom";
@@ -15,31 +16,32 @@ export const Home = () => {
   const [itemsPerPage, setItemsPerPage] = useState(12);
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
-  const [loader , setLoader] = useState(true)
-  const [data, setData] = useState([])
+  const [loader, setLoader] = useState(true);
+  const [data, setData] = useState([]);
   const filteredData = data.filter((item: any) => {
-    const employeeNameMatch = item.contact && item.contact.toString().toLowerCase().includes(search.toLowerCase());
-    const employeeLastNameMatch = item.invoice_num && item.invoice_num.toString().toLowerCase().includes(search.toLowerCase());
-    return employeeNameMatch  || employeeLastNameMatch;
-  }
-)
-  const jwt =  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NjIzNDcyNywianRpIjoiZDFlMDZkZTMtMDI4My00Y2M4LThmMWItZjg2YTIxMDgwYTNlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NjIzNDcyNywiZXhwIjoxNjk2MzIxMTI3fQ.gPcvQwLpNvoxP9Ew4gGaO-PWu3npEAs1DADe37eBe5g"
+    const employeeNameMatch =
+      item.contact &&
+      item.contact.toString().toLowerCase().includes(search.toLowerCase());
+    const employeeLastNameMatch =
+      item.invoice_num &&
+      item.invoice_num.toString().toLowerCase().includes(search.toLowerCase());
+    return employeeNameMatch || employeeLastNameMatch;
+  });
+  const jwt = getJWT();
+
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(
-          `https://lajward-mis.dev:8005/invoices`,
-          {
-            headers: {
-              Authorization: `Bearer ${jwt}`,
-            },
-          }
-        );
+        const response = await axios.get(`${appSettings.api}invoices`, {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        });
 
         if (response.status === 200) {
           console.log("Data fetched successfully:", response.data);
           setData(response.data);
-          setLoader(false)
+          setLoader(false);
         } else {
           console.log("Received status:", response.status);
           console.log(response.data);
@@ -81,7 +83,7 @@ export const Home = () => {
       pageNumbers.push(currentPage - 1, currentPage, currentPage + 1);
     }
   }
-  const getValue = (e:any) => {
+  const getValue = (e: any) => {
     setSearch(e.target.value);
   };
   return (

@@ -30,7 +30,7 @@ export default function Date() {
         onChange={(date: any) => {
           setGetValue(date.toDate());
         }}
-        months={months} 
+        months={months}
         render={(value: any, openCalendar: any) => (
           <>
             <div
@@ -57,7 +57,6 @@ export default function Date() {
                   <BiChevronDown className={`text-2xl text-gray-900`} />
                 )}
               </div>
-
             </div>
           </>
         )}

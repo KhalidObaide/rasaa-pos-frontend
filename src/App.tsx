@@ -10,47 +10,52 @@ import ItemFactorSell from "./components/ItemFactorSell/ItemFactorSell";
 import ItemChanges from "./Component/Utilites/Changes";
 import BuyFactor from "./Component/buyFactor/BuyFactor";
 import Types from "./Component/Utilites/Types";
-import MainSell from './Component/Sell/MainSell'
-import "./pos-tailwind.css"
+import MainSell from "./Component/Sell/MainSell";
+import "./pos-tailwind.css";
 import MyComponent from "./Component/text/Test";
 const queryParams = new URLSearchParams(window.location.search);
 const id = queryParams.get("id");
 function passRoutesToBase() {
-    const routes = [
-        {title: "خرید", route: "/"},
-        {title: "فروش", route: "Sell"},
-        {title: "تنظیمات", route: "utilities"},
-        {route: `/SellFactor}`},
-        {route: `/BuyFactor`},
-        {route: `itemFactor/Buy?id=${id}`},
-        {route: `itemFactor/sell?id=${id}`},
-    ];
-    localStorage.setItem("headers.pos", JSON.stringify(routes));
+  const routes = [
+    { title: "خرید", route: "/" },
+    { title: "فروش", route: "Sell" },
+    { title: "تنظیمات", route: "utilities" },
+    { route: `/SellFactor}` },
+    { route: `/BuyFactor` },
+    { route: `itemFactor/Buy?id=${id}` },
+    { route: `itemFactor/sell?id=${id}` },
+  ];
+  localStorage.setItem("headers.pos", JSON.stringify(routes));
 }
 
 function App() {
-    passRoutesToBase();
-    return (
-      <div>
-        <Routes>
-            <Route path="" element={<Home />} />
-            <Route path="Buy" element={<Page1 />} />
-            <Route path="Sell" element={<Page2 />} />
-            <Route path="itemFactor/Buy" element={<ItemFactor />} />
-            <Route path="itemFactor/sell" element={<ItemFactorSell />} />
-            <Route path="/SellFactor" element={<ItemChanges/> } />
-            <Route path="/BuyFactor" element={<BuyFactor/>} />
-            <Route path="/hamed" element={<Page2 />} />
-            <Route path="/utilities"element={<Types/>} />        
-            <Route path="/mainSell" element={<MainSell/>}/>
-            <Route path="/Buyfactor" element={<BuyFactor/>}/>
-            <Route path="/Test" element={<MyComponent/>}/>
-            <Route path="*" element={<h1 className="bg-red-500 text-center w-full p-5 text-bold text-white text-4xl">Page not found</h1>} />
-        </Routes>
-      </div>
-    );
+  passRoutesToBase();
+  return (
+    <div>
+      <Routes>
+        <Route path="" element={<Home />} />
+        <Route path="Buy" element={<Page1 />} />
+        <Route path="Sell" element={<Page2 />} />
+        <Route path="itemFactor/Buy" element={<ItemFactor />} />
+        <Route path="itemFactor/sell" element={<ItemFactorSell />} />
+        <Route path="/SellFactor" element={<ItemChanges />} />
+        <Route path="/BuyFactor" element={<BuyFactor />} />
+        <Route path="/hamed" element={<Page2 />} />
+        <Route path="/utilities" element={<Types />} />
+        <Route path="/mainSell" element={<MainSell />} />
+        <Route path="/Buyfactor" element={<BuyFactor />} />
+        <Route path="/Test" element={<MyComponent />} />
+        <Route
+          path="*"
+          element={
+            <h1 className="bg-red-500 text-center w-full p-5 text-bold text-white text-4xl">
+              Page not found
+            </h1>
+          }
+        />
+      </Routes>
+    </div>
+  );
 }
 
 export default App;
-
-

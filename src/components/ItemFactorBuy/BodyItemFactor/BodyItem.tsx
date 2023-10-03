@@ -13,21 +13,21 @@ const BodyItem = ({ arr, setArr, edit }: any) => {
   const handelChange = (
     value: string,
     id: string | undefined,
-    input: string
+    input: string,
   ) => {
     if (input === "fName") {
       let copyarr = arr.map((item: { id: any }) =>
-        item.id == id ? { ...item, fName: value } : item
+        item.id == id ? { ...item, fName: value } : item,
       );
       setArr(copyarr);
     } else if (input === "FNumber") {
       let copyarr = arr.map((item: { id: any }) =>
-        item.id == id ? { ...item, FNumber: value } : item
+        item.id == id ? { ...item, FNumber: value } : item,
       );
       setArr(copyarr);
     } else if (input === "howMany") {
       let copyarr = arr.map((item: { id: any }) =>
-        item.id == id ? { ...item, howMany: value } : item
+        item.id == id ? { ...item, howMany: value } : item,
       );
       setArr(copyarr);
     }

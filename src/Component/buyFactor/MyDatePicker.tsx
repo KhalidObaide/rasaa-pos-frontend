@@ -25,7 +25,16 @@ const months = [
 const weekDays = ["ش", "ی", "د", "س", "چ", "پ", "ج"];
 
 export const MyDatePicker = (props: any) => {
-  const { dateVal, setDateVal, onChange, formData, notValid, setFormData, innerText, width } = props;
+  const {
+    dateVal,
+    setDateVal,
+    onChange,
+    formData,
+    notValid,
+    setFormData,
+    innerText,
+    width,
+  } = props;
   const [showCalendar, setShowCalendar] = useState(false);
 
   return (
@@ -40,7 +49,11 @@ export const MyDatePicker = (props: any) => {
       value={dateVal}
       render={(value: any, openCalendar: any) => (
         <div
-          className={`border ${notValid ? 'border-[#E21D12]' : 'border-dustyGray'} text-sm h-11 ${props.width} bg-transparent flex justify-between items-center px-2 rounded cursor-pointer`}
+          className={`border ${
+            notValid ? "border-[#E21D12]" : "border-dustyGray"
+          } text-sm h-11 ${
+            props.width
+          } bg-transparent flex justify-between items-center px-2 rounded cursor-pointer`}
           onClick={() => {
             setShowCalendar(!showCalendar);
             openCalendar();
@@ -55,8 +68,8 @@ export const MyDatePicker = (props: any) => {
           <span className="ml-2">
             {showCalendar ? (
               <FiChevronUp className="text-center h-6 w-6 text-gray-400" />
-              // <i className={`fa fa-chevron-up text-center text-gray-400`}></i>
             ) : (
+              // <i className={`fa fa-chevron-up text-center text-gray-400`}></i>
               <FiChevronDown className="text-center h-6 w-6 text-gray-400" />
               // <i className={`fa fa-chevron-down text-center text-gray-400`}></i>
             )}

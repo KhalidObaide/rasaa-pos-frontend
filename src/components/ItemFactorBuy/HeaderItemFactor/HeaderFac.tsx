@@ -12,6 +12,7 @@ import {
 import { CgClose } from "react-icons/cg";
 import axios from "axios";
 import { getJWT } from "../../../shared";
+import appSettings from "../../../app.settings.json";
 
 const HeaderFac = ({
   setOpen,
@@ -43,19 +44,16 @@ const HeaderFac = ({
   };
   const [headerData, setHeaderData] = useState([]);
 
-  const jwt = getJWT()
+  const jwt = getJWT();
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(
-          `https://lajward-mis.dev:8005/invoice?id=${id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${jwt}`,
-            },
-          }
-        );
+        const response = await axios.get(`${appSettings.api}invoice?id=${id}`, {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        });
 
         if (response.status === 200) {
           const data = response.data;
@@ -141,7 +139,7 @@ const HeaderFac = ({
           <div className={`${style.row} items-center gap-x-2`}>
             <h3 className={`text-black font-medium`}>شماره فاکتور:</h3>
             <p className={`text-gray_fac`}>
-            {headerData == null ? "" : headerData.invoice_num}
+              {headerData == null ? "" : headerData.invoice_num}
             </p>
           </div>
           <div className={`${style.row} items-center gap-x-2`}>

@@ -7,7 +7,7 @@
   src: url(./assets/font/estadad.ttf);
 }
 body {
-  font-family:Estedad;
+  font-family: Estedad;
 }
 .loader {
   border: 4px solid #f3f3f3;
@@ -19,6 +19,10 @@ body {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

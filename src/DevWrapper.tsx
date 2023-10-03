@@ -5,10 +5,9 @@ import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 
 const DevWrapper = () => (
-    <Router>
-        <App />
-    </Router>
+  <Router>
+    <App />
+  </Router>
 );
 
 ReactDOM.render(<DevWrapper />, document.getElementById("app"));
-

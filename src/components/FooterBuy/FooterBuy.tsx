@@ -25,7 +25,7 @@ const FooterBuy = ({
                 <BsChevronRight />
               </button>
             </li>
-            {pageNumbers.map((pageNumber:any) => (
+            {pageNumbers.map((pageNumber: any) => (
               <li key={pageNumber}>
                 <button
                   className={`w-12 h-10 flex items-center justify-center  border border-gray-300  rounded ${

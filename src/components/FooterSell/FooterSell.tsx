@@ -1,7 +1,12 @@
 import React from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { style } from "../../assets/style/styles";
-const FooterSell = ({  setCurrentPage , totalPages , pageNumbers , currentPage }: any) => {
+const FooterSell = ({
+  setCurrentPage,
+  totalPages,
+  pageNumbers,
+  currentPage,
+}: any) => {
   return (
     <>
       {true && (

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const MyComponent = () => {
   const [items, setItems] = useState([]);
@@ -11,7 +11,7 @@ const MyComponent = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('api-url');
+      const response = await axios.get("api-url");
       setItems(response.data);
     } catch (error) {
       console.error(error);
@@ -23,7 +23,7 @@ const MyComponent = () => {
       const response = await axios.put(`api-url/${itemId}`, updatedItem);
       // Assuming the API returns the updated item, update the local data state
       const updatedItems = items.map((item) =>
-        item.id === itemId ? response.data : item
+        item.id === itemId ? response.data : item,
       );
       setItems(updatedItems);
     } catch (error) {
@@ -59,7 +59,7 @@ const MyComponent = () => {
                 <input
                   type="text"
                   name="name"
-                  value={updatedItem.name || ''}
+                  value={updatedItem.name || ""}
                   onChange={handleInputChange}
                 />
                 <button onClick={() => handleUpdate(item.id)}>Update</button>
