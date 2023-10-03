@@ -41,7 +41,7 @@ const HeaderFactorItemSell = ({
   };
   const [headerData, setHeaderData] = useState([]);
 
-  const jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NjEzNzQxNCwianRpIjoiMjFmZTlmNWMtODI5OS00ODJlLWFiY2ItMThhMzI5MmVmY2VmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NjEzNzQxNCwiZXhwIjoxNjk2MjIzODE0fQ.jZv-DR6GhfMbfr4XvX8HyTObg13c0nb0zZVjf0b9fgU"
+  const jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NjMyMTczMSwianRpIjoiNDRjYjkzMjYtZTNiZi00Mzc5LTg2N2QtMmFlNTQ3Mjg1NDdlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NjMyMTczMSwiZXhwIjoxNjk2NDA4MTMxfQ.AWcg_d8R_rr4qwtgEcNVuEci7R6dpphve0z6HizbRZg"
     useEffect(() => {
     async function fetchData() {
       try {

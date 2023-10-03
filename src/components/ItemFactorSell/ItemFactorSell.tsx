@@ -4,10 +4,10 @@ import HeaderFactorItemSell from "./HeaderItemFac/HeaderFactorItemSell";
 import BodyFactorItemSell from "./BodyItem/BodyFactorItemSell";
 import RemoveAllSell from "./RemoveAll/RemoveAllSell";
 const ItemFactorSell = () => {
-  const [data, setData] = useState(Text);
+  const [data, setData] = useState();
   const [edit, setEdit] = useState(true);
   const [open, setOpen] = useState(false);
-  const [arr, setArr] = useState(Text);
+  const [arr, setArr] = useState();
   const queryParams = new URLSearchParams(window.location.search);
   const id = queryParams.get("id");
   return (

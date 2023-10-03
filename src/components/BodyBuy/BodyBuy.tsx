@@ -28,7 +28,7 @@ export const BodyBuy = ({ pageNext, currentItems , loader }: any) => {
               const deCode = JSON.parse(item.invoice_items)
               return (
                 <Link
-                  to={`/itemFactor/buy?id=${item.id}`}
+                  to={`pos/itemFactor/buy?id=${item.id}`}
                   className={`${style.row} items-center p-0 w-full`}
                 >
                   <div className={`${style.row} items-center p-0 w-full`}>
