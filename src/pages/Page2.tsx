@@ -21,7 +21,7 @@ const Page2 = () => {
     const employeeLastNameMatch = item.invoice_num && item.invoice_num.toString().toLowerCase().includes(search.toLowerCase());
     return employeeNameMatch || employeeLastNameMatch;
   });
-  const jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NjMyMTczMSwianRpIjoiNDRjYjkzMjYtZTNiZi00Mzc5LTg2N2QtMmFlNTQ3Mjg1NDdlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtoYWxpZCIsIm5iZiI6MTY5NjMyMTczMSwiZXhwIjoxNjk2NDA4MTMxfQ.AWcg_d8R_rr4qwtgEcNVuEci7R6dpphve0z6HizbRZg"
+  const jwt = getJWT()
   useEffect(() => {
     async function fetchData() {
       try {
