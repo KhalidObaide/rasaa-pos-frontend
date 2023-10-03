@@ -6,13 +6,13 @@ import { Home } from "./pages/Home";
 import Page1 from "./pages/Page1";
 import Page2 from "./pages/Page2";
 import ItemFactor from "./components/ItemFactorBuy/ItemFactor";
-import ItemFactorSell from "./components/ItemFactorSell/ItemFactorSell";
 import ItemChanges from "./Component/Utilites/Changes";
 import BuyFactor from "./Component/buyFactor/BuyFactor";
 import Types from "./Component/Utilites/Types";
 import MainSell from "./Component/Sell/MainSell";
 import "./pos-tailwind.css";
 import MyComponent from "./Component/text/Test";
+import ItemFactorSell from "./components/ItemFactorSell/ItemFactorSell";
 const queryParams = new URLSearchParams(window.location.search);
 const id = queryParams.get("id");
 function passRoutesToBase() {
