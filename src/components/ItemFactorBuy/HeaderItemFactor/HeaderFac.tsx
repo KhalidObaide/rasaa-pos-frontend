@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { style } from "../../../assets/style/styles";
 import { Link } from "react-router-dom";
 import { BsChevronLeft } from "react-icons/bs";
-import { BiEdit , BiPrinter , BiTrashAlt , BiCheck , BiChevronRight } from "react-icons/bi";
+import {
+  BiEdit,
+  BiPrinter,
+  BiTrashAlt,
+  BiCheck,
+  BiChevronRight,
+} from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
+import axios from "axios";
+import { getJWT } from "../../../shared";
+import appSettings from "../../../app.settings.json";
 
 const HeaderFac = ({
   setOpen,
@@ -14,6 +23,8 @@ const HeaderFac = ({
   data,
   edit,
 }: any) => {
+  const queryParams = new URLSearchParams(window.location.search);
+  const id = queryParams.get("id");
   const removingAll = () => {
     setOpen(true);
   };
@@ -21,7 +32,6 @@ const HeaderFac = ({
     setData(arr);
     setEdit(true);
   };
-  console.log(data)
   const editF = () => {
     setEdit(false);
   };
@@ -32,18 +42,46 @@ const HeaderFac = ({
   const handlePrint = () => {
     window.print();
   };
+  const [headerData, setHeaderData] = useState([]);
+
+  const jwt = getJWT();
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get(`${appSettings.api}invoice?id=${id}`, {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        });
+
+        if (response.status === 200) {
+          const data = response.data;
+          setHeaderData(data[0]);
+        } else {
+          console.log("Received status:", response.status);
+        }
+      } catch (error) {
+        console.error("Error details:", error);
+      }
+    }
+
+    fetchData();
+  }, []);
   return (
     <>
-    <Link to="/" className={`${style.row} items-center `}>
-      <BiChevronRight className="text-xl "/>
-      <p>بازگشت</p>
-      <hr className="w-full mr-3 border border-[#DADADA]" />
-    </Link>
+      <Link to="/" className={`${style.row} items-center `}>
+        <BiChevronRight className="text-xl " />
+        <p>بازگشت</p>
+        <hr className="w-full mr-3 border border-[#DADADA]" />
+      </Link>
       <div className={`${style.col} p-5 `}>
         <div className={`${style.row}`}>
           <div className={`${style.row} justify-between items-center w-full`}>
             <div className={`${style.row} items-center `}>
-              <h1 className={`border-r-2 border-black pr-2 font-bold`}>نمایش فاکتور</h1>
+              <h1 className={`border-r-4 border-black pr-2 font-bold`}>
+                نمایش فاکتور
+              </h1>
             </div>
             <div
               className={`${style.row} items-center gap-x-2 ${
@@ -78,7 +116,7 @@ const HeaderFac = ({
                 onClick={saveEdit}
                 className={`border rounded-md border-[#52C181] py-[11px] px-[12px]`}
               >
-                < BiCheck className="text-green-500 text-2xl" />
+                <BiCheck className="text-green-500 text-2xl" />
               </button>
               <button
                 onClick={rejectEdit}
@@ -94,19 +132,21 @@ const HeaderFac = ({
         >
           <div className={`${style.row} items-center gap-x-2`}>
             <h3 className={`text-black font-medium`}>نام مشتری:</h3>
-            <p className={`text-gray_fac`}>انبار مرکزی</p>
+            <p className={`text-gray_fac`}>
+              {headerData == null ? "" : headerData.contact}
+            </p>
           </div>
           <div className={`${style.row} items-center gap-x-2`}>
             <h3 className={`text-black font-medium`}>شماره فاکتور:</h3>
-            <p className={`text-gray_fac`}>3456</p>
+            <p className={`text-gray_fac`}>
+              {headerData == null ? "" : headerData.invoice_num}
+            </p>
           </div>
           <div className={`${style.row} items-center gap-x-2`}>
             <h3 className={`text-black font-medium`}>تاریخ:</h3>
-            <p className={`text-gray_fac`}>1401/12/12</p>
-          </div>
-          <div className={`${style.row} items-center gap-x-2`}>
-            <h3 className={`text-black font-medium`}>واحد پول:</h3>
-            <p className={`text-gray_fac`}>افغانی</p>
+            <p className={`text-gray_fac`}>
+              {headerData == null ? "" : headerData.date}
+            </p>
           </div>
         </div>
       </div>
