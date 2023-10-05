@@ -45,7 +45,7 @@ const ItemChanges = ({ setShowEdit, clickedItem, setReReand, jwt }: any) => {
     const token = jwt;
     try {
       const response = await axios.delete(
-        `${appSettings.api}utilities?id=${clickedItem.id}`,
+        `https://lajward-mis.dev:8005/utilities?id=${clickedItem.id}`,
         { headers: { Authorization: `Bearer ${token}` } },
       );
       if ((response.data = 200)) {
@@ -87,7 +87,7 @@ const ItemChanges = ({ setShowEdit, clickedItem, setReReand, jwt }: any) => {
       const token = jwt;
       try {
         const response = await axios.put(
-          `${appSettings.api}utilities?id=${clickedItem.id}`,
+          `https://lajward-mis.dev:8005/utilities?id=${clickedItem.id}`,
           newData,
           { headers: { Authorization: `Bearer ${token}` } },
         );

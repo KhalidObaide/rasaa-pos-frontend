@@ -1,7 +1,7 @@
 // this the new sell List
 import React, { useState, useEffect } from "react";
 // import  style  from './List.module.css';
-const ListSell = ({ setTotalAmount }) => {
+const ListSell = ({setPayBalAmount,factorInfo}) => {
   const [tableRows, setTableRows] = useState(["1"]);
   const [counter, setCounter] = useState(tableRows.length);
   const [inputValues, setInputValues] = useState([]);
@@ -11,12 +11,10 @@ const ListSell = ({ setTotalAmount }) => {
   const [singlePrice, setSinglePrice] = useState([]);
   const [practice, setPractice] = useState([]);
   const [checkNewList, setCheckNewList] = useState([]);
-
   useEffect(() => {
     let totalAmount = 0;
     practice.forEach((data) => (totalAmount += data));
-    setTotalAmount(totalAmount);
-    console.log(mount);
+    setPayBalAmount(totalAmount);
   });
   // start maping fro each paer
   function addRow(index) {
@@ -38,6 +36,13 @@ const ListSell = ({ setTotalAmount }) => {
         parseFloat(quantityValues[index]) * parseFloat(priceValues[index]);
       setPractice([...practice, calculate]);
       setCheckNewList([index]);
+      // CRATING A OBJEACT FOR EACH FACTOR ITEM
+      const singleFactorInfo = {
+        title  : inputValues[index],
+        amount : quantityValues[index],
+        price : priceValues[index] 
+      }
+      factorInfo.push(singleFactorInfo)
     }
   }
 
@@ -65,13 +70,13 @@ const ListSell = ({ setTotalAmount }) => {
           </div>
         </div>
         {tableRows.map((row, index) => (
-          <div key={index} className="flex flex-row items-center mb-2">
+          <div key={index} className="flex flex-row items-center mb-2 md:flex-col">
             <div className="flex flex-row justify-center items-center rounded-md w-10 h-10 bg-chart font-normal mx-2">
               {index + 1}
             </div>
             <input
               type="text"
-              className="w-72 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-grayLine"
+              className="w-72 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-grayLine outline-none"
               value={inputValues[index]}
               onChange={(e) => {
                 const updatedInputValues = [...inputValues];
@@ -81,7 +86,7 @@ const ListSell = ({ setTotalAmount }) => {
             />
             <input
               type="text"
-              className={`w-44 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg  bg-grayLine`}
+              className={`w-44 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg  bg-grayLine outline-none`}
               value={quantityValues[index]}
               onChange={(e) => {
                 const updatedQuantityValues = [...quantityValues];
@@ -99,7 +104,7 @@ const ListSell = ({ setTotalAmount }) => {
 
             <input
               type="text"
-              className={`w-44 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-grayLine`}
+              className={`w-44 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-grayLine outline-none`}
               value={mount[index]}
               onChange={(e) => {
                 const ubdataMount = [...mount];
@@ -110,7 +115,7 @@ const ListSell = ({ setTotalAmount }) => {
 
             <input
               type="text"
-              className="w-44 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-grayLine"
+              className="w-44 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-grayLine outline-none"
               value={priceValues[index]}
               onChange={(e) => {
                 const updatedPriceValues = [...priceValues];
@@ -130,7 +135,7 @@ const ListSell = ({ setTotalAmount }) => {
             />
             <div className="">
               <input
-                className="w-44 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-grayLine"
+                className="w-44 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-grayLine outline-none"
                 value={
                   parseFloat(quantityValues[index]) *
                     parseFloat(priceValues[index]) || ""

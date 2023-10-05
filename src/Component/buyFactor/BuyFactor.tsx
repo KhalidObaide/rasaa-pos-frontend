@@ -8,10 +8,7 @@ import List from "./List";
 import { Link } from "react-router-dom";
 import { MyDatePicker } from "./MyDatePicker";
 import Date from "../../components/Date/Date";
-import { getJWT } from "../../shared";
-import appSettings from "../../app.settings.json";
-
-const BuyFactorProps = createContext();
+// import { getJWT } from "../../shared";
 const BuyFactor = () => {
   const [showSaveF, setShowSaveF] = useState(false);
   const [sellerNmae, setSellerName] = useState("");
@@ -23,73 +20,63 @@ const BuyFactor = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [discount, setDiscount] = useState("");
   const [taxs, setTaxs] = useState("");
-  let [total, setTotal] = useState();
+  // arr of the each product factor
+  const [ProductInfo,setProductInfo] = useState([])
+  // geeting hte JWT
+  const jwt = localStorage.getItem('jwt')
 
   // final preactice
   const [totalAmount, setTotalAmount] = useState("");
   const calculat = (totalAmount * discount) / 100;
   const filterPaybelAmount = totalAmount - calculat + taxs;
+
   const EmployeeData = {
     invoice_num: FactorInvoice,
-    contact: "Test_5",
-    date: data,
+    contact: sellerNmae,
+    date: 'data',
     buy: "buy",
     remaining: 0,
     total_amount: totalPrice,
     discount: discount,
-    taxes: 0,
-    payable_amount: 0,
-    invoice_items: [
-      {
-        title: productName,
-        amount: number,
-        price: pricePer,
-      },
-    ],
+    taxes: taxs,
+    payable_amount: totalAmount,
+    invoice_items: ProductInfo
   };
 
   const handelSaveMethod = () => {
-    console.log(calculat);
-
     const HandlPost = async () => {
-      const token = getJWT();
-      const res = await axios({
-        method: "post",
-        url: `${appSettings.api}invoices`,
-        headers: { Authorization: `Bearer ${token}` },
-        data: EmployeeData,
-      });
-      if (res.status === 200) {
-        console.log(res.data);
-
-        alert("Done");
-        console.log("hellow");
-      } else {
-        alert("There was an Error");
-        console.log(res);
+      try {
+        const token = jwt;
+        const res = await axios({
+          method: "post",
+          url: `https://lajward-mis.dev:8005/invoices`,
+          headers: { Authorization: `Bearer ${token}` },
+          data: EmployeeData,
+        });
+  
+        if (res.status === 200) {
+         console.log(res.data);
+         
+        } else {
+          alert("The request was not successful.");
+        }
+      } catch (error) {
+        alert("مشکلی در پوست اطلاعات وجود دراد ");
       }
     };
-    HandlPost();
+    HandlPost()
   };
   const GenerateFactorInvoice = () => {
     const FactorInioce = Math.floor(100000 + Math.random() * 900000);
     setFactorInvoic(FactorInioce);
   };
-  const handelcal = () => {};
 
   return (
-    <BuyFactorProps.Provider
-      value={{
-        number: number,
-        pricePer: pricePer,
-        setTotalAmount: setTotalAmount,
-      }}
-    >
       <div className="flex flex-col justify-start items-center  p-5 mx-5 shadow-md shadow-shadow rounded-lg">
         {/* the header part */}
         <div className=" w-full flex flex-row justify-between items-center ">
           <div className="flex flex-row justify-center items-center">
-            <div className="bg-black w-2 h-10 ml-2 rounded-md "></div>
+            <div className="bg-black w-1 h-10 ml-2 rounded-md "></div>
             <h1 className="font-semibold text-2xl">فاکتور خرید</h1>
           </div>
         </div>
@@ -97,14 +84,14 @@ const BuyFactor = () => {
 
         <div className=" w-full flex flex-row justify-around items-start">
           <div className="flex flex-col justify-center items-center">
-            <h1 className="mt-10 mb-28  ml-10">فکاتور خرید</h1>
+            <h1 className="mt-10 mb-28 ml-10 text-xl">فاکتور خرید</h1>
             <h1 className="mr-10">نام جنس</h1>
           </div>
           <div className="flex flex-col justify-center items-start ">
             <div className="flex flex-row flex-wrap   w-full mb-20 mt-10 ">
               <input
                 type="text"
-                className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-lg "
+                className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-borderColor rounded-md outline-none mx-2 text-lg "
                 placeholder="نام فروشنده"
                 value={sellerNmae}
                 onChange={(e) => setSellerName(e.target.value)}
@@ -112,7 +99,7 @@ const BuyFactor = () => {
               <div className=" flex flex-row justify-center items-center">
                 <input
                   type="text"
-                  className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-lg "
+                  className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-borderColor rounded-md outline-none mx-2 text-lg "
                   placeholder="شماره فاکتور"
                   value={FactorInvoice}
                 />
@@ -125,8 +112,7 @@ const BuyFactor = () => {
               </div>
             </div>
             <List
-              number={number}
-              pricePer={pricePer}
+            ProductInfo={ProductInfo}
               setTotalAmount={setTotalAmount}
             />
           </div>
@@ -149,7 +135,7 @@ const BuyFactor = () => {
                 value={discount}
                 onChange={(e) => setDiscount(e.target.value)}
                 type="text"
-                className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-lg "
+                className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-borderColor rounded-md outline-none mx-2 text-lg "
               />
             </div>
             <div className="flex flex-col justify-start items-start">
@@ -158,7 +144,7 @@ const BuyFactor = () => {
                 value={taxs}
                 onChange={(e) => setTaxs(Number(e.target.value))}
                 type="text"
-                className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-lg "
+                className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-borderColor rounded-md outline-none mx-2 text-lg "
               />
             </div>
             <div className="flex flex-col justify-start items-start">
@@ -168,7 +154,7 @@ const BuyFactor = () => {
               <input
                 type="text"
                 value={filterPaybelAmount}
-                className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-lg  "
+                className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-borderColor rounded-md outline-none mx-2 text-lg  "
               />
             </div>
           </div>
@@ -192,7 +178,6 @@ const BuyFactor = () => {
         </div>
         {showSaveF && <SaveNewFac />}
       </div>
-    </BuyFactorProps.Provider>
   );
 };
 export default BuyFactor;

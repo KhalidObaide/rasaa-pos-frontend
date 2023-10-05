@@ -34,7 +34,7 @@ export default function Date() {
         render={(value: any, openCalendar: any) => (
           <>
             <div
-              className={`${style.row} items-center w-[250px] justify-between border border-gray-300 py-2 px-5 rounded-md `}
+              className={`${style.row} items-center w-[300px] h-12 justify-between border border-gray-300 py-2 px-5 rounded-md `}
               onClick={() => {
                 setTop(!top);
                 openCalendar();

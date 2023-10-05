@@ -18,8 +18,7 @@ const Types = () => {
   const [itemsPerPage, setItemsPerPage] = useState(7);
   const [items, setItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-
-  const jwt = getJWT();
+  const jwt  = localStorage.getItem("jwt");
 
   useEffect(() => {
     getData();
@@ -36,7 +35,7 @@ const Types = () => {
   async function getData() {
     const token = jwt;
     try {
-      const response = await axios.get(`${appSettings.api}utilities`, {
+      const response = await axios.get(`https://lajward-mis.dev:8005/utilities`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if ((response.status = 200)) {
@@ -47,7 +46,7 @@ const Types = () => {
       }
     } catch (error) {
       alert("مشکلی در دریاف اطلاعات وجود دراد ");
-      style(false);
+      // style(false);
     }
   }
   if (reReand) {
@@ -147,7 +146,7 @@ const Types = () => {
       </div>
       {/* The loader  */}
       {style && (
-        <div className=" w-full h-full fixed  ">
+        <div className=" w-full h-full  ">
           <TbLoader className=" animate-spin w-10 h-10 text-btn duration-1000 fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2  z-10 ئ" />
         </div>
       )}

@@ -21,7 +21,7 @@ const SaveNewProduct = ({
   const [capital, setCapital] = useState(false);
   const [style, setStyle] = useState(false);
   const [activeInput, setActiveInput] = useState(true);
-
+  const [check,setCheck] = useState(false)
   const EmployeeData = {
     title: title,
     key: key,
@@ -34,7 +34,7 @@ const SaveNewProduct = ({
       const token = jwt;
       const res = await axios({
         method: "post",
-        url: `${appSettings.api}/utilities`,
+        url: `https://lajward-mis.dev:8005/utilities`,
         headers: { Authorization: `Bearer ${token}` },
         data: EmployeeData,
       });
@@ -55,7 +55,11 @@ const SaveNewProduct = ({
 
   const handelsaveNewItem = () => {
     setReReand(false);
-    HandlPost();
+    if (key === ''|| title ==='' || mount=== ''|| !check) {
+      return null
+    }else{
+      HandlPost();
+    }
   };
 
   const handleInputChange = (event: any) => {
@@ -74,6 +78,20 @@ const SaveNewProduct = ({
       setActiveInput(true);
     }
   };
+  // cahgming the 
+  const handelCheckInputNumber = (event: any) => {
+    console.log('start');
+    
+    let newValue = event.target.value;
+    
+    // Check if the new value contains any non-numeric characters
+    if (/\D/.test(newValue)) {
+      setCheck(true)
+    } else {
+      console.log("notnumber");
+      
+    }
+  }
   return (
     <>
       <div
@@ -122,7 +140,10 @@ const SaveNewProduct = ({
               </div>
               <input
                 value={mount}
-                onChange={(e) => setMount(e.target.value)}
+                onChange={(e) => {
+                  setMount(e.target.value);
+                  handelCheckInputNumber(e);
+                }}
                 type="text"
                 placeholder="مقدار"
                 className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-borderColor rounded-md outline-none mx-2 text-lg"
@@ -149,7 +170,7 @@ const SaveNewProduct = ({
         <div className="w-full px-2 flex flex-row-reverse justify-start items-start mt-10">
           {style ? (
             <button className="bg-btn mr-5 py-3 px-7 rounded-md">
-              <TbLoader className="animate-spin w-5 h-5 text-white  " />
+              <TbLoader className="animate-spin w-5 h-5 text-white" />
             </button>
           ) : (
             <button

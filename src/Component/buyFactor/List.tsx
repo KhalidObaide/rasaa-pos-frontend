@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import style from "./List.module.css";
-const List = ({ number, pricePer, setTotalAmount }: any) => {
+// import style from "./List.module.css";
+const List = ({ setTotalAmount,ProductInfo }: any) => {
   const [tableRows, setTableRows] = useState(["1"]);
   const [counter, setCounter] = useState(tableRows.length);
   const [inputValues, setInputValues] = useState([]);
@@ -34,6 +34,14 @@ const List = ({ number, pricePer, setTotalAmount }: any) => {
         parseFloat(quantityValues[index]) * parseFloat(priceValues[index]);
       setPractice([...practice, calculate]);
       setCheckNewList([index]);
+
+      // craeting the each indicitual factor itm
+      const singleFactorInfo = {
+        title  : inputValues[index],
+        amount : quantityValues[index],
+        price : priceValues[index] 
+      }
+      ProductInfo.push(singleFactorInfo)
     }
   }
 
@@ -78,7 +86,7 @@ const List = ({ number, pricePer, setTotalAmount }: any) => {
             </div>
             <input
               type="text"
-              className="w-72 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-grayLine"
+              className="w-72 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-grayLine outline-none"
               value={inputValues[index]}
               onChange={(e) => {
                 const updatedInputValues = [...inputValues];
@@ -88,7 +96,7 @@ const List = ({ number, pricePer, setTotalAmount }: any) => {
             />
             <input
               type="text"
-              className={`w-60 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg  bg-grayLine`}
+              className={`w-60 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg  bg-grayLine outline-none`}
               value={quantityValues[index]}
               onChange={(e) => {
                 const updatedQuantityValues = [...quantityValues];
@@ -105,7 +113,7 @@ const List = ({ number, pricePer, setTotalAmount }: any) => {
             />
             <input
               type="text"
-              className="w-60 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-grayLine"
+              className="w-60 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-grayLine outline-none"
               value={priceValues[index]}
               onChange={(e) => {
                 const updatedPriceValues = [...priceValues];
@@ -125,7 +133,7 @@ const List = ({ number, pricePer, setTotalAmount }: any) => {
             />
             <div className="">
               <input
-                className="w-60 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-grayLine"
+                className="w-60 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-grayLine outline-none"
                 value={
                   parseFloat(quantityValues[index]) *
                     parseFloat(priceValues[index]) || ""

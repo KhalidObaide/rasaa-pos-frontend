@@ -13,6 +13,7 @@ import MainSell from "./Component/Sell/MainSell";
 import "./pos-tailwind.css";
 import MyComponent from "./Component/text/Test";
 import ItemFactorSell from "./components/ItemFactorSell/ItemFactorSell";
+import Sell from "./Component/Sell/MainSell";
 const queryParams = new URLSearchParams(window.location.search);
 const id = queryParams.get("id");
 function passRoutesToBase() {
@@ -38,12 +39,13 @@ function App() {
         <Route path="Sell" element={<Page2 />} />
         <Route path="itemFactor/Buy" element={<ItemFactor />} />
         <Route path="itemFactor/sell" element={<ItemFactorSell />} />
-        <Route path="/SellFactor" element={<ItemChanges />} />
+        {/* <Route path="/SellFactor" element={<ItemChanges />} /> */}
         <Route path="/BuyFactor" element={<BuyFactor />} />
         <Route path="/hamed" element={<Page2 />} />
         <Route path="/utilities" element={<Types />} />
         <Route path="/mainSell" element={<MainSell />} />
         <Route path="/Buyfactor" element={<BuyFactor />} />
+        <Route path="/SellFactor" element={<Sell />} />
         <Route path="/Test" element={<MyComponent />} />
         <Route
           path="*"
