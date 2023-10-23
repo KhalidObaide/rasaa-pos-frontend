@@ -41,6 +41,8 @@
   },
   "dependencies": {
     "json-loader": "^0.5.7",
+    "moment": "^2.29.4",
+    "moment-jalaali": "^0.10.0",
     "mydatepicker": "^2.6.11",
     "persian-datepicker": "^1.2.0",
     "postcss-cli": "^10.1.0",

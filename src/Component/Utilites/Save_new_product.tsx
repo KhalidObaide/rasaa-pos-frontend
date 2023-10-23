@@ -3,7 +3,7 @@ import { CiWarning } from "react-icons/ci";
 import { TbLoader } from "react-icons/tb";
 import axios from "axios";
 import appSettings from "../../app.settings.json";
-
+import {GlobalState} from '../../context.js'
 const SaveNewProduct = ({
   setDisplayState,
   setReReand,
@@ -22,6 +22,11 @@ const SaveNewProduct = ({
   const [style, setStyle] = useState(false);
   const [activeInput, setActiveInput] = useState(true);
   const [check,setCheck] = useState(false)
+  // seeting the tax presentge from utilites
+   const setTaxtPresentage =  GlobalState()
+
+
+
   const EmployeeData = {
     title: title,
     key: key,
@@ -43,6 +48,11 @@ const SaveNewProduct = ({
         setStyle(false);
         setReReand(true);
         setDisplayState(false);
+// SEETING TH TAX PRESENTAGE TO GLOBAL CONTEXT
+      setTaxtPresentage(EmployeeData.value)
+
+
+
       } else {
         alert("The request was not successful.");
       }

@@ -1,13 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import { style } from "../../assets/style/styles";
 import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 import { IoCalendarOutline } from "react-icons/io5";
-export default function Date() {
+export default function Date({setCurrentDate}:any) {
   const [top, setTop] = useState(false);
   const [getValue, setGetValue] = useState("");
+  const [today, setToday] = useState('');
+  
+  
+  const Convertro = (date:any) => {
+    let today = date.toLocaleDateString('fa-IR');
+    setCurrentDate(today)
+    
+  }
+  useEffect(() => {
+    if (getValue) {
+      Convertro(getValue);
+    }
+  }, [getValue]);
 
   const months = [
     "حمل",
@@ -24,17 +37,18 @@ export default function Date() {
     "حوت",
   ];
   const weekDays = ["ش", "ی", "د", "س", "چ", "پ", "ج"];
+
   return (
     <>
       <DatePicker
-        onChange={(date: any) => {
+        onChange={(date) => {
           setGetValue(date.toDate());
         }}
         months={months}
-        render={(value: any, openCalendar: any) => (
+        render={(value, openCalendar) => (
           <>
             <div
-              className={`${style.row} items-center w-[300px] h-12 justify-between border border-gray-300 py-2 px-5 rounded-md `}
+              className={`${style.row} items-center w-[330px] h-12 justify-between border border-gray-300 py-2 px-5 rounded-md `}
               onClick={() => {
                 setTop(!top);
                 openCalendar();

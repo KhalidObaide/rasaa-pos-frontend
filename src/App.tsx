@@ -11,7 +11,7 @@ import BuyFactor from "./Component/buyFactor/BuyFactor";
 import Types from "./Component/Utilites/Types";
 import MainSell from "./Component/Sell/MainSell";
 import "./pos-tailwind.css";
-import MyComponent from "./Component/text/Test";
+import MyComponent from "./Component/test/Test";
 import ItemFactorSell from "./components/ItemFactorSell/ItemFactorSell";
 import Sell from "./Component/Sell/MainSell";
 const queryParams = new URLSearchParams(window.location.search);

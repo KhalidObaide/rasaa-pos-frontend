@@ -1,62 +1,63 @@
 import React from "react";
-const SaveNewFac = () => {
+const SaveTheFator = ({setShowSaveM,setEmptyAll,EmployeeData}:any) => {
+  // final save methood
+    const handelFinalSave = ()=>{
+      setEmptyAll(true)
+      localStorage.setItem('EmployeeData', JSON.stringify(EmployeeData));
+      const storedData = localStorage.getItem('EmployeeData');
+      const parsedData = JSON.parse(storedData); 
+    } 
   return (
-    <div className=" w-full h-full absolute top-0 left-0 z-index-10  bg-shadow">
-      <div className=" w-637 p-5 bg-white absolute z-index-4 top-1/4 right-31%   flex flex-col justify-start items-center rounded-md">
+    <>
+      <div
+        // onClick={() => setDisplayState(false)}
+        className=" w-full h-full fixed top-0 left-0  bg-shadow"
+      ></div>
+      <div className=" p-5 bg-white  z-index-10  fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 rounded-md">
         {/* title */}
-        <div className="flex flex-row-reverse justify-between item-center  w-full mb-14 ">
-          <button className="mb-1 text-[30px] text-5xl  ml-6 text-gray_fac">
+        <div className="w-full flex flex-row-reverse justify-between item-center">
+          <button
+            onClick={() => setShowSaveM(false)}
+            className="mb-1 text-3xl ml-2 text-gray_fac"
+          >
             &times;
           </button>
-          <div className=" flex flex-row justify-center items-center mr-8">
-            <div className="w-1.5 mt-2 h-10 rounded-md bg-black ml-2 "></div>
-            <h1 className="mb-1 font-Estedad font-bold text-black  text-btnS ">
-              مورد جدید
-            </h1>
-            <div className="ml-2 w-1 h-[70%] bg-black rounded-[10px]"></div>
+          <div className=" flex flex-row justify-center items-center mr-2">
+            <div className="w-1  h-6 rounded-md bg-black ml-2 "></div>
+            <h1 className="mb-1 font-Estedad text-black text-xl ">مبلغ  پرداخت</h1>
           </div>
         </div>
 
         {/* the account part */}
-        <div className=" w-full flex flex-col justify-center items-center ">
-          <div className="flex flex-row-reverse  justify-around items-start mb-2">
-            <input
-              type="text"
-              placeholder="مقدار"
-              className="w-282 h-16 py-4 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-2xl "
-            />
-            <div>
-              <input
-                placeholder="کلید"
-                className="w-282 h-16 py-4 px-2 pr-5 text-right border-solid border border-gray_line rounded-md outline-none mx-2 text-2xl "
-              />
-            </div>
+        <div className="flex flex-row justify-around items-center ">
+          <div className="flex flex-col justify-start items-start mt-2 ">
+            <h1 className="mr-2 mb-2">نام مشتری</h1>
+            <input className="w-80 h-10  py-2 px-2 pr-5 text-right border-solid border border-borderColor rounded-md outline-none mx-2 text-lg resize-none" type="text" />
           </div>
-          <div className="flex flex-row justify-end items-start w-full ml-20">
-            <div className="flex flex-row justify-center items-center">
-              <h1 className="text-lg">
-                <span>100%</span> پرداخت شد{" "}
-              </h1>
-              <div className="w-7 h-7 border-2 border-btn rounded-md mr-4 "></div>
-            </div>
+          <div className="flex flex-col justify-start items-start mt-2 ">
+            <h1 className="mr-2 mb-2">مقدار قابل پرداخت </h1>
+            <input className="w-80 h-10  py-2 px-2 pr-5 text-right border-solid border border-borderColor rounded-md outline-none mx-2 text-lg resize-none" type="text" />
           </div>
-          {/* {
-                    dispaly2 &&
-                   <h1 className='text-error'>All values ​​are required to register the invoice</h1>
-                 } */}
+        </div>
+        {/* the thires part presentage */}
+        <div className=" flex flex-row justify-end mt-4 items-start ">
+          <h1>100% پرداخت</h1>
+          <div className="w-6 h-6 rounded-md border-[3px] border-solid border-btn  mx-2 "></div>
         </div>
         {/* main subment buttons */}
-        <div className="w-full px-2 flex flex-row-reverse justify-start items-start mt-10">
-          <button className="  bg-btn text-white text-lg py-3 px-5  pb-5 font-medium rounded-md ml-6 mr-5  ">
-            {" "}
-            ثبت کردن
-          </button>
-          <button className=" text-black  bg-gray_button w-52  rounded-md text-2xl py-4 px-5 te">
+        <div className="w-full px-2 flex flex-row-reverse justify-start items-start mt-5">
+            <button onClick={()=>handelFinalSave()} className="bg-btn text-white text-lg py-2 px-4 mb-2 font-medium rounded-md  mr-5">
+              ثبت کردن
+            </button>
+         
+          <button
+            className="bg-btnGray text-gray_fac text-lg py-2 px-4 mb-2 font-medium rounded-md "
+          >
             لغو
           </button>
         </div>
       </div>
-    </div>
+    </>
   );
 };
-export default SaveNewFac;
+export default SaveTheFator;

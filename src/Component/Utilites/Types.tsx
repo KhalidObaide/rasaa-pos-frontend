@@ -6,9 +6,6 @@ import axios from "axios";
 import Item_changes from "./Changes";
 import SaveNewProduct from "./Save_new_product";
 import { getJWT } from "../../shared";
-import appSettings from "../../app.settings.json";
-// import Style from './Types.module.css'
-
 const Types = () => {
   const [dispaly, setDisplay] = useState(false);
   const [display2, setdisplay2] = useState(false);
@@ -19,7 +16,7 @@ const Types = () => {
   const [items, setItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const jwt  = localStorage.getItem("jwt");
-
+//  Taking the data from use Contex
   useEffect(() => {
     getData();
   }, []);
@@ -107,8 +104,8 @@ const Types = () => {
       <div className="w-full">
         <table className="w-full">
           <thead>
-            <tr className=" bg-chart ">
-              <td className="w-14  text-lg text-center py-3 ">No</td>
+            <tr className=" bg-chart rounded-md">
+              <td className="w-14  text-lg text-center py-3 px-3 ">No</td>
               <td className="w-324 text-lg text-center  ">عنوان</td>
               <td className="w-324 text-lg text-center  ">کلید</td>
               <td className="w-324 text-lg text-center  ">مقدار</td>
@@ -121,7 +118,7 @@ const Types = () => {
               : currentItems.map((data: any, index: any) => (
                   <tr
                     onClick={() => listClicked(data)}
-                    className={`cursor-pointer ${
+                    className={`cursor-pointer  px-3 ${
                       index % 2 != 0 ? "bg-grayLine" : "bg-white "
                     }`}
                   >
@@ -135,6 +132,12 @@ const Types = () => {
                 ))}
           </tbody>
         </table>
+          {/* The loader  */}
+          {style && (
+        <div className="flex flex-row justify-center items-center mt-2 ">
+          <TbLoader className=" animate-spin w-10 h-10 text-btn duration-1000 " />
+        </div>
+      )}
         {display2 && (
           <Item_changes
             setReReand={setReReand}
@@ -144,13 +147,8 @@ const Types = () => {
           />
         )}
       </div>
-      {/* The loader  */}
-      {style && (
-        <div className=" w-full h-full  ">
-          <TbLoader className=" animate-spin w-10 h-10 text-btn duration-1000 fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2  z-10 ئ" />
-        </div>
-      )}
-      {/* the delet alart */}
+      
+      {/* the pagenation alart */}
       <div className="p-4 text-center justify-self-end">
         <ul className="flex justify-center space-x-1">
           <li>

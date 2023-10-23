@@ -11,6 +11,7 @@ import Date from "../components/Date/Date";
 import { CiSearch } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import { TbLoader } from "react-icons/tb";
+const jwt  = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5NjgzNjUxMSwianRpIjoiYTI4NmRhODMtNmU1Mi00NmRmLTgxNTctOTRkZGU2ZGMxN2ExIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImVlYWEzYmU2LTE1MDktNDViMi1iN2I3LWQzZGMxODY3YzA1ZiIsIm5iZiI6MTY5NjgzNjUxMSwiZXhwIjoxNjk2OTIyOTExfQ.g9c1KpmYDjaEpsu8l8oh9Byrc-eKUg0XZonrCunsSSo"
 export const Home = () => {
   const [pageNext, setPageNext] = useState(false);
   const [itemsPerPage, setItemsPerPage] = useState(12);
@@ -27,7 +28,7 @@ export const Home = () => {
       item.invoice_num.toString().toLowerCase().includes(search.toLowerCase());
     return employeeNameMatch || employeeLastNameMatch;
   });
-  const jwt = getJWT();
+ 
 
   useEffect(() => {
     async function fetchData() {
