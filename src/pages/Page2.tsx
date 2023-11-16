@@ -26,12 +26,12 @@ const Page2 = () => {
       item.invoice_num.toString().toLowerCase().includes(search.toLowerCase());
     return employeeNameMatch || employeeLastNameMatch;
   });
-  const jwt = getJWT();
+  const jwt = localStorage.getItem('jwt')
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(`${appSettings.api}invoices`, {
+        const response = await axios.get(`https://lajward-mis.dev:8005/invoices`, {
           headers: {
             Authorization: `Bearer ${jwt}`,
           },

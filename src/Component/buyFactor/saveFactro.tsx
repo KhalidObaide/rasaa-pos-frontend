@@ -1,12 +1,9 @@
-import React from "react";
-const SaveTheFator = ({setShowSaveM,setEmptyAll,EmployeeData}:any) => {
-  // final save methood
-    const handelFinalSave = ()=>{
-      setEmptyAll(true)
-      localStorage.setItem('EmployeeData', JSON.stringify(EmployeeData));
-      const storedData = localStorage.getItem('EmployeeData');
-      const parsedData = JSON.parse(storedData); 
-    } 
+import React, { useEffect } from "react";
+const SaveTheFator = ({emptyAll, setShowSaveM}: any) => {
+  const savingFunctionEmplement = () => {   
+    setShowSaveM(false)
+    emptyAll()
+  }
   return (
     <>
       <div
@@ -46,11 +43,12 @@ const SaveTheFator = ({setShowSaveM,setEmptyAll,EmployeeData}:any) => {
         </div>
         {/* main subment buttons */}
         <div className="w-full px-2 flex flex-row-reverse justify-start items-start mt-5">
-            <button onClick={()=>handelFinalSave()} className="bg-btn text-white text-lg py-2 px-4 mb-2 font-medium rounded-md  mr-5">
+            <button onClick={()=>savingFunctionEmplement()} className="bg-btn text-white text-lg py-2 px-4 mb-2 font-medium rounded-md  mr-5">
               ثبت کردن
             </button>
          
           <button
+          onClick={()=>setShowSaveM(false)}
             className="bg-btnGray text-gray_fac text-lg py-2 px-4 mb-2 font-medium rounded-md "
           >
             لغو

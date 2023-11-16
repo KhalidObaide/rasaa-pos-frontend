@@ -26,9 +26,9 @@ const ItemChanges = ({ setShowEdit, clickedItem, setReReand, jwt }: any) => {
   }, []);
 
   const newData = {
-    key: UbdateKey,
-    title: UbdateTitle,
-    value: UbdateMount,
+    key: key,
+    title: title,
+    value: mount,
   };
 
   const handelDelet = () => {
@@ -70,9 +70,6 @@ const ItemChanges = ({ setShowEdit, clickedItem, setReReand, jwt }: any) => {
     setDisplay2(false);
     setDisplay(true);
     if (!UbdateKey) {
-      // setUbdateKey('clickedItem')
-      //           console.log( 'this is the key',clickedItem.key);
-      //           console.log(UbdateKey);
     }
   };
   // cansel the edit
@@ -173,7 +170,7 @@ const ItemChanges = ({ setShowEdit, clickedItem, setReReand, jwt }: any) => {
                 // placeholder={clickedItem.value}
                 value={mount}
                 onChange={(e) => {
-                  setMount(e.target.value), setUbdateMount(e.target.value);
+                  setMount(e.target.value);
                 }}
                 className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-graybutton rounded-md outline-none mx-2 text-lg "
               />
@@ -184,7 +181,7 @@ const ItemChanges = ({ setShowEdit, clickedItem, setReReand, jwt }: any) => {
                 // placeholder={key}
                 value={key}
                 onChange={(e) => {
-                  setKey(e.target.value), setUbdateKey(e.target.value);
+                  setKey(e.target.value);
                 }}
                 className="w-80 h-12  py-2 px-2 pr-5 text-right border-solid border border-graybutton rounded-md outline-none mx-2 text-lg "
               />

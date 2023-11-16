@@ -7,15 +7,11 @@ import SaveNewFac from "./saveFactro";
 import List from "./List";
 import { Link } from "react-router-dom";
 import Date from "../../components/Date/Date";
+import SaveTheFator from "./saveFactro";
 const BuyFactor = () => {
-  const [showSaveF, setShowSaveF] = useState(false);
   const [sellerNmae, setSellerName] = useState("");
   const [FactorInvoice, setFactorInvoic] = useState();
   const [currentDate, setCurrentDate] = useState();
-  const [productName, setProductName] = useState("");
-  const [number, setNumber] = useState("");
-  const [pricePer, setPricePer] = useState("");
-  const [totalPrice, setTotalPrice] = useState(0);
   const [discount, setDiscount] = useState("");
   const [taxs, setTaxs] = useState("");
   const [ProductInfo,setProductInfo] = useState([])
@@ -23,11 +19,9 @@ const BuyFactor = () => {
   // style
   const [showSaveM,setShowSaveM] = useState(false)
   const [emptyAllParent,setEmptyAllParent] = useState()
-  const [saveToLocalStorege,setSaveToLocalStorege] = useState()
   // the select input style by use ref
   const input1Ref = useRef(null)
   const input2Ref = useRef(null)
-  const input3Ref = useRef(null)
   const input5Ref = useRef(null)
   const input6Ref = useRef(null)
   const input7Ref = useRef(null)
@@ -42,26 +36,19 @@ const handleKeyPress = (event:any, ref:any) => {
     }
   }
 };
-
-
-
 useEffect(()=>{
   if (emptyAllParent) {
     emptyAllParentFunction()
   }
 
 },[emptyAllParent])
-
-  // Emtying the first page input
-  // when save list the input sheld be null funcito
   const emptyAllParentFunction = ()=>{
     setSellerName('')
     setFactorInvoic('')
     setDiscount('')
     setTaxs('')
+    setProductInfo([])
   }
-
-
   // genetating the funcor invoice Num
   const [totalAmount, setTotalAmount] = useState("");
   const calculat = (totalAmount * discount) / 100;
@@ -80,38 +67,34 @@ useEffect(()=>{
     invoice_items: ProductInfo
 }
   // save button function 
-  const handelSaveMethod = () => {
+  const handelSaveMethod = async () => {
+    console.log(EmployeeData);
+    
+    console.log(EmployeeData);
+    
     setShowSaveM(true)
-
-    
-    
-    // const HandlPost = async () => {
-    //   try {
-    //     const token = jwt;
-    //     const res = await axios({
-    //       method: "post",
-    //       url: `https://lajward-mis.dev:8005/invoices`,
-    //       headers: { Authorization: `Bearer ${token}` },
-    //       data: EmployeeData,
-    //     });
-  
-    //     if (res.status === 200) {
-    //      console.log(res.data);
-         
-    //     } else {
-    //       alert("The request was not successful.");
-    //     }
-    //   } catch (error) {
-    //     alert("مشکلی در پوست اطلاعات وجود دراد ");
-    //   }
-    // };
-    // HandlPost()
-  };
+        try {
+          const token = jwt;
+          const res = await axios({
+            method: "post",
+            url: `https://lajward-mis.dev:8005/invoices`,
+            headers: { Authorization: `Bearer ${token}` },
+            data: EmployeeData,
+          });
+          
+          if (res.status === 200) {
+            console.log(res.data);
+            
+        } else {
+          alert("The request was not successful.");
+        }
+      } catch (error) {
+      }
+  }
   const GenerateFactorInvoice = () => {
     const FactorInioce = Math.floor(100000 + Math.random() * 900000);
     setFactorInvoic(FactorInioce);
   };
-
   return (
       <div className="flex flex-col justify-start items-center w-full p-5  shadow-md shadow-shadow rounded-lg">
         {/* the header part */}
@@ -156,10 +139,10 @@ useEffect(()=>{
             <List
             ProductInfo={ProductInfo}
               setTotalAmount={setTotalAmount}
+              // EmployeeData = {EmployeeData}
+              setEmptyAllParent= {setEmptyAllParent}
               showSaveM= {showSaveM}
               setShowSaveM= {setShowSaveM}
-              setEmptyAllParent= {setEmptyAllParent}
-              EmployeeData = {EmployeeData}
             />
           </div>
         </div>
@@ -227,12 +210,8 @@ useEffect(()=>{
             ثبت کردن
           </button>
         </div>
-        {showSaveF &&
-         <SaveNewFac 
-         showSaveM= {showSaveM}
-          setShowSaveM = {setShowSaveM}
-           />}
-      </div>
+      
+    </div>
   );
 };
 export default BuyFactor;

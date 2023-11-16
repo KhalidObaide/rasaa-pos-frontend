@@ -1,5 +1,5 @@
-
-import React, { useState, useEffect,useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { GlobalState } from '../../context.js'
 import SaveTheFator from './saveFactro'
 const List = ({
    setTotalAmount,
@@ -7,7 +7,7 @@ const List = ({
    setEmptyAllParent,
    setShowSaveM,
    showSaveM,
-   EmployeeData
+  //  EmployeeData
 }:any) => {
   const [tableRows, setTableRows] = useState(["1"]);
   const [counter, setCounter] = useState(tableRows.length);
@@ -17,26 +17,21 @@ const List = ({
   const [singlePrice, setSinglePrice] = useState([]);
   const [practice, setPractice] = useState([]);
   const [checkNewList, setCheckNewList] = useState([]);
-  const [emtyAll,setEmptyAll] = useState(false)
+  // check if clear the list or not
+  const [checkEmptyList,setCheckEmptyList] = useState(false)
   // the style use ref
   const input1Ref = useRef(null);
   const input2Ref = useRef(null);
   const input3Ref = useRef(null);
   const input4Ref = useRef(null);
+  //  taking the data from global contxt
+  const {invoiceEmpty} = GlobalState()
   
-  // style states
-  useEffect(() => {
-   
-    if (emtyAll) {
-      emptyAll();
+  const emptyAll = () => {   
+    if (tableRows.length > 1) {
+      setTableRows(["1"]);
     }
-  }, [emtyAll]);
-  useEffect(()=>{
     
-  },[])
-  // the delet or have list Emty Funtion
-  // Emtying the secod part of input
-  const emptyAll = () => {
     setEmptyAllParent(true)
     setShowSaveM(false)
     setTotalAmount(0);
@@ -46,16 +41,13 @@ const List = ({
     setSinglePrice(new Array(tableRows.length).fill(""));    
     setCheckNewList([])  
     console.log(checkNewList);
-    setEmptyAll(false);
-    if (tableRows.length > 1) {
-      setTableRows(["1"]);
-    }
+    // setEmptyAll(false);
   };
- 
-
 // the Generate new row function
   function addRow(index:any) {
     if (!checkNewList.includes(index) &&inputValues[index] && quantityValues[index] && priceValues[index]  ) {      
+      
+      console.log('checl list',checkNewList);
       setCounter(counter + 1);
       checkNewList.push(index)
       setTableRows([...tableRows, counter + 1]);
@@ -96,11 +88,7 @@ const List = ({
         ref.current.focus();
       }
     }
-  };
-
-
-  // Rest of the JSX...
-
+  };  
   return (
     <>
       <div className="flex flex-col ml-16">
@@ -180,6 +168,9 @@ const List = ({
                   setPractice(updatedPractice);
               }}
               onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  addRow(index);
+                }
                 handleKeyPress(e, input4Ref)
                 const keyCode = e.which || e.keyCode;
                 const keyValue = String.fromCharCode(keyCode);
@@ -190,7 +181,6 @@ const List = ({
             />
             <div className="">
               <input
-               ref={input4Ref}
                 className="w-60 h-12 py-2 px-2 pr-5 text-right rounded-md mx-2 text-lg bg-grayLine outline-none"
                 type="text"
                 value={
@@ -198,10 +188,7 @@ const List = ({
                     parseFloat(priceValues[index]) || ""
                 }
                 onKeyPress={(e) => {
-                  if (e.key === "Enter") {
-                    addRow(index);
-                    handleKeyPress(e, input1Ref[index])
-                  }
+               
                   const keyCode = e.which || e.keyCode;
                   const keyValue = String.fromCharCode(keyCode);
                   if (!/^\d+$/.test(keyValue)) {
@@ -218,10 +205,8 @@ const List = ({
         showSaveM 
         &&
         <SaveTheFator
-         showSaveM={showSaveM}
-         setShowSaveM= {setShowSaveM}
-         setEmptyAll = {setEmptyAll}
-         EmployeeData= {EmployeeData}
+          setShowSaveM={setShowSaveM}
+          emptyAll= {emptyAll}
          />
 
       }

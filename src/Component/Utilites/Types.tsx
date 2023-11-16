@@ -6,6 +6,7 @@ import axios from "axios";
 import Item_changes from "./Changes";
 import SaveNewProduct from "./Save_new_product";
 import { getJWT } from "../../shared";
+import {GlobalState} from '../../context.js'
 const Types = () => {
   const [dispaly, setDisplay] = useState(false);
   const [display2, setdisplay2] = useState(false);
@@ -16,7 +17,13 @@ const Types = () => {
   const [items, setItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const jwt  = localStorage.getItem("jwt");
-//  Taking the data from use Contex
+//  Taking the data from use Contextext
+  const {taxPresentege} = GlobalState() 
+  // in here we have acces to the glovbal contace
+console.log(taxPresentege,'this is the result');
+
+  
+
   useEffect(() => {
     getData();
   }, []);

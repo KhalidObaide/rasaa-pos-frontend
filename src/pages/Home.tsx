@@ -33,7 +33,7 @@ export const Home = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(`${appSettings.api}invoices`, {
+        const response = await axios.get(`https://lajward-mis.dev:8005/invoices`, {
           headers: {
             Authorization: `Bearer ${jwt}`,
           },

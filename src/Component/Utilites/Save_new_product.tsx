@@ -2,13 +2,10 @@ import React, { Component, useEffect, useState } from "react";
 import { CiWarning } from "react-icons/ci";
 import { TbLoader } from "react-icons/tb";
 import axios from "axios";
-import appSettings from "../../app.settings.json";
 import {GlobalState} from '../../context.js'
 const SaveNewProduct = ({
   setDisplayState,
   setReReand,
-  setLoader,
-  clickedData,
   jwt,
 }: any) => {
   const [alltodo, setAllTodo] = useState([]);
@@ -23,7 +20,7 @@ const SaveNewProduct = ({
   const [activeInput, setActiveInput] = useState(true);
   const [check,setCheck] = useState(false)
   // seeting the tax presentge from utilites
-   const setTaxtPresentage =  GlobalState()
+   const {setTaxtPresentage} =  GlobalState()
 
 
 
@@ -34,50 +31,43 @@ const SaveNewProduct = ({
   };
 
   const HandlPost = async () => {
-    setStyle(true);
-    try {
-      const token = jwt;
-      const res = await axios({
-        method: "post",
-        url: `https://lajward-mis.dev:8005/utilities`,
-        headers: { Authorization: `Bearer ${token}` },
-        data: EmployeeData,
-      });
-
-      if (res.status === 200) {
-        setStyle(false);
+    // Conditionla rendering if all inputs are full
+    if(key&&mount&&title&&check){
+      setStyle(true);
+      try {
+        const token = jwt;
+        const res = await axios({
+          method: "post",
+          url: `https://lajward-mis.dev:8005/utilities`,
+          headers: { Authorization: `Bearer ${token}` },
+          data: EmployeeData,
+        });
+        
+        if (res.status === 200) {
+          setTaxtPresentage(mount)
+          setStyle(false);
         setReReand(true);
         setDisplayState(false);
-// SEETING TH TAX PRESENTAGE TO GLOBAL CONTEXT
-      setTaxtPresentage(EmployeeData.value)
-
-
-
       } else {
         alert("The request was not successful.");
       }
     } catch (error) {
       setStyle(false);
-      alert("مشکلی در پوست اطلاعات وجود دراد ");
     }
     setReReand(false);
-  };
+  }else{
+    return null
+  }
+}
+ 
 
-  const handelsaveNewItem = () => {
-    setReReand(false);
-    if (key === ''|| title ==='' || mount=== ''|| !check) {
-      return null
-    }else{
-      HandlPost();
-    }
-  };
 
   const handleInputChange = (event: any) => {
     let newValue = event.target.value;
     setKey(newValue);
     // Check if the new value contains any capital litters
     if (/[A-Z]/.test(newValue)) {
-      setError(`از حروف کوچگ انگلیسی استفاده کنید `);
+      setError(`از حروف کوچگ انگلیسی استفاده کنید`);
       setCapital(false);
       // SELECT THE INPUT
       setActiveInput(false);
@@ -90,16 +80,14 @@ const SaveNewProduct = ({
   };
   // cahgming the 
   const handelCheckInputNumber = (event: any) => {
-    console.log('start');
-    
     let newValue = event.target.value;
     
     // Check if the new value contains any non-numeric characters
     if (/\D/.test(newValue)) {
-      setCheck(true)
-    } else {
-      console.log("notnumber");
+      console.log('the  is number');
       
+    } else {
+      setCheck(true)
     }
   }
   return (
@@ -184,7 +172,7 @@ const SaveNewProduct = ({
             </button>
           ) : (
             <button
-              onClick={() => handelsaveNewItem()}
+              onClick={() => HandlPost()}
               className="bg-btn text-white text-lg py-2 px-4 mb-2 font-medium rounded-md  mr-5"
             >
               {" "}
