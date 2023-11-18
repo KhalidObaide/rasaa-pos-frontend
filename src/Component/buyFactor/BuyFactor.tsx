@@ -56,7 +56,7 @@ useEffect(()=>{
 // seeding the data of this fator to Api
   const EmployeeData ={
     invoice_num: 5,
-    contact: 'Test_5',
+    contact: sellerNmae,
     date: currentDate,
     buy: 'buy',
     remaining: 0,
