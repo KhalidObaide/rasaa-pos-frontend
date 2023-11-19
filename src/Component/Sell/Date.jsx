@@ -3,6 +3,7 @@ import DatePicker from "react-multi-date-picker";
 import { BsChevronDown } from "react-icons/bs";
 import { CiCalendarDate } from "react-icons/ci";
 // import style from '../assets/styles/styles';
+// This is the commint
 import { calendar } from "../assets/img";
 const Date = () => {
   return (
